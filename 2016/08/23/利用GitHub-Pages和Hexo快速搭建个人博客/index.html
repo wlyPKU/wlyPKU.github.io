@@ -1,0 +1,993 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="实用配置,Hexo," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351。本文是利用Github和Hexo搭建博客的教程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用GitHub Pages和Hexo快速搭建个人博客">
+<meta property="og:url" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/index.html">
+<meta property="og:site_name" content="wlyPKU">
+<meta property="og:description" content="hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351。本文是利用Github和Hexo搭建博客的教程。">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/hexo.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogsignupGithub.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogcreateRepo1.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogcreateRepo2.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogsignin1.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogsignin2.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogsignin3.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogssh1.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogssh2.jpg">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo2.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo3.jpg">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo4.jpg">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo5.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo6.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo7.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo8.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo9.jpg">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogwrite1.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogwrite2.png">
+<meta property="og:updated_time" content="2016-08-26T01:39:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用GitHub Pages和Hexo快速搭建个人博客">
+<meta name="twitter:description" content="hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351。本文是利用Github和Hexo搭建博客的教程。">
+<meta name="twitter:image" content="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/hexo.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/"/>
+
+  <title> 利用GitHub Pages和Hexo快速搭建个人博客 | wlyPKU </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wlyPKU</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                利用GitHub Pages和Hexo快速搭建个人博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T12:02:59+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/实用配置/" itemprop="url" rel="index">
+                    <span itemprop="name">实用配置</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://hexo.io" target="_blank" rel="external">hexo</a>是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351。本文是利用Github和Hexo搭建博客的教程。</p>
+<p><div align="center"><br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/hexo.png" alt="hexo.png" title=""><br></div><br><a id="more"></a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>“工欲善其事，必先利其器”，在搭建个人博客的过程中，我深刻体会到这句话的含义。虽然早就决定了要搭建个人博客，但是我并没有草草动手，而是提前做了大量的调研工作，包括采用哪种博客系统、选择哪种主题、怎么购买并绑定个性域名等等。事实证明，正因为前期的充分准备，搭建过程才能按部就班地进行。下面先介绍为何选择GitHub Pages和Hexo来搭建博客，然后介绍搭建博客的详细过程。这篇文章可能长的让人想哭，但如果你坚持看完了，肯定会有收获的。此外，本教程不仅面向计算机专业的同学，任何想搭建个人独立博客的同学，都可以来看看。</p>
+<h1 id="why-GitHub-Pages-and-Hexo"><a href="#why-GitHub-Pages-and-Hexo" class="headerlink" title="why GitHub Pages and Hexo"></a>why GitHub Pages and Hexo</h1><p>之前在关于我里面提到过，搭建博客会有三个阶段，我选择的是第三种方法。因为GitHub的存在，我们得以简单快速地搭建个人博客。</p>
+<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><p>GitHub，是一个代码托管网站和社交编程网站。这里聚集了世界上各路技术牛叉的大牛，和最优秀的代码库。把你的博客托管在这里，还有什么不放心的呢O(∩_∩)O。</p>
+<h2 id="GitHub-Pages"><a href="#GitHub-Pages" class="headerlink" title="GitHub Pages"></a>GitHub Pages</h2><p>GitHub Pages，是用来托管GitHub上静态网页的免费站点，那GitHub Pages具体有哪些功能呢：</p>
+<ul>
+<li><p>有300M免费空间，资料自己管理，保存可靠；</p>
+</li>
+<li><p>享受 GitHub 的便利，上面有很多大牛，眼界会开阔很多；</p>
+</li>
+<li><p>可以使用很多现成的博客框架，搭建过程简单快速。</p>
+</li>
+</ul>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>Hexo是一个简单、快速、强大的静态博客框架,出自台湾大学生tommy351之手。我也看过使用Jekyll、Octopress搭建个人博客的过程，确实要繁琐许多。相比之下Hexo更轻便更快捷，下面是Hexo官网强调Hexo的四大特点：</p>
+<ul>
+<li><p>极速生成静态页面</p>
+</li>
+<li><p>支持Markdown</p>
+</li>
+<li><p>一键部署博客</p>
+</li>
+<li><p>丰富的插件支持</p>
+</li>
+</ul>
+<p>相信大家对GitHub Pages和Hexo有了一定的了解，下面进入正题。</p>
+<h1 id="使用GitHub-Pages建立博客站点"><a href="#使用GitHub-Pages建立博客站点" class="headerlink" title="使用GitHub Pages建立博客站点"></a>使用GitHub Pages建立博客站点</h1><h2 id="注册GitHub"><a href="#注册GitHub" class="headerlink" title="注册GitHub"></a>注册GitHub</h2><p>访问GitHub,注册十分简单，一定要记住注册时使用的邮箱，因为 GitHub 上很多通知都是通过邮箱的。如下图所示：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogsignupGithub.png" alt="blogsignupGithub.png" title=""><br>申请成功后，在GitHub官网上登录，并验证邮箱即可。</p>
+<h2 id="在GitHub上建立仓库"><a href="#在GitHub上建立仓库" class="headerlink" title="在GitHub上建立仓库"></a>在GitHub上建立仓库</h2><p>与 GitHub 建立好连接之后，就可以方便的使用它提供的 Pages 服务，GitHub Pages 分两种，一种是用你的GitHub用户名建立的username.github.io这样的用户&amp;组织站点，另一种是依附项目的Pages。</p>
+<p>想建立个人博客是用的第一种，形如username.github.io这样的可访问的站点，每个用户名下面只能建立一个。如下图所示：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogcreateRepo1.png" alt="blogcreateRepo1.png" title=""></p>
+<img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogcreateRepo2.png" alt="blogcreateRepo2.png" title="">
+<h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><p>依次下载并安装下面两个软件，一直点击下一步即可：</p>
+<ul>
+<li><p><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a></p>
+</li>
+<li><p><a href="https://desktop.github.com/" target="_blank" rel="external">GitHub for Windows</a></p>
+</li>
+</ul>
+<h2 id="使用GitHub-for-Windows登录GitHub"><a href="#使用GitHub-for-Windows登录GitHub" class="headerlink" title="使用GitHub for Windows登录GitHub"></a>使用GitHub for Windows登录GitHub</h2><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogsignin1.png" alt="blogsignin1.png" title="">
+<img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogsignin2.png" alt="blogsignin2.png" title="">
+<img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogsignin3.png" alt="blogsignin3.png" title="">
+<h2 id="配置SSH-Key"><a href="#配置SSH-Key" class="headerlink" title="配置SSH Key"></a>配置SSH Key</h2><p>我们如何让本地git项目与远程的GitHub建立联系呢？用SSH key。在桌面或开始菜单中找到 Git Shell，打开后输入以下命令：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-T</span> <span class="selector-tag">git</span>@<span class="keyword">github</span>.<span class="keyword">com</span></div></pre></td></tr></table></figure></p>
+<p>如图：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogssh1.png" alt="blogssh1.png" title=""></p>
+<p>如果是下面之类的反馈（或者显示 Hi xxx）：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The authenticity <span class="keyword">of</span> host <span class="comment">'github.com (207.97.227.239)' can't be established. RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48. Are you sure you want to continue connecting (yes/no)?</span></div></pre></td></tr></table></figure>
+<p>不用紧张，输入 yes 之后,看到下图的结果，就配置成功了：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogssh2.jpg" alt="blogssh2.jpg" title=""></p>
+<h1 id="使用Hexo创建博客框架"><a href="#使用Hexo创建博客框架" class="headerlink" title="使用Hexo创建博客框架"></a>使用Hexo创建博客框架</h1><h2 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h2><p>打开 Git Shell，启动后依次输入以下命令：<br><figure class="highlight tcl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> /</div><div class="line">npm config <span class="keyword">set</span> <span class="keyword">registry</span> <span class="keyword">http</span>://<span class="keyword">registry</span>.npm.taobao.org/</div><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure></p>
+<p>如图：<br></p>
+<h2 id="Hexo部署"><a href="#Hexo部署" class="headerlink" title="Hexo部署"></a>Hexo部署</h2><p>Hexo的部署可采用如下方法，输入命令： hexo init [文件名]。</p>
+<p>打开Git Shell，启动后依次输入以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /</div><div class="line">hexo init Hexo</div></pre></td></tr></table></figure></p>
+<p>回车后出现该提示则表示正确：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo2.png" alt="bloghexo2.png" title=""></p>
+<p>这时会发现 C盘根目录下（或是 Git Shell 里指定的目录下）会多出一个文件夹，名为 Hexo。再输入以下命令，安装依赖文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> Hexo</div><div class="line">npm install</div></pre></td></tr></table></figure></p>
+<p>回车后出现该提示则表示正确：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo3.jpg" alt="bloghexo3.jpg" title=""></p>
+<p>部署成功之后，Hexo 会自动在目标文件夹建立博客网站所需要的所有文件。此时可以通过输入以下命令在本地进行预览（在刚才创建的文件夹里）：<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">generate</span> </div><div class="line">hexo server</div></pre></td></tr></table></figure></p>
+<p>系统可能会出现提示，请点击允许。如下图所示则表示正确：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo4.jpg" alt="bloghexo4.jpg" title=""></p>
+<p>此时打开浏览器，在浏览器地址栏输入 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> （默认端口为4000）, 便可以看到最原始的博客了。以后发表博文想先预览，也可以通过 hexo server 在本地先跑起来，看看效果。(我在进行这步的时候由于端口号冲突始终没能成功显示，修改端口号也没用，所以最后直接发布到博客预览)。</p>
+<p>效果如下图所示：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo5.png" alt="bloghexo5.png" title=""></p>
+<p>恭喜，到目前为止个人博客的雏形已经有了。</p>
+<p>在 Git Shell 中按 Ctrl + C 并输入 y 可以停止该服务。</p>
+<h1 id="将本地文件部署到-GitHub"><a href="#将本地文件部署到-GitHub" class="headerlink" title="将本地文件部署到 GitHub"></a>将本地文件部署到 GitHub</h1><h2 id="修改-Hexo-中的-config-yml-文件"><a href="#修改-Hexo-中的-config-yml-文件" class="headerlink" title="修改 Hexo 中的 _config.yml 文件"></a>修改 Hexo 中的 _config.yml 文件</h2><p>在 Hexo 文件夹下找到 _config.yml 文件,如下图所示：</p>
+<img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo6.png" alt="bloghexo6.png" title="">
+<p>找到其中的 deploy 标签，改成下图所示形式，并保存。<strong>注意：冒号后面要加上一个空格，否则会报错。</strong><br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo7.png" alt="bloghexo7.png" title=""></p>
+<h2 id="将其-deploy-到仓库中"><a href="#将其-deploy-到仓库中" class="headerlink" title="将其 deploy 到仓库中"></a>将其 deploy 到仓库中</h2><p>打开 Git Shell 进入创建的文件夹，依次输入以下命令：<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo <span class="keyword">generate</span></div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
+<p>如果出现下图错误，不要着急：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo8.png" alt="bloghexo8.png" title=""><br>将deploy 的 type 改成 git，然后再在 Git Shell 中运行以下命令:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></div></pre></td></tr></table></figure></p>
+<p>再重新来一遍：<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo <span class="keyword">generate</span></div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
+<p>出现以下提示则表示正确：<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/bloghexo9.jpg" alt="bloghexo9.jpg" title=""></p>
+<p>恭喜，到这一步，个人博客就已经部署到 GitHub 上了，你可以到你的<a href="http://www.github.com" target="_blank" rel="external">GitHub</a>仓库查看是否已经更新。此时,通过 your_user_name.github.io（即你那个仓库的名称，形如：”你的 GitHub 用户名”.github.io）,就可以看到你的个人博客了。</p>
+<p>同时需要将<code>_config.yml</code>中的<code>url</code>改为<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">url:</span> <span class="string">http:</span><span class="comment">//your_user_name.github.io</span></div></pre></td></tr></table></figure></p>
+<p>以便后面的评论和Sitemap的设置。</p>
+<p>提示：上述搭建步骤大量参考了<a href="http://yangruihan.com/" target="_blank" rel="external">yangruihan</a>的博客，如果你对搭建过程还有疑问，可以查看他的原创博文：<a href="http://yangruihan.com/2015/03/22/Windows%E4%B8%8B%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E7%8B%AC%E7%AB%8B%E5%8D%9A%E5%AE%A2%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8%20GitHub%20Pages%20+%20Hexo%20%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external">Windows下一步步搭建自己的独立博客——使用 GitHub Pages + Hexo 基础教程（一）</a>。</p>
+<h1 id="发表博文"><a href="#发表博文" class="headerlink" title="发表博文"></a>发表博文</h1><p>辛苦了这么久，终于回到我们搭建博客最初的目标–写作，现在来看看怎么写博文并发表吧</p>
+<h2 id="新建博文"><a href="#新建博文" class="headerlink" title="新建博文"></a>新建博文</h2><p>我们可以使用命令新建一篇博文,使用 Git Shell 进入 Hexo 文件夹，输入以下命令：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">new</span> <span class="string">"文章题目"</span></div></pre></td></tr></table></figure>
+<p>命令执行完后，就会发现在 Hexo\source_posts 目录中多了一个文件博文名.md，这就是我们刚才新建的博文。</p>
+<p>此外，我们也可以直接进入 Hexo\source_posts 目录中，右键新建一个文本文档，将名字改为博文名.md,这样也新建了一篇博文。<br>上面新建的博文是显示在单个文章界面，这里新建的页面是作为单个页面显示的，比如下图的分类、标签、归档和关于我，你点击后都是显示为单个页面。<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogwrite1.png" alt="blogwrite1.png" title=""><br>你只需要记住新建博文是用上面的方法，新建页面是用这里的方法就行了，这里也采用命令新建页面：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">new</span> page <span class="string">"页面名称"</span></div></pre></td></tr></table></figure></p>
+<p>命令执行完后，就会发现在在 Hexo\source 目录中多了一个文件夹，里面还有一个index.md,这就代表我们新建了一个页面。</p>
+<h2 id="写博文"><a href="#写博文" class="headerlink" title="写博文"></a>写博文</h2><p>用文本编辑器打开上面新建的博文，如下图所示：</p>
+<img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/blogwrite2.png" alt="blogwrite2.png" title="">
+<p>新建的页面略有不同，没有tags和categories标签。</p>
+<p>三个”-“后面就是博文的正文内容，接下来就是正儿八经地撰写博文了。</p>
+<p>因为我们的博文都是用<a href="http://baike.baidu.com/link?url=IbmQI2KgUUPKG7au6ae9bYTbSZl2ctDyPmHF2RZh2j4tPMKYjjyqERYyqCMHp5rdE5G-x9y7BLyNvBXMpi9tsK" target="_blank" rel="external">Markdown</a>语言写的，所以首先，你需要一个好用的Markdown编辑器。其实好用的Markdown编辑器一大堆，这里就给大家推荐两个，如果你用的不习惯也可以换其它的。</p>
+<ul>
+<li><p>本地编辑器：<a href="http://pad.haroopress.com/user.html" target="_blank" rel="external">Haroopad</a>,非常小众的一款Markdown编辑器，左边编辑右边实时预览效果，非常轻便;</p>
+</li>
+<li><p>在线编辑器：<a href="http://mahua.jser.me/" target="_blank" rel="external">MaHua</a>,也是比较小众的一款Markdown编辑器，但效果确实很棒，我的这篇博文就是用MaHua写的。</p>
+</li>
+</ul>
+<p>现在你可以打开新建的博文了，然而还不造怎么下手对吧。其实很简单，除了特殊格式，其它的你就当做在word里面写文章就行了，具体请看这里的Markdown教程：<a href="http://www.jianshu.com/p/1e402922ee32/#" target="_blank" rel="external">Markdown——入门指南</a>。</p>
+<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>在站点配置文件_config.yml中修改post_asset_folder：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">post_asset_folder:</span><span class="literal">true</span></div></pre></td></tr></table></figure></p>
+<p>然后执行下面命令重新生成<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo <span class="keyword">generate</span></div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
+<p>当创建新的页面<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">new</span> <span class="string">"page"</span></div></pre></td></tr></table></figure></p>
+<p>时,可以发现在/source/_posts/文件夹中存在一个同名的资源文件夹,将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们，这样你就得到了一个更简单而且方便得多的工作流。</p>
+<h3 id="相对路径引用的标签插件"><a href="#相对路径引用的标签插件" class="headerlink" title="相对路径引用的标签插件"></a>相对路径引用的标签插件</h3><p>通过常规的 markdown 语法和相对路径来引用图片和其它资源可能会导致它们在存档页或者主页上显示不正确。在Hexo 2时代，社区创建了很多插件来解决这个问题。但是，随着Hexo 3 的发布，许多新的标签插件被加入到了核心代码中。这使得你可以更简单地在文章中引用你的资源。<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">asset_path</span> slug %&#125;</span><span class="xml"></span></div><div class="line"><span class="template-tag">&#123;% <span class="name">asset_img</span> slug [title] %&#125;</span><span class="xml"></span></div><div class="line"><span class="template-tag">&#123;% <span class="name">asset_link</span> slug [title] %&#125;</span><span class="xml"></span></div></pre></td></tr></table></figure></p>
+<p>比如说：当你打开文章资源文件夹功能后，你把一个 example.jpg 图片放在了你的资源文件夹中，如果通过使用相对路径的常规 markdown 语法<code>![](/example.jpg)</code>，它将<strong>不会</strong>出现在首页上。（但是它会在文章中按你期待的方式工作）<br>正确的引用图片方式是使用下列的标签插件而不是 markdown ：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="symbol">%</span> asset_img <span class="built_in">example</span>.jpg This <span class="built_in">is</span> an <span class="built_in">example</span> <span class="built_in">image</span> <span class="symbol">%</span>&#125;</div></pre></td></tr></table></figure></p>
+<p>通过这种方式，图片将会同时出现在文章和主页以及归档页中。</p>
+<h2 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h2><p>呼啦啦，博文写好了，你得发表出去别人才看得到呀。依然在 Git Shell 中进入 Hexo 文件夹，执行下面几条命令，将博客部署到 GitHub 上：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo <span class="keyword">generate</span></div><div class="line"><span class="variable">#(若要本地预览就先执行 hexo server)</span></div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
+<p>快捷命令:<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hexo g == hexo <span class="keyword">generate</span></div><div class="line">hexo d == hexo deploy</div><div class="line">hexo s == hexo server</div><div class="line">hexo n == hexo <span class="keyword">new</span></div></pre></td></tr></table></figure></p>
+<p> 还能组合使用，如：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">hexo d -g</span></div></pre></td></tr></table></figure></p>
+<p>刷新你的个人博客，就可以看到新鲜出炉的博文了，赶紧邀请小伙伴们来欣赏吧。</p>
+<p>话外音:其实到这里，你已经学会了怎么搭建并发表博客，所以最初的目标已经实现，可以happy地写博客去啦。后面是我自己的选修课，如果你也愿意像我一样折腾，就继续往下看吧O(∩_∩)O。</p>
+<h1 id="安装NexT主题"><a href="#安装NexT主题" class="headerlink" title="安装NexT主题"></a>安装NexT主题</h1><h2 id="选择主题"><a href="#选择主题" class="headerlink" title="选择主题"></a>选择主题</h2><p>我们刚才使用Hexo生成的博客使用的是Hexo的默认主题：<a href="https://hexo.io/hexo-theme-landscape/" target="_blank" rel="external">Landscape</a>。怎么说呢，这个主题猛地一看还行，仔细一看还不如猛地一看，所以我决定另寻归宿。</p>
+<p>然后，我来到了这里：<a href="https://github.com/hexojs/wiki/Themes" target="_blank" rel="external">Themes·Hexo</a>,瞬间有了一种村姑进城的感觉。我是一个一个地看，看得我眼花缭乱也没一个抉择，最后综合网友的评价，选择了这个主题：<a href="http://notes.iissnan.com/" target="_blank" rel="external">NexT</a>。</p>
+<ul>
+<li><p>简洁大方，比较符合我的品位；</p>
+</li>
+<li><p>作者<a href="http://notes.iissnan.com/" target="_blank" rel="external">iissnan</a>很勤快，持续更新主题，作者博客的样式就是他正在开发而未上线的NexT主题新样式。</p>
+</li>
+</ul>
+<p>当然，每个人的品位都不一样，你也可以选择其它的主题，当然也欢迎你选择NexT主题，这样就能继续一起愉快地折腾啦。</p>
+<h2 id="安装NexT主题-1"><a href="#安装NexT主题-1" class="headerlink" title="安装NexT主题"></a>安装NexT主题</h2><p>Hexo 有两份主要的配置文件（_config.yml），一份位于站点根目录下，另一份位于主题目录下。为了描述方便，在以下说明中，将前者称为 <strong>站点配置文件</strong>，后者称为 <strong>主题配置文件</strong>。</p>
+<h2 id="下载-NexT-主题"><a href="#下载-NexT-主题" class="headerlink" title="下载 NexT 主题"></a>下载 NexT 主题</h2><p>使用 Git Shell 进入 Hexo 文件夹，输入以下两条命令：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> Hexo</div><div class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/iissnan/hexo-theme-<span class="keyword">next</span> themes/<span class="keyword">next</span></div></pre></td></tr></table></figure></p>
+<h2 id="启用NexT主题"><a href="#启用NexT主题" class="headerlink" title="启用NexT主题"></a>启用NexT主题</h2><p>下载完成后，打开 站点配置文件，找到 theme 字段，并将其值更改为 next。</p>
+<h2 id="验证主题是否启用"><a href="#验证主题是否启用" class="headerlink" title="验证主题是否启用"></a>验证主题是否启用</h2><p>执行上面发博文的命令，刷新你的个人博客，就能看到你设置的主题是否启用。</p>
+<h1 id="设置NexT主题和第三方服务"><a href="#设置NexT主题和第三方服务" class="headerlink" title="设置NexT主题和第三方服务"></a>设置NexT主题和第三方服务</h1><p>安装完NexT之后，还是发现不够漂亮对不对，所以下面我们来慢慢地润色你的个人博客。</p>
+<h2 id="选择样式"><a href="#选择样式" class="headerlink" title="选择样式"></a>选择样式</h2><p>NexT默认的样式其实也比较丑，幸好作者提供了一款十分漂亮的样式:Mist。启用 Mist 很简单，仅需在 主题配置文件 中将 #scheme: Mist 前面的 # 注释去掉即可。</p>
+<h2 id="菜单设置"><a href="#菜单设置" class="headerlink" title="菜单设置"></a>菜单设置</h2><p>菜单配置在 主题配置文件 的 menu，下面是菜单配置示例：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">menu</span>:</div><div class="line">  #home: /</div><div class="line">  archive<span class="variable">s:</span> /archives</div><div class="line">  abou<span class="variable">t:</span> /about</div><div class="line">  categorie<span class="variable">s:</span> /categories</div><div class="line">  <span class="keyword">tag</span><span class="variable">s:</span> /<span class="keyword">tags</span></div><div class="line">  #commonwea<span class="variable">l:</span> /<span class="number">404</span>.html</div></pre></td></tr></table></figure></p>
+<p>其它的很多在<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">NexT官方文档</a>里面已经讲的很清楚了，我就不在这里重复造轮子了，下面我只讲下NexT官方文档里没有提到过的地方。</p>
+<ul>
+<li><p>sitemap : <a href="http://baike.baidu.com/link?url=Hvuhn8v3mmoNI6iVHm_NrZilTuHxsvLfpZJWZQwlZ4mjAAw_Bd4M_M8AnlPMj_L1Jv2tjFCdTdsV32iuwo_Qwq" target="_blank" rel="external">sitemap</a>是一个包含网站中的所有网址以及每个网址的其他元数据的文件，以便搜索引擎可以更加智能地抓取网站。我们先来看看Hexo支持哪些插件：<a href="https://hexo.io/plugins/" target="_blank" rel="external">Plugins | Hexo</a>,可以看到有<a href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="external">hexo-generator-sitemap</a>这个插件，在README.md文件中已经讲述了安装方法，只是要注意sitemap这个标签要加在主题配置文件中。再次部署你的博客，看到你的GitHub仓库中多了sitemap.xml文件，那么sitemap就部署成功了。</p>
+</li>
+<li><p>多说评论框 : 多说评论框默认的样式确实比较丑，请看这里美哭的效果：<a href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="external">多说自定义CSS 让你的多说评论动感起来</a>；另外，在设置<strong>评论显示样式</strong>时，可以设置为<strong>嵌套显示</strong>，美观了不少。</p>
+</li>
+<li><p>生成favicon : 所谓<a href="http://baike.baidu.com/link?url=shMog2srG2OphNuZNmQ8LseNMOWIrNwyppJ1YP0TwDp3VUYnzBjiPqb41Cqjr-84wwhZnG55cN_-Cp40ybKjNa" target="_blank" rel="external">favicon</a>,即Favorites Icon,顾名思义，就是收藏夹图标，也是地址栏左边的图标。如果没有设置favicon,地址栏左边就是一片空白，把favicon成你喜欢的图片，打造个性化标志，博客瞬间生动了不少。这里推荐一个网站，可以在线生成favicon,简单实用：<a href="http://www.atool.org/ico.php" target="_blank" rel="external">在线透明favicon ico图标文件制作 - aTool在线工具</a>。生成favcion后，再按照NexT官方文档的方法，就能设置favicon了。</p>
+<h2 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h2><p>NexT 支持 <a href="http://duoshuo.com/" target="_blank" rel="external">多说</a> 和 <a href="https://disqus.com/" target="_blank" rel="external">DISQUS</a> 评论系统。 当同时设置了多说和DISQUS时，优先选择多说。 NexT内置了一套多说的样式。<br><strong>如需取消某个 页面/文章 的评论，在 md 文件的 <a href="https://hexo.io/docs/front-matter.html" target="_blank" rel="external">front-matter</a> 中增加<code>comments: false</code> </strong></p>
+<h3 id="多说"><a href="#多说" class="headerlink" title="多说"></a>多说</h3><p>使用多说前需要先在<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a> 创建一个站点。具体步骤如下：</p>
+</li>
+</ul>
+<ol>
+<li>登录后在首页选择 “我要安装”。</li>
+<li><p>创建站点，填写表单。<strong>多说域名</strong>这一栏填写的即是你的 <code>duoshuo_shortname</code>，如图：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">asset_img</span> duoshuo-create-site.png  %&#125;</span><span class="xml"></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>创建站点完成后在<strong>站点配置文件</strong>中新增<code>duoshuo_shortname</code>字段，值设置成上一步中的值。</p>
+</li>
+</ol>
+<p>同时可以在多说的控制台界面中选择多种样式与属性选项。如嵌套回复、多说分享等。</p>
+<h4 id="多说分享"><a href="#多说分享" class="headerlink" title="多说分享"></a>多说分享</h4><p>多说分享必须与多说评论同时使用</p>
+<p>编辑 <strong>站点配置文件</strong>， 添加字段<code>duoshuo_share</code>， 值为<code>true</code>。<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 多说分享服务</span></div><div class="line"><span class="attr">duoshuo_share:</span> <span class="literal">true</span></div></pre></td></tr></table></figure></p>
+<h3 id="DISUQS"><a href="#DISUQS" class="headerlink" title="DISUQS"></a>DISUQS</h3><p>编辑<strong>站点配置文件</strong>， 添加 <code>disqus_shortname</code>字段，设置如下：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">disqus_shortname:</span> your-disqus-shortname</div></pre></td></tr></table></figure></p>
+<h2 id="搜索服务-Local-Search"><a href="#搜索服务-Local-Search" class="headerlink" title="搜索服务(Local Search)"></a>搜索服务(Local Search)</h2><p>添加百度/谷歌/本地 自定义站点内容搜索</p>
+<ol>
+<li><p>安装 hexo-generator-search，在站点的根目录下执行以下命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="keyword">install</span> hexo-generator-<span class="keyword">search</span> <span class="comment">--save</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>编辑 站点配置文件，新增以下内容到任意位置：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">search:</div><div class="line">	path: search.<span class="keyword">xml</span></div><div class="line">	<span class="title">field</span>: post</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>第三方的服务可以参考:<br><a href="http://theme-next.iissnan.com/third-party-services.html" target="_blank" rel="external">NexT官方文档</a><br><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="external">Hexo官方文档</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/实用配置/" rel="tag">#实用配置</a>
+          
+            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/23/一阶机器学习优化算法/" rel="prev" title="一阶机器学习优化算法Paper汇总">
+                一阶机器学习优化算法Paper汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/"
+     data-title="利用GitHub Pages和Hexo快速搭建个人博客"
+     data-content=""
+     data-url="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/"
+           data-title="利用GitHub Pages和Hexo快速搭建个人博客" data-url="http://wlyPKU.github.io/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="wlyPKU" />
+          <p class="site-author-name" itemprop="name">wlyPKU</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlyPKU" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wangly2011/profile" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/wangly.cs" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#why-GitHub-Pages-and-Hexo"><span class="nav-number">2.</span> <span class="nav-text">why GitHub Pages and Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub"><span class="nav-number">2.1.</span> <span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub-Pages"><span class="nav-number">2.2.</span> <span class="nav-text">GitHub Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo"><span class="nav-number">2.3.</span> <span class="nav-text">Hexo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用GitHub-Pages建立博客站点"><span class="nav-number">3.</span> <span class="nav-text">使用GitHub Pages建立博客站点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册GitHub"><span class="nav-number">3.1.</span> <span class="nav-text">注册GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在GitHub上建立仓库"><span class="nav-number">3.2.</span> <span class="nav-text">在GitHub上建立仓库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建环境"><span class="nav-number">4.</span> <span class="nav-text">搭建环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装软件"><span class="nav-number">4.1.</span> <span class="nav-text">安装软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用GitHub-for-Windows登录GitHub"><span class="nav-number">4.2.</span> <span class="nav-text">使用GitHub for Windows登录GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置SSH-Key"><span class="nav-number">4.3.</span> <span class="nav-text">配置SSH Key</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Hexo创建博客框架"><span class="nav-number">5.</span> <span class="nav-text">使用Hexo创建博客框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo安装"><span class="nav-number">5.1.</span> <span class="nav-text">Hexo安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo部署"><span class="nav-number">5.2.</span> <span class="nav-text">Hexo部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#将本地文件部署到-GitHub"><span class="nav-number">6.</span> <span class="nav-text">将本地文件部署到 GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-Hexo-中的-config-yml-文件"><span class="nav-number">6.1.</span> <span class="nav-text">修改 Hexo 中的 _config.yml 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将其-deploy-到仓库中"><span class="nav-number">6.2.</span> <span class="nav-text">将其 deploy 到仓库中</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发表博文"><span class="nav-number">7.</span> <span class="nav-text">发表博文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建博文"><span class="nav-number">7.1.</span> <span class="nav-text">新建博文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写博文"><span class="nav-number">7.2.</span> <span class="nav-text">写博文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入图片"><span class="nav-number">7.3.</span> <span class="nav-text">插入图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相对路径引用的标签插件"><span class="nav-number">7.3.1.</span> <span class="nav-text">相对路径引用的标签插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发博文"><span class="nav-number">7.4.</span> <span class="nav-text">发博文</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装NexT主题"><span class="nav-number">8.</span> <span class="nav-text">安装NexT主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择主题"><span class="nav-number">8.1.</span> <span class="nav-text">选择主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装NexT主题-1"><span class="nav-number">8.2.</span> <span class="nav-text">安装NexT主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载-NexT-主题"><span class="nav-number">8.3.</span> <span class="nav-text">下载 NexT 主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用NexT主题"><span class="nav-number">8.4.</span> <span class="nav-text">启用NexT主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证主题是否启用"><span class="nav-number">8.5.</span> <span class="nav-text">验证主题是否启用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置NexT主题和第三方服务"><span class="nav-number">9.</span> <span class="nav-text">设置NexT主题和第三方服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择样式"><span class="nav-number">9.1.</span> <span class="nav-text">选择样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#菜单设置"><span class="nav-number">9.2.</span> <span class="nav-text">菜单设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评论系统"><span class="nav-number">9.3.</span> <span class="nav-text">评论系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多说"><span class="nav-number">9.3.1.</span> <span class="nav-text">多说</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多说分享"><span class="nav-number">9.3.1.1.</span> <span class="nav-text">多说分享</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DISUQS"><span class="nav-number">9.3.2.</span> <span class="nav-text">DISUQS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索服务-Local-Search"><span class="nav-number">9.4.</span> <span class="nav-text">搜索服务(Local Search)</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlyPKU</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wlypku"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

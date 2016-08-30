@@ -1,0 +1,897 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍Linux的常见文字处理命令,如awk, sort, uniq 等操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常见文字处理命令">
+<meta property="og:url" content="http://wlyPKU.github.io/2016/08/30/Linux常见文字处理命令/index.html">
+<meta property="og:site_name" content="wlyPKU">
+<meta property="og:description" content="本文主要介绍Linux的常见文字处理命令,如awk, sort, uniq 等操作。">
+<meta property="og:updated_time" content="2016-08-30T06:10:08.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常见文字处理命令">
+<meta name="twitter:description" content="本文主要介绍Linux的常见文字处理命令,如awk, sort, uniq 等操作。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wlyPKU.github.io/2016/08/30/Linux常见文字处理命令/"/>
+
+  <title> Linux常见文字处理命令 | wlyPKU </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wlyPKU</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux常见文字处理命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-30T13:23:09+08:00" content="2016-08-30">
+              2016-08-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/30/Linux常见文字处理命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/30/Linux常见文字处理命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍Linux的常见文字处理命令,如awk, sort, uniq 等操作。<br><a id="more"></a></p>
+<h1 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h1><p>awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。<br>awk有3个不同版本: awk、nawk和gawk，未作特别说明，一般指gawk，gawk 是 AWK 的 GNU 版本。<br>awk其名称得自于它的创始人 Alfred Aho 、Peter Weinberger 和 Brian Kernighan 姓氏的首个字母。实际上 AWK 的确拥有自己的语言： AWK 程序设计语言 ， 三位创建者已将它正式定义为“样式扫描和处理语言”。它允许您创建简短的程序，这些程序读取输入文件、为数据排序、处理数据、对输入执行计算以及生成报表，还有无数其他的功能。</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml">awk '</span><span class="template-variable">&#123;pattern + action&#125;</span><span class="xml">' </span><span class="template-variable">&#123;filenames&#125;</span><span class="xml"></span></div></pre></td></tr></table></figure>
+<p>尽管操作可能会很复杂，但语法总是这样，其中 pattern 表示 AWK 在数据中查找的内容，而 action 是在找到匹配内容时所执行的一系列命令。花括号（<code>{}</code>）不需要在程序中始终出现，但它们用于根据特定的模式对一系列指令进行分组。 pattern就是要表示的正则表达式，用斜杠括起来。<br>awk语言的最基本功能是在文件或者字符串中基于指定规则浏览和抽取信息，awk抽取信息后，才能进行其他文本操作。完整的awk脚本通常用来格式化文本文件中的信息。<br>通常，awk是以文件的一行为处理单位的。awk每接收文件的一行，然后执行相应的命令，来处理文本。</p>
+<h2 id="调用awk"><a href="#调用awk" class="headerlink" title="调用awk"></a>调用awk</h2><p>有三种方式调用awk:</p>
+<ol>
+<li>命令行方式<br>命令行调用<figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk [-F  field-<span class="keyword">separator</span>]  <span class="string">'commands'</span>  input-<span class="keyword">file</span>(s)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。<br>在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。</p>
+<ol>
+<li>shell脚本方式<br>将所有的awk命令插入一个文件，并使awk程序可执行，然后awk命令解释器作为脚本的首行，一遍通过键入脚本名称来调用。<br>相当于shell脚本首行的：<code>#!/bin/sh</code><br>可以换成：<code>#!/bin/awk</code></li>
+<li>将所有的awk命令插入一个单独文件，然后调用：<br><code>awk -f awk-script-file input-file(s)</code><br>其中，-f选项加载awk-script-file中的awk脚本，input-file(s)跟上面的是一样的。</li>
+</ol>
+<h2 id="入门实例"><a href="#入门实例" class="headerlink" title="入门实例"></a>入门实例</h2><p>假设last -n 5的输出如下<br><figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[<span class="name">root@www</span> ~]# last -n <span class="number">5</span> &lt;==仅取出前五行</div><div class="line">root     pts/1   <span class="number">192.168</span>.1.100  Tue Feb <span class="number">10</span> <span class="number">11</span>:21   still logged in</div><div class="line">root     pts/1   <span class="number">192.168</span>.1.100  Tue Feb <span class="number">10</span> <span class="number">00</span>:46 - <span class="number">02</span>:28  (<span class="name">01:41</span>)</div><div class="line">root     pts/1   <span class="number">192.168</span>.1.100  Mon Feb  <span class="number">9</span> <span class="number">11</span>:41 - <span class="number">18</span>:30  (<span class="name">06:48</span>)</div><div class="line">dmtsai   pts/1   <span class="number">192.168</span>.1.100  Mon Feb  <span class="number">9</span> <span class="number">11</span>:41 - <span class="number">11</span>:41  (<span class="name">00:00</span>)</div><div class="line">root     tty1                   Fri Sep  <span class="number">5</span> <span class="number">14</span>:09 - <span class="number">14</span>:10  (<span class="name">00:01</span>)</div></pre></td></tr></table></figure></p>
+<p>如果只是显示最近登录的5个帐号<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#last -n 5 | awk  <span class="string">'&#123;print $1&#125;'</span></span></div><div class="line">root</div><div class="line">root</div><div class="line">root</div><div class="line">dmtsai</div><div class="line">root</div></pre></td></tr></table></figure></p>
+<p>awk工作流程是这样的：读入有’\n’换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，$0则表示所有域,$1表示第一个域,$n表示第n个域。默认域分隔符是”空白键” 或 “[tab]键”,所以$1表示登录用户，$3表示登录用户ip,以此类推。</p>
+<p>如果只是显示/etc/passwd的账户<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#cat /etc/passwd |awk  -F <span class="string">':'</span>  <span class="string">'&#123;print $1&#125;'</span>  </span></div><div class="line">root</div><div class="line">daemon</div><div class="line">bin</div><div class="line">sys</div></pre></td></tr></table></figure></p>
+<p>这种是awk+action的示例，每行都会执行action{print $1}。</p>
+<p>-F指定域分隔符为’:’。</p>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以tab键分割<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">cat</span> /etc/passwd |awk  -F ':'  '&#123;<span class="keyword">print</span> <span class="variable">$1</span><span class="string">"\t"</span><span class="variable">$7&#125;</span>'</div><div class="line">root    /bin/bash</div><div class="line">daemon  /bin/<span class="keyword">sh</span></div><div class="line">bin     /bin/<span class="keyword">sh</span></div><div class="line">sys     /bin/<span class="keyword">sh</span></div></pre></td></tr></table></figure></p>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以逗号分割,而且在所有行添加列名name,shell,在最后一行添加”blue,/bin/nosh”。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cat</span> /etc/passwd |awk  -F ':'  'BEGIN &#123;<span class="keyword">print</span> <span class="string">"name,shell"</span>&#125;  &#123;<span class="keyword">print</span> <span class="variable">$1</span><span class="string">","</span><span class="variable">$7&#125;</span> END &#123;<span class="keyword">print</span> <span class="string">"blue,/bin/nosh"</span>&#125;'</div><div class="line">name,<span class="keyword">shell</span></div><div class="line">root,/bin/bash</div><div class="line">daemon,/bin/<span class="keyword">sh</span></div><div class="line">bin,/bin/<span class="keyword">sh</span></div><div class="line">sys,/bin/<span class="keyword">sh</span></div><div class="line">....</div><div class="line">blue,/bin/nosh</div></pre></td></tr></table></figure>
+<p>awk工作流程是这样的：先执行BEGING，然后读取文件，读入有/n换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，$0则表示所有域,$1表示第一个域,$n表示第n个域,随后开始执行模式所对应的动作action。接着开始读入第二条记录······直到所有的记录都读完，最后执行END操作。</p>
+<p>搜索/etc/passwd有root关键字的所有行<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#awk -F: '/root/' /etc/passwd</span></div><div class="line"><span class="symbol">root:</span><span class="symbol">x:</span><span class="number">0</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:root</span><span class="symbol">:/root</span><span class="symbol">:/bin/bash</span></div></pre></td></tr></table></figure></p>
+<p>这种是pattern的使用示例，匹配了pattern(这里是root)的行才会执行action(没有指定action，默认输出每行的内容)。<br>搜索支持正则，例如找root开头的: awk -F: ‘/^root/‘ /etc/passwd</p>
+<p>搜索/etc/passwd有root关键字的所有行，并显示对应的shell<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># awk -F: <span class="string">'/root/&#123;print $7&#125;'</span> <span class="regexp">/etc/</span>passwd</div><div class="line"><span class="regexp">/bin/</span>bash</div></pre></td></tr></table></figure></p>
+<p> 这里指定了action{print $7}</p>
+<h2 id="awk内置变量"><a href="#awk内置变量" class="headerlink" title="awk内置变量"></a>awk内置变量</h2><p>awk有许多内置变量用来设置环境信息，这些变量可以被改变，下面给出了最常用的一些变量。<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ARGC               命令行参数个数</div><div class="line">ARGV               命令行参数排列</div><div class="line">ENVIRON            支持队列中系统环境变量的使用</div><div class="line">FILENAME           awk浏览的文件名</div><div class="line">FNR                浏览文件的记录数</div><div class="line"><span class="built_in">FS</span>                 设置输入域分隔符，等价于命令行 -F选项</div><div class="line">NF                 浏览记录的域的个数</div><div class="line">NR                 已读的记录数</div><div class="line">OFS                输出域分隔符</div><div class="line">ORS                输出记录分隔符</div><div class="line">RS                 控制记录分隔符</div></pre></td></tr></table></figure></p>
+<p>此外,$0变量是指整条记录。$1表示当前行的第一个域,$2表示当前行的第二个域,……以此类推。</p>
+<p>统计/etc/passwd:文件名，每行的行号，每行的列数，对应的完整行内容:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#awk  -F ':'  '&#123;print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0&#125;' /etc/passwd</span></div><div class="line"><span class="symbol">filename:</span>/etc/passwd,<span class="symbol">linenumber:</span><span class="number">1</span>,<span class="symbol">columns:</span><span class="number">7</span>,<span class="symbol">linecontent:</span><span class="symbol">root:</span><span class="symbol">x:</span><span class="number">0</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:root</span><span class="symbol">:/root</span><span class="symbol">:/bin/bash</span></div><div class="line"><span class="symbol">filename:</span>/etc/passwd,<span class="symbol">linenumber:</span><span class="number">2</span>,<span class="symbol">columns:</span><span class="number">7</span>,<span class="symbol">linecontent:</span><span class="symbol">daemon:</span><span class="symbol">x:</span><span class="number">1</span><span class="symbol">:</span><span class="number">1</span><span class="symbol">:daemon</span><span class="symbol">:/usr/sbin</span><span class="symbol">:/bin/sh</span></div><div class="line"><span class="symbol">filename:</span>/etc/passwd,<span class="symbol">linenumber:</span><span class="number">3</span>,<span class="symbol">columns:</span><span class="number">7</span>,<span class="symbol">linecontent:</span><span class="symbol">bin:</span><span class="symbol">x:</span><span class="number">2</span><span class="symbol">:</span><span class="number">2</span><span class="symbol">:bin</span><span class="symbol">:/bin</span><span class="symbol">:/bin/sh</span></div><div class="line"><span class="symbol">filename:</span>/etc/passwd,<span class="symbol">linenumber:</span><span class="number">4</span>,<span class="symbol">columns:</span><span class="number">7</span>,<span class="symbol">linecontent:</span><span class="symbol">sys:</span><span class="symbol">x:</span><span class="number">3</span><span class="symbol">:</span><span class="number">3</span><span class="symbol">:sys</span><span class="symbol">:/dev</span><span class="symbol">:/bin/sh</span></div></pre></td></tr></table></figure></p>
+<p>使用printf替代print,可以让代码更加简洁，易读<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">awk</span>  -F <span class="string">':'</span>  <span class="string">'&#123;printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,<span class="variable">$0</span>)&#125;'</span> /etc/passwd</div></pre></td></tr></table></figure></p>
+<h2 id="awk编程"><a href="#awk编程" class="headerlink" title="awk编程"></a>awk编程</h2><h3 id="变量和赋值"><a href="#变量和赋值" class="headerlink" title="变量和赋值"></a>变量和赋值</h3><p>除了awk的内置变量，awk还可以自定义变量。</p>
+<p>下面统计/etc/passwd的账户人数<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123;count++;print $0;&#125; END&#123;print "user count is ", count&#125;'</span> /etc/passwd</div><div class="line"><span class="symbol">root:</span><span class="symbol">x:</span><span class="number">0</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:root</span><span class="symbol">:/root</span><span class="symbol">:/bin/bash</span></div><div class="line">......</div><div class="line">user count is  <span class="number">40</span></div></pre></td></tr></table></figure></p>
+<p>count是自定义变量。之前的action{}里都是只有一个print,其实print只是一个语句，而action{}可以有多个语句，以;号隔开。</p>
+<p>这里没有初始化count，虽然默认是0，但是妥当的做法还是初始化为0:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">awk '<span class="type">BEGIN</span> &#123;<span class="built_in">count</span>=<span class="number">0</span>;<span class="built_in">print</span> <span class="string">"[start]user count is "</span>, <span class="built_in">count</span>&#125; &#123;<span class="built_in">count</span>=<span class="built_in">count</span>+<span class="number">1</span>;<span class="built_in">print</span> $<span class="number">0</span>;&#125; <span class="type">END</span>&#123;<span class="built_in">print</span> <span class="string">"[end]user count is "</span>, <span class="built_in">count</span>&#125;' /etc/passwd</div><div class="line">[start]user <span class="built_in">count</span> <span class="keyword">is</span>  <span class="number">0</span></div><div class="line">root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</div><div class="line">...</div><div class="line">[end]user <span class="built_in">count</span> <span class="keyword">is</span>  <span class="number">40</span></div></pre></td></tr></table></figure></p>
+<p>统计某个文件夹下的文件占用的字节数<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk <span class="symbol">'BEGIN</span> &#123;size=<span class="number">0</span>;&#125; &#123;size=size+$<span class="number">5</span>;&#125; <span class="keyword">END</span>&#123;print <span class="string">"[end]size is "</span>, size&#125;'</div><div class="line">[<span class="keyword">end</span>]size <span class="keyword">is</span>  <span class="number">8657198</span></div></pre></td></tr></table></figure></p>
+<p>如果以M为单位显示:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk 'BEGIN &#123;size=<span class="number">0</span>;&#125; &#123;size=size+$<span class="number">5</span>;&#125; END&#123;print <span class="string">"[end]size is "</span>, size/<span class="number">1024</span>/<span class="number">1024</span>,<span class="string">"M"</span>&#125;' </div><div class="line">[end]size is  <span class="number">8.25889</span> M</div></pre></td></tr></table></figure></p>
+<p>注意，统计不包括文件夹的子目录。</p>
+<h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h3><p> awk中的条件语句是从C语言中借鉴来的，见如下声明方式：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement;</div><div class="line">    statement;</div><div class="line">    ... ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    statement2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (expression) &#123;</div><div class="line">    statement1;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (expression1) &#123;</div><div class="line">    statement2;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    statement3;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>统计某个文件夹下的文件占用的字节数,过滤4096大小的文件(一般都是文件夹):<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ls -l |awk '<span class="keyword">BEGIN</span> &#123;<span class="keyword">size</span>=<span class="number">0</span>;print "[<span class="keyword">start</span>]<span class="keyword">size</span> <span class="keyword">is</span> <span class="string">", size&#125; &#123;if($5!=4096)&#123;size=size+$5;&#125;&#125; END&#123;print "</span>[<span class="keyword">end</span>]<span class="keyword">size</span> <span class="keyword">is</span> <span class="string">", size/1024/1024,"</span>M<span class="string">"&#125;' </span></div><div class="line">[end]size is  8.22339 M</div></pre></td></tr></table></figure></p>
+<h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><p>awk中的循环语句同样借鉴于C语言，支持while、do/while、for、break、continue，这些关键字的语义和C语言中的语义完全相同。</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>  因为awk中数组的下标可以是数字和字母，数组的下标通常被称为关键字(key)。值和关键字都存储在内部的一张针对key/value应用hash的表格里。由于hash不是顺序存储，因此在显示数组内容时会发现，它们并不是按照你预料的顺序显示出来的。数组和变量一样，都是在使用时自动创建的，awk也同样会自动判断其存储的是数字还是字符串。一般而言，awk中的数组用来从记录中收集信息，可以用于计算总和、统计单词以及跟踪模板被匹配的次数等等。</p>
+<p>显示/etc/passwd的账户<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">awk -F ':' 'BEGIN &#123;<span class="built_in">count</span>=<span class="number">0</span>;&#125; &#123;<span class="built_in">name</span>[<span class="built_in">count</span>] = $<span class="number">1</span>;<span class="built_in">count</span>++;&#125;; END&#123;<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NR; i++) print i, <span class="built_in">name</span>[i]&#125;' /etc/passwd</div><div class="line"><span class="number">0</span> root</div><div class="line"><span class="number">1</span> daemon</div><div class="line"><span class="number">2</span> bin</div><div class="line"><span class="number">3</span> sys</div><div class="line"><span class="number">4</span> sync</div><div class="line"><span class="number">5</span> games</div><div class="line">......</div></pre></td></tr></table></figure></p>
+<p>这里使用for循环遍历数组</p>
+<p>awk编程的内容极多，这里只罗列简单常用的用法，更多请参考<a href="http://www.gnu.org/software/gawk/manual/gawk.html" target="_blank" rel="external">The GNU Awk User’s Guide</a></p>
+<h1 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h1><p>uniq的作用是过滤重复部分显示文件内容，这个命令读取输入文件，并比较相邻的行。在正常情况下，第二个及以后更多个重复行将被删去，行比较是根据所用字符集的排序序列进行的。该命令加工后的结果写到输出文件中。输入文件和输出文件必须不同。如果输入文件用“- ”表示，则从标准输入读取。<br>该命令各选项含义如下：</p>
+<p>– c 显示输出中，在每行行首加上本行在文件中出现的次数。它可取代- u和- d选项。<br>– d 只显示重复行。<br>– u 只显示文件中不重复的各行。<br>– n 前n个字段与每个字段前的空白一起被忽略。一个字段是一个非空格、非制表符的字符串，彼此由制表符和空格隔开(字段从0开始编号)。<br>+n 前n个字符被忽略，之前的字符被跳过(字符从0开始编号)。<br>– f n 与- n相同，这里n是字段数。<br>– s n 与+n相同，这里n是字符数。</p>
+<p>接下来通过实践实例说明：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@stu100 ~]<span class="comment"># cat test</span></div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line">girl took <span class="keyword">bat </span>home</div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line">dog <span class="keyword">brought </span>hat home</div><div class="line">dog <span class="keyword">brought </span>hat home</div><div class="line">dog <span class="keyword">brought </span>hat home</div></pre></td></tr></table></figure></p>
+<p>看test文件的内容<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@stu100 ~]<span class="comment"># uniq test</span></div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line">girl took <span class="keyword">bat </span>home</div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line">dog <span class="keyword">brought </span>hat home</div></pre></td></tr></table></figure></p>
+<p>uniq命令不加任何参数，仅显示连续重复的行一次</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@stu100 ~]<span class="comment"># uniq -c test</span></div><div class="line"><span class="number">2</span> <span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line"><span class="number">1</span> girl took <span class="keyword">bat </span>home</div><div class="line"><span class="number">2</span> <span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line"><span class="number">3</span> dog <span class="keyword">brought </span>hat home</div><div class="line"><span class="number">1</span></div></pre></td></tr></table></figure>
+<p>-c 参数显示文件中每行连续出现的次数。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@stu100 ~]<span class="comment"># cat test |sort | uniq -c</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">4</span> <span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line"><span class="number">3</span> dog <span class="keyword">brought </span>hat home</div><div class="line"><span class="number">1</span> girl took <span class="keyword">bat </span>home</div></pre></td></tr></table></figure>
+<p>排序后再显示</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@stu100 ~]<span class="comment"># uniq -d test</span></div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line">dog <span class="keyword">brought </span>hat home</div></pre></td></tr></table></figure>
+<p>-d选项仅显示文件中连续重复出现的行。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@stu100 ~]<span class="meta"># uniq -u test</span></div><div class="line">girl took bat <span class="built_in">home</span></div></pre></td></tr></table></figure>
+<p>-u选项显示文件中没有连续出现的行。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@stu100 ~]<span class="comment"># uniq -f 2 -s 2 test</span></div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div></pre></td></tr></table></figure>
+<p>忽略每行的前2个字段，忽略第二个空白字符和第三个字段的首字符，结果at home</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@stu100 ~]<span class="comment"># uniq -f 1 test</span></div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line">dog <span class="keyword">brought </span>hat home</div></pre></td></tr></table></figure>
+<p>忽略每行的第一个字段，这样boy ，girl开头的行看起来是连续重复的行。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@stu100 ~]<span class="comment"># uniq -D test</span></div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line"><span class="keyword">boy </span>took <span class="keyword">bat </span>home</div><div class="line">dog <span class="keyword">brought </span>hat home</div><div class="line">dog <span class="keyword">brought </span>hat home</div><div class="line">dog <span class="keyword">brought </span>hat home</div></pre></td></tr></table></figure>
+<p>显示所有重复的行，每个重复的行都显示</p>
+<h1 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h1><p>功能说明：将文本文件内容加以排序。<br>语　　法：sort [-bcdfimMnr][-o&lt;输出文件&gt;][-t&lt;分隔字符&gt;][+&lt;起始栏位&gt;-&lt;结束栏位&gt;][–help][–verison][文件]<br>补充说明：sort可针对文本文件的内容，以行为单位来排序。<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[rocrocket<span class="variable">@rocrocket</span> programming]<span class="variable">$ </span>cat seq.txt</div><div class="line">banana</div><div class="line">apple</div><div class="line">pear</div><div class="line">orange</div><div class="line">[rocrocket<span class="variable">@rocrocket</span> programming]<span class="variable">$ </span>sort seq.txt</div><div class="line">apple</div><div class="line">banana</div><div class="line">orange</div><div class="line">pear</div></pre></td></tr></table></figure></p>
+<p>参　　数：<br>  -b   忽略每行前面开始出的空格字符。<br>  -c   检查文件是否已经按照顺序排序。<br>  -d   排序时，处理英文字母、数字及空格字符外，忽略其他的字符。<br>  -f   排序时，将小写字母视为大写字母。<br>  -i   排序时，除了040至176之间的ASCII字符外，忽略其他的字符。<br>  -m   将几个排序好的文件进行合并。<br>  -M   将前面3个字母依照月份的缩写进行排序。<br>  -n   依照数值的大小排序。<br>  -o&lt;输出文件&gt;   将排序后的结果存入指定的文件。<br>  -r   以相反的顺序来排序。<br>  -t&lt;分隔字符&gt;   指定排序时所用的栏位分隔字符。<br>  +&lt;起始栏位&gt;-&lt;结束栏位&gt;   以指定的栏位来排序，范围由起始栏位到结束栏位的前一栏位。<br>  –help   显示帮助。<br>  –version   显示版本信息</p>
+<p>sort的-n、-r、-k、-t选项的使用：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="selector-attr">[root@mail text]</span># <span class="selector-tag">cat</span> <span class="selector-tag">sort</span><span class="selector-class">.txt</span> </div><div class="line"><span class="selector-tag">AAA</span><span class="selector-pseudo">:BB</span><span class="selector-pseudo">:CC</span> </div><div class="line"><span class="selector-tag">aaa</span><span class="selector-pseudo">:30</span><span class="selector-pseudo">:1.6</span> </div><div class="line"><span class="selector-tag">ccc</span><span class="selector-pseudo">:50</span><span class="selector-pseudo">:3.3</span> </div><div class="line"><span class="selector-tag">ddd</span><span class="selector-pseudo">:20</span><span class="selector-pseudo">:4.2</span> </div><div class="line"><span class="selector-tag">bbb</span><span class="selector-pseudo">:10</span><span class="selector-pseudo">:2.5</span> </div><div class="line"><span class="selector-tag">eee</span><span class="selector-pseudo">:40</span><span class="selector-pseudo">:5.4</span> </div><div class="line"><span class="selector-tag">eee</span><span class="selector-pseudo">:60</span><span class="selector-pseudo">:5.1</span></div><div class="line"></div><div class="line">#将<span class="selector-tag">BB</span>列按照数字从小到大顺序排列： </div><div class="line"><span class="selector-attr">[root@mail text]</span># <span class="selector-tag">sort</span> <span class="selector-tag">-nk</span> 2 <span class="selector-tag">-t</span>: <span class="selector-tag">sort</span><span class="selector-class">.txt</span> </div><div class="line"><span class="selector-tag">AAA</span><span class="selector-pseudo">:BB</span><span class="selector-pseudo">:CC</span> </div><div class="line"><span class="selector-tag">bbb</span><span class="selector-pseudo">:10</span><span class="selector-pseudo">:2.5</span> </div><div class="line"><span class="selector-tag">ddd</span><span class="selector-pseudo">:20</span><span class="selector-pseudo">:4.2</span> </div><div class="line"><span class="selector-tag">aaa</span><span class="selector-pseudo">:30</span><span class="selector-pseudo">:1.6</span> </div><div class="line"><span class="selector-tag">eee</span><span class="selector-pseudo">:40</span><span class="selector-pseudo">:5.4</span> </div><div class="line"><span class="selector-tag">ccc</span><span class="selector-pseudo">:50</span><span class="selector-pseudo">:3.3</span> </div><div class="line"><span class="selector-tag">eee</span><span class="selector-pseudo">:60</span><span class="selector-pseudo">:5.1</span> </div><div class="line"></div><div class="line">#将<span class="selector-tag">CC</span>列数字从大到小顺序排列： </div><div class="line"><span class="selector-attr">[root@mail text]</span># <span class="selector-tag">sort</span> <span class="selector-tag">-nrk</span> 3 <span class="selector-tag">-t</span>: <span class="selector-tag">sort</span><span class="selector-class">.txt</span> </div><div class="line"><span class="selector-tag">eee</span><span class="selector-pseudo">:40</span><span class="selector-pseudo">:5.4</span> </div><div class="line"><span class="selector-tag">eee</span><span class="selector-pseudo">:60</span><span class="selector-pseudo">:5.1</span> </div><div class="line"><span class="selector-tag">ddd</span><span class="selector-pseudo">:20</span><span class="selector-pseudo">:4.2</span> </div><div class="line"><span class="selector-tag">ccc</span><span class="selector-pseudo">:50</span><span class="selector-pseudo">:3.3</span> </div><div class="line"><span class="selector-tag">bbb</span><span class="selector-pseudo">:10</span><span class="selector-pseudo">:2.5</span> </div><div class="line"><span class="selector-tag">aaa</span><span class="selector-pseudo">:30</span><span class="selector-pseudo">:1.6</span> </div><div class="line"><span class="selector-tag">AAA</span><span class="selector-pseudo">:BB</span><span class="selector-pseudo">:CC</span> </div><div class="line"></div><div class="line"># <span class="selector-tag">-n</span>是按照数字大小排序，<span class="selector-tag">-r</span>是以相反顺序，<span class="selector-tag">-k</span>是指定需要爱排序的栏位，<span class="selector-tag">-t</span>指定栏位分隔符为冒号</div></pre></td></tr></table></figure></p>
+<h2 id="k选项的具体语法格式："><a href="#k选项的具体语法格式：" class="headerlink" title="-k选项的具体语法格式："></a>-k选项的具体语法格式：</h2><p>-k选项的语法格式：<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">FStart</span><span class="string">.</span><span class="comment">CStart</span> <span class="comment">Modifie</span><span class="string">,</span><span class="comment">FEnd</span><span class="string">.</span><span class="comment">CEnd</span> <span class="comment">Modifier</span> </div><div class="line"><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">Start</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">,</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="comment">End</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> </div><div class="line">   <span class="comment">FStart</span><span class="string">.</span><span class="comment">CStart</span> <span class="comment">选项</span> <span class="string">,</span> <span class="comment">FEnd</span><span class="string">.</span><span class="comment">CEnd</span> <span class="comment">选项</span></div></pre></td></tr></table></figure></p>
+<p>这个语法格式可以被其中的逗号<code>,</code>分为两大部分，Start部分和End部分。Start部分也由三部分组成，其中的Modifier部分就是我们之前说过的类似n和r的选项部分。我们重点说说Start部分的FStart和C.Start。C.Start也是可以省略的，省略的话就表示从本域的开头部分开始。FStart.CStart，其中FStart就是表示使用的域，而CStart则表示在FStart域中从第几个字符开始算“排序首字符”。同理，在End部分中，你可以设定FEnd.CEnd，如果你省略.CEnd，则表示结尾到“域尾”，即本域的最后一个字符。或者，如果你将CEnd设定为0(零)，也是表示结尾到“域尾”。 </p>
+<p>从公司英文名称的第二个字母开始进行排序：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sort -t ' ' -k <span class="number">1.2</span> facebook.txt </div><div class="line">baidu <span class="number">100</span> <span class="number">5000</span> </div><div class="line">sohu <span class="number">100</span> <span class="number">4500</span> </div><div class="line">google <span class="number">110</span> <span class="number">5000</span> </div><div class="line">guge <span class="number">50</span> <span class="number">3000</span></div></pre></td></tr></table></figure></p>
+<p>使用了<code>-k 1.2</code>，表示对第一个域的第二个字符开始到本域的最后一个字符为止的字符串进行排序。你会发现baidu因为第二个字母是a而名列榜首。sohu和 google第二个字符都是o，但sohu的h在google的o前面，所以两者分别排在第二和第三。guge只能屈居第四了。</p>
+<p>只针对公司英文名称的第二个字母进行排序，如果相同的按照员工工资进行降序排序：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sort -t ' ' -k <span class="number">1.2</span>,<span class="number">1.2</span> -nrk <span class="number">3</span>,<span class="number">3</span> facebook.txt </div><div class="line">baidu <span class="number">100</span> <span class="number">5000</span> </div><div class="line">google <span class="number">110</span> <span class="number">5000</span> </div><div class="line">sohu <span class="number">100</span> <span class="number">4500</span> </div><div class="line">guge <span class="number">50</span> <span class="number">3000</span></div></pre></td></tr></table></figure></p>
+<p>由于只对第二个字母进行排序，所以我们使用了-k 1.2,1.2的表示方式，表示我们“只”对第二个字母进行排序。（如果你问“我使用-k 1.2怎么不行？”，当然不行，因为你省略了End部分，这就意味着你将对从第二个字母起到本域最后一个字符为止的字符串进行排序）。对于员工工资进行排 序，我们也使用了-k 3,3，这是最准确的表述，表示我们“只”对本域进行排序，因为如果你省略了后面的3，就变成了我们“对第3个域开始到最后一个域位置的内容进行排序” 了。</p>
+<p>综合示例:<br>使用linux命令或者shell实现：文件words存放英文单词，格式为以空格分割（单词可以重复），统计这个文件中出现次数最多的前10个单词。<br><figure class="highlight tap"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">daim215@daim215:~$ cat IHavaADream.txt | awk -F ' ' '&#123;for(i=1;i&lt;=NF;i++)print $i;&#125;'| sort | uniq -c | sort -k1,1nr | head -10</div><div class="line">    <span class="number"> 52 </span>of</div><div class="line">    <span class="number"> 48 </span>the</div><div class="line">    <span class="number"> 28 </span>to</div><div class="line">    <span class="number"> 24 </span>and</div><div class="line">    <span class="number"> 21 </span>a</div><div class="line">    <span class="number"> 20 </span>be</div><div class="line">    <span class="number"> 17 </span>will</div><div class="line">    <span class="number"> 14 </span>freedom</div><div class="line">    <span class="number"> 13 </span>have</div><div class="line">    <span class="number"> 13 </span>I</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/25/字符串全排列/" rel="next" title="字符串全排列">
+                <i class="fa fa-chevron-left"></i> 字符串全排列
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/30/Linux常见文字处理命令/"
+     data-title="Linux常见文字处理命令"
+     data-content=""
+     data-url="http://wlyPKU.github.io/2016/08/30/Linux常见文字处理命令/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/30/Linux常见文字处理命令/"
+           data-title="Linux常见文字处理命令" data-url="http://wlyPKU.github.io/2016/08/30/Linux常见文字处理命令/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="wlyPKU" />
+          <p class="site-author-name" itemprop="name">wlyPKU</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlyPKU" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wangly2011/profile" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/wangly.cs" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#awk"><span class="nav-number">1.</span> <span class="nav-text">awk</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-number">1.1.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用awk"><span class="nav-number">1.2.</span> <span class="nav-text">调用awk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#入门实例"><span class="nav-number">1.3.</span> <span class="nav-text">入门实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#awk内置变量"><span class="nav-number">1.4.</span> <span class="nav-text">awk内置变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#awk编程"><span class="nav-number">1.5.</span> <span class="nav-text">awk编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量和赋值"><span class="nav-number">1.5.1.</span> <span class="nav-text">变量和赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件语句"><span class="nav-number">1.5.2.</span> <span class="nav-text">条件语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环语句"><span class="nav-number">1.5.3.</span> <span class="nav-text">循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">1.5.4.</span> <span class="nav-text">数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#uniq"><span class="nav-number">2.</span> <span class="nav-text">uniq</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sort"><span class="nav-number">3.</span> <span class="nav-text">sort</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#k选项的具体语法格式："><span class="nav-number">3.1.</span> <span class="nav-text">-k选项的具体语法格式：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlyPKU</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wlypku"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

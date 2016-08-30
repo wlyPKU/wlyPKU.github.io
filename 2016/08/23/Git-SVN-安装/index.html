@@ -1,0 +1,877 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="实用配置," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="为了利于版本控制与合作,可以选择在自己的机器上搭建Git和SVN的版本控制,本文是在服务器上配置Git服务器与SVN服务器、http访问的简单教程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git && SVN 安装">
+<meta property="og:url" content="http://wlyPKU.github.io/2016/08/23/Git-SVN-安装/index.html">
+<meta property="og:site_name" content="wlyPKU">
+<meta property="og:description" content="为了利于版本控制与合作,可以选择在自己的机器上搭建Git和SVN的版本控制,本文是在服务器上配置Git服务器与SVN服务器、http访问的简单教程。">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/08/23/Git-SVN-安装/rsa.jpg">
+<meta property="og:updated_time" content="2016-08-24T14:22:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git && SVN 安装">
+<meta name="twitter:description" content="为了利于版本控制与合作,可以选择在自己的机器上搭建Git和SVN的版本控制,本文是在服务器上配置Git服务器与SVN服务器、http访问的简单教程。">
+<meta name="twitter:image" content="http://wlyPKU.github.io/2016/08/23/Git-SVN-安装/rsa.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wlyPKU.github.io/2016/08/23/Git-SVN-安装/"/>
+
+  <title> Git && SVN 安装 | wlyPKU </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wlyPKU</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git && SVN 安装
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T21:21:50+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/实用配置/" itemprop="url" rel="index">
+                    <span itemprop="name">实用配置</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/Git-SVN-安装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/Git-SVN-安装/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>为了利于版本控制与合作,可以选择在自己的机器上搭建Git和SVN的版本控制,本文是在服务器上配置Git服务器与SVN服务器、http访问的简单教程。<br><a id="more"></a></p>
+<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>GitHub就是一个免费托管开源代码的远程仓库。但是对于某些视源代码如生命的商业公司来说，既不想公开源代码，又舍不得给GitHub交保护费，那就只能自己搭建一台Git服务器作为私有仓库使用。<br>搭建Git服务器需要准备一台运行Linux的机器，强烈推荐用Ubuntu或Debian，这样，通过几条简单的apt命令就可以完成安装。</p>
+<h2 id="安装及初始化"><a href="#安装及初始化" class="headerlink" title="安装及初始化"></a>安装及初始化</h2><p>假设你已经有sudo权限的用户账号，下面开始安装。</p>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="keyword">get</span> install git</div></pre></td></tr></table></figure>
+<h3 id="创建一个git用户，用来运行git服务"><a href="#创建一个git用户，用来运行git服务" class="headerlink" title="创建一个git用户，用来运行git服务"></a>创建一个git用户，用来运行git服务</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">sudo</span> <span class="keyword">adduser </span>git</div></pre></td></tr></table></figure>
+<h3 id="创建证书登录"><a href="#创建证书登录" class="headerlink" title="创建证书登录"></a>创建证书登录</h3><pre><code>收集所有需要登录的用户的公钥，就是他们自己的id_rsa.pub文件，把所有公钥导入到/home/git/.ssh/authorized_keys文件里，一行一个。
+</code></pre><p>使用命令：<code>ssh-keygen –t rsa</code>生成密钥，如下图<br><img src="/2016/08/23/Git-SVN-安装/rsa.jpg" alt="rsa.jpg" title=""><br>完成之后，在.ssh目录下，我们可以看到id_rsa和id_rsa.pub文件，id_rsa.pub为公钥.我们首先查看/home/git/.ssh目录下是否存在authorized_kesys文件，<br>如果没有，可以通过<code>touch authorized_keys</code>创建此文件。<br>Authorized_keys创建完成后，将生成的公钥id_rsa.pub的内容追 加到authroized_keys中,注意是<strong>追加</strong>到此文件中，可以使用命令<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat <span class="regexp">/home/gi</span>t<span class="regexp">/id_rsa.pub&gt;&gt;/</span>home<span class="regexp">/git/</span>.ssh<span class="regexp">/authorized_keys</span></div></pre></td></tr></table></figure></p>
+<h2 id="创建repository及设置权限"><a href="#创建repository及设置权限" class="headerlink" title="创建repository及设置权限"></a>创建repository及设置权限</h2><h3 id="初始化Git仓库"><a href="#初始化Git仓库" class="headerlink" title="初始化Git仓库"></a>初始化Git仓库</h3><p>先选定一个目录作为Git仓库，假定是/srv/sample.git，在/srv目录下输入命令：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo git init <span class="comment">--bare sample.git</span></div></pre></td></tr></table></figure></p>
+<p>Git就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的Git仓库通常都以.git结尾。然后，把owner改为git：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">sudo</span> <span class="selector-tag">chown</span> <span class="selector-tag">-R</span> <span class="selector-tag">git</span><span class="selector-pseudo">:git</span> <span class="selector-tag">sample</span><span class="selector-class">.git</span></div></pre></td></tr></table></figure></p>
+<h3 id="禁用shell登录"><a href="#禁用shell登录" class="headerlink" title="禁用shell登录"></a>禁用shell登录</h3><p>出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行：<code>git:x:1001:1001:,,,:/home/git:/bin/bash</code><br>改为：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">git:</span><span class="symbol">x:</span><span class="number">1001</span><span class="symbol">:</span><span class="number">1001</span><span class="symbol">:</span>,,,<span class="symbol">:/home/git</span><span class="symbol">:/usr/bin/git-shell</span></div></pre></td></tr></table></figure></p>
+<p>这样，git用户可以正常通过ssh使用git，但无法登录shell，因为我们为git用户指定的git-shell每次一登录就自动退出。</p>
+<h3 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h3><p>现在，可以通过git clone命令克隆远程仓库了，在各自的电脑上运行：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone git<span class="variable">@server:</span>/srv/sample.git</div><div class="line">Cloning into <span class="string">'sample'</span>...</div><div class="line"><span class="attribute">warning</span>: You appear to have cloned an empty repository.</div></pre></td></tr></table></figure></p>
+<h2 id="常见git指令"><a href="#常见git指令" class="headerlink" title="常见git指令"></a>常见git指令</h2><p>通过以上的步骤我们就完成了git服务器的搭建，完成搭建后，我们需要了解一下与git服务器交互过程中所用到命令。主要命令有 git clone、git remote、git fetch、git pull、git push等，下面我们逐一了解</p>
+<h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h3><p>此命令是我们和远程仓库交互的第一步，通过此命令，我们可以将远程版本库克隆到本地.<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#本地库名称可以省略，省略后在本地会生成一个和远程版本库名字相同的目录。</span></div><div class="line">git <span class="keyword">clone</span> <span class="title">版本库的网址 本地库名称</span></div></pre></td></tr></table></figure></p>
+<h3 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h3><p>此命令用于管理远程主机名，此命令在没有参数的情况下可以列出所有主机名。<br>显示origin是在使用clone命令，克隆远程版本库时Git自动为远程主机命名。<br>通过命令 git remote –v，可查看版本库的网址。</p>
+<h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h3><p>此命令可以将远程版本库的更新，更新到本地库。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">git</span> fetch 主机名字</div></pre></td></tr></table></figure></p>
+<p>在默认情况下，git fetch origin将会更新远程主机origin上的所有分支，如果只想更新某个分支，则在主机名origin后面加分支名。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch origin <span class="literal">master</span></div></pre></td></tr></table></figure></p>
+<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>此命令用于将本地分支的更新推送到远程主机。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">git</span> <span class="keyword">push </span>远程主机名 本地分支名：远程分支名</div></pre></td></tr></table></figure></p>
+<p>如果省略远程分支名，则表示将本地分支推送与存在最终关系的远程分支，如果远程分支不存在，则会被新建。<br>如：<code>git push origin master</code>,表示将本地master分支推送到origin主机的master分支上。<br>如果省略本地分子名，则表示要删除远程主机中分支，如<code>git push origin : master</code>,则表示删除origin主机中master分支</p>
+<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p>此命令用于获取远程分支中更新。<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git pull 远程主机 远程分支：本地分支</div><div class="line">#如：git pull <span class="built_in">origin</span> master:master,表示将远程主机<span class="built_in">origin</span>中的master分支跟新到本地分支master</div></pre></td></tr></table></figure></p>
+<p>参考:</p>
+<ul>
+<li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">搭建Git服务器</a></li>
+<li><a href="http://developer.51cto.com/art/201507/483448.htm" target="_blank" rel="external">Git服务器搭建全过程分步详解</a></li>
+</ul>
+<hr>
+<h1 id="SVN安装"><a href="#SVN安装" class="headerlink" title="SVN安装"></a>SVN安装</h1><h2 id="安装SVN"><a href="#安装SVN" class="headerlink" title="安装SVN"></a>安装SVN</h2><h3 id="更新apt-get源-安装时开始就是没更新源-版本不一致弄了好久"><a href="#更新apt-get源-安装时开始就是没更新源-版本不一致弄了好久" class="headerlink" title="更新apt-get源(安装时开始就是没更新源,版本不一致弄了好久)"></a>更新apt-get源(安装时开始就是没更新源,版本不一致弄了好久)</h3><figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-<span class="built_in">get</span> <span class="keyword">update</span></div></pre></td></tr></table></figure>
+<h3 id="安装所需的文件"><a href="#安装所需的文件" class="headerlink" title="安装所需的文件"></a>安装所需的文件</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-<span class="keyword">get</span> install subversion libapache2-<span class="keyword">mod</span>-svn libapache2-svn apache2</div></pre></td></tr></table></figure>
+<h3 id="创建用户组"><a href="#创建用户组" class="headerlink" title="创建用户组"></a>创建用户组</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">groupadd subversion</span></div></pre></td></tr></table></figure>
+<h3 id="创建一个svn实例"><a href="#创建一个svn实例" class="headerlink" title="创建一个svn实例"></a>创建一个svn实例</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> /<span class="built_in">home</span>/svn/ </div><div class="line">svnadmin create example</div></pre></td></tr></table></figure>
+<h3 id="修改-etc-apache2-mods-enabled-dav-svn-conf"><a href="#修改-etc-apache2-mods-enabled-dav-svn-conf" class="headerlink" title="修改/etc/apache2/mods-enabled/dav_svn.conf:"></a>修改/etc/apache2/mods-enabled/dav_svn.conf:</h3><p>去掉下面行的注释。<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="params">&lt;Location /svn&gt;</span>   （apache下的位置）</div><div class="line">  DAV svn </div><div class="line">  SVNParentPath <span class="meta-keyword">/home/</span>svn   （如果有多个库，使用该选项）</div><div class="line">  SVNListParentPath on     （打开这个选项可以列出ParentPath下面的所有库）</div><div class="line">  AuthType Basic   （认证类型为基本认证 ）</div><div class="line">  AuthName <span class="string">"Subversion Repository"</span>（认证名称,将在IE界面弹出一个对话框,其标题）</div><div class="line">  AuthUserFile <span class="meta-keyword">/etc/</span>apache2/dav_svn.passwd    （认证密码文件）</div><div class="line">  <span class="meta"># AuthzSVNAcessFile /etc/apache2/dav_svn.authz     （目录权限文件）</span></div><div class="line"></div><div class="line">  Require valid-user    （要求验证用户，即不能匿名访问）</div><div class="line"><span class="params">&lt;/Location&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h2><p>下为加入新的SVN时需要执行的步骤:<br>目标:新加一个名为zhangzhipeng的版本库，并将用户名zhangzhipeng加入到svn用户中</p>
+<h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /<span class="built_in">home</span>/svn</div><div class="line">sudo <span class="built_in">mkdir</span> zhangzhipeng</div></pre></td></tr></table></figure>
+<h3 id="将用户名加入subversion组中"><a href="#将用户名加入subversion组中" class="headerlink" title="将用户名加入subversion组中"></a>将用户名加入subversion组中</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">groups zhangzhipeng    <span class="comment"># 先查看是否已在组中</span></div><div class="line">zhangzhipeng : zhangzhipeng</div><div class="line">sudo usermod -G subversion <span class="_">-a</span> zhangzhipeng</div><div class="line">groups zhangzhipeng    <span class="comment"># 现在可以看到多加了个组别</span></div></pre></td></tr></table></figure>
+<h3 id="为刚才所建目录新建版本库，并添加对应权限"><a href="#为刚才所建目录新建版本库，并添加对应权限" class="headerlink" title="为刚才所建目录新建版本库，并添加对应权限"></a>为刚才所建目录新建版本库，并添加对应权限</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo svnadmin create /home/svn/zhangzhipeng</div><div class="line">sudo <span class="keyword">chown</span> -R www-data:subversion zhangzhipeng    <span class="comment"># 允许apache对该目录作修改</span></div><div class="line">sudo <span class="keyword">chmod</span> -R g+ws zhangzhipeng</div></pre></td></tr></table></figure>
+<h3 id="为新加的svn账号zhangzhipeng设置密码"><a href="#为新加的svn账号zhangzhipeng设置密码" class="headerlink" title="为新加的svn账号zhangzhipeng设置密码"></a>为新加的svn账号zhangzhipeng设置密码</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#后面再添加用户的时候(添加第二个用户及以后时)去掉-c选项。</span></div><div class="line">sudo htpasswd -c <span class="regexp">/etc/</span>aoache2<span class="regexp">/dav_svn.passwd zhangzhipeng</span></div></pre></td></tr></table></figure>
+<h3 id="重启apache使设置生效"><a href="#重启apache使设置生效" class="headerlink" title="重启apache使设置生效"></a>重启apache使设置生效</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service apache2 <span class="built_in">restart</span></div></pre></td></tr></table></figure>
+<p>即可在<a href="http://localhost/svn/zhangzhipeng处访问。" target="_blank" rel="external">http://localhost/svn/zhangzhipeng处访问。</a></p>
+<hr>
+<p>同时，如果需要在shell里进行svn的版本控制，需要对svn的repository进行权限设置：<br>具体可参考:</p>
+<ul>
+<li><a href="http://svnbook.red-bean.com/en/1.5/svn-book.pdf" target="_blank" rel="external">svn-book</a></li>
+<li><a href="http://blog.chinaunix.net/uid-10167808-id-25994.html" target="_blank" rel="external"> SVN服务器之用户权限配置——authz文件 </a></li>
+</ul>
+<p>svn命令可参考<a href="http://www.tuicool.com/articles/M7FJbiq" target="_blank" rel="external">svn常用命令详解</a><br>安装过程也可参考</p>
+<ul>
+<li><a href="https://help.ubuntu.com/lts/serverguide/subversion.html" target="_blank" rel="external">Subversion官方指南</a></li>
+<li><a href="http://www.blogjava.net/jasmine214--love/archive/2010/09/26/332989.html" target="_blank" rel="external">通过Apache来访问SVN的配置方法</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/实用配置/" rel="tag">#实用配置</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/23/Stunnel-Squid访问Facebook/" rel="next" title="Stunnel+Squid访问Facebook">
+                <i class="fa fa-chevron-left"></i> Stunnel+Squid访问Facebook
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/23/STL总结/" rel="prev" title="STL总结">
+                STL总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/23/Git-SVN-安装/"
+     data-title="Git && SVN 安装"
+     data-content=""
+     data-url="http://wlyPKU.github.io/2016/08/23/Git-SVN-安装/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/23/Git-SVN-安装/"
+           data-title="Git && SVN 安装" data-url="http://wlyPKU.github.io/2016/08/23/Git-SVN-安装/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="wlyPKU" />
+          <p class="site-author-name" itemprop="name">wlyPKU</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlyPKU" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wangly2011/profile" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/wangly.cs" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git的安装"><span class="nav-number">1.</span> <span class="nav-text">Git的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装及初始化"><span class="nav-number">1.1.</span> <span class="nav-text">安装及初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装git"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个git用户，用来运行git服务"><span class="nav-number">1.1.2.</span> <span class="nav-text">创建一个git用户，用来运行git服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建证书登录"><span class="nav-number">1.1.3.</span> <span class="nav-text">创建证书登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建repository及设置权限"><span class="nav-number">1.2.</span> <span class="nav-text">创建repository及设置权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化Git仓库"><span class="nav-number">1.2.1.</span> <span class="nav-text">初始化Git仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁用shell登录"><span class="nav-number">1.2.2.</span> <span class="nav-text">禁用shell登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#克隆远程仓库"><span class="nav-number">1.2.3.</span> <span class="nav-text">克隆远程仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见git指令"><span class="nav-number">1.3.</span> <span class="nav-text">常见git指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-clone"><span class="nav-number">1.3.1.</span> <span class="nav-text">git clone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-remote"><span class="nav-number">1.3.2.</span> <span class="nav-text">git remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-fetch"><span class="nav-number">1.3.3.</span> <span class="nav-text">git fetch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-push"><span class="nav-number">1.3.4.</span> <span class="nav-text">git push</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-pull"><span class="nav-number">1.3.5.</span> <span class="nav-text">git pull</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SVN安装"><span class="nav-number">2.</span> <span class="nav-text">SVN安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装SVN"><span class="nav-number">2.1.</span> <span class="nav-text">安装SVN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新apt-get源-安装时开始就是没更新源-版本不一致弄了好久"><span class="nav-number">2.1.1.</span> <span class="nav-text">更新apt-get源(安装时开始就是没更新源,版本不一致弄了好久)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装所需的文件"><span class="nav-number">2.1.2.</span> <span class="nav-text">安装所需的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建用户组"><span class="nav-number">2.1.3.</span> <span class="nav-text">创建用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个svn实例"><span class="nav-number">2.1.4.</span> <span class="nav-text">创建一个svn实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-etc-apache2-mods-enabled-dav-svn-conf"><span class="nav-number">2.1.5.</span> <span class="nav-text">修改/etc/apache2/mods-enabled/dav_svn.conf:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加新用户"><span class="nav-number">2.2.</span> <span class="nav-text">添加新用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建目录"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将用户名加入subversion组中"><span class="nav-number">2.2.2.</span> <span class="nav-text">将用户名加入subversion组中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为刚才所建目录新建版本库，并添加对应权限"><span class="nav-number">2.2.3.</span> <span class="nav-text">为刚才所建目录新建版本库，并添加对应权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为新加的svn账号zhangzhipeng设置密码"><span class="nav-number">2.2.4.</span> <span class="nav-text">为新加的svn账号zhangzhipeng设置密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启apache使设置生效"><span class="nav-number">2.2.5.</span> <span class="nav-text">重启apache使设置生效</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlyPKU</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wlypku"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>
