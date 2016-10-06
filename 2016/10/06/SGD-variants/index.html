@@ -84,12 +84,12 @@
 
 
 
-<meta name="description" content="SGD模型SGD指stochastic gradient descent, 即随机梯度下降,是梯度下降的batch版本.对于训练数据集，我们首先将其分成n个batch，每个batch包含m个样本。我们每次更新都利用一个batch的数据，而非整个训练集。即：\begin{equation}\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^">
+<meta name="description" content="A brief introduction to stochastic gradient descent and its variants.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SGD 变种">
 <meta property="og:url" content="http://wlyPKU.github.io/2016/10/06/SGD-variants/index.html">
 <meta property="og:site_name" content="wlyPKU">
-<meta property="og:description" content="SGD模型SGD指stochastic gradient descent, 即随机梯度下降,是梯度下降的batch版本.对于训练数据集，我们首先将其分成n个batch，每个batch包含m个样本。我们每次更新都利用一个batch的数据，而非整个训练集。即：\begin{equation}\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^">
+<meta property="og:description" content="A brief introduction to stochastic gradient descent and its variants.">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/SGD-variants/without_momentum.jpg">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/SGD-variants/with_momentum.jpg">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/SGD-variants/nesterov.jpeg">
@@ -98,10 +98,10 @@
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/SGD-variants/1.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/SGD-variants/2.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/SGD-variants/3.png">
-<meta property="og:updated_time" content="2016-10-06T12:11:58.120Z">
+<meta property="og:updated_time" content="2016-10-06T12:16:34.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SGD 变种">
-<meta name="twitter:description" content="SGD模型SGD指stochastic gradient descent, 即随机梯度下降,是梯度下降的batch版本.对于训练数据集，我们首先将其分成n个batch，每个batch包含m个样本。我们每次更新都利用一个batch的数据，而非整个训练集。即：\begin{equation}\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^">
+<meta name="twitter:description" content="A brief introduction to stochastic gradient descent and its variants.">
 <meta name="twitter:image" content="http://wlyPKU.github.io/2016/10/06/SGD-variants/without_momentum.jpg">
 
 
@@ -334,7 +334,8 @@
       
 
       
-        <h1 id="SGD模型"><a href="#SGD模型" class="headerlink" title="SGD模型"></a>SGD模型</h1><p>SGD指stochastic gradient descent, 即随机梯度下降,是梯度下降的batch版本.<br>对于训练数据集，我们首先将其分成n个batch，每个batch包含m个样本。我们每次更新都利用一个batch的数据，而非整个训练集。即：<br>\begin{equation}<br>\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i)}; y^{(i)})<br>\end{equation}<br>其中, $\eta$ 为学习率，$g_t$为$x$在$t$时刻的梯度。<br>这么做的好处在于：</p>
+        <p>A brief introduction to stochastic gradient descent and its variants.<br><a id="more"></a></p>
+<h1 id="SGD模型"><a href="#SGD模型" class="headerlink" title="SGD模型"></a>SGD模型</h1><p>SGD指stochastic gradient descent, 即随机梯度下降,是梯度下降的batch版本.<br>对于训练数据集，我们首先将其分成n个batch，每个batch包含m个样本。我们每次更新都利用一个batch的数据，而非整个训练集。即：<br>\begin{equation}<br>\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i)}; y^{(i)})<br>\end{equation}<br>其中, $\eta$ 为学习率，$g_t$为$x$在$t$时刻的梯度。<br>这么做的好处在于：</p>
 <ol>
 <li>当训练数据太多时，利用整个数据集更新往往时间上不显示。batch的方法可以减少机器的压力，并且可以更快地收敛。</li>
 <li>当训练集有很多冗余时（类似的样本出现多次），batch方法收敛更快。以一个极端情况为例，若训练集前一半和后一半梯度相同。那么如果前一半作为一个batch，后一半作为另一个batch，那么在一次遍历训练集时，batch的方法向最优解前进两个step，而整体的方法只前进一个step。</li>
