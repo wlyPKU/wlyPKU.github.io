@@ -84,20 +84,20 @@
 
 
 
-<meta name="description" content="摘要最近关于无监督特征学习（unsupervised feature learning）和深度学习（deep learning）的工作表明，具有训练大型模型能力的系统能够显著地提升深度神经网络的训练效果。在这篇文章中，我们针对的问题是利用多达10^4数量的CPU来训练一个具有10^9数量的参数（parameter）的深度网络。为了达到训练的目的，我们开发了称为DistBelief的软件框架，其利用">
+<meta name="description" content="Parallel SGD PaperLarge Scale Distributed Deep Networks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Downpour SGD(大规模分布式深度网络)">
 <meta property="og:url" content="http://wlyPKU.github.io/2016/10/06/Downpour-SGD/index.html">
 <meta property="og:site_name" content="wlyPKU">
-<meta property="og:description" content="摘要最近关于无监督特征学习（unsupervised feature learning）和深度学习（deep learning）的工作表明，具有训练大型模型能力的系统能够显著地提升深度神经网络的训练效果。在这篇文章中，我们针对的问题是利用多达10^4数量的CPU来训练一个具有10^9数量的参数（parameter）的深度网络。为了达到训练的目的，我们开发了称为DistBelief的软件框架，其利用">
+<meta property="og:description" content="Parallel SGD PaperLarge Scale Distributed Deep Networks">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/Downpour-SGD/large_scale.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/Downpour-SGD/adagrad.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/Downpour-SGD/downpour.jpeg">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/06/Downpour-SGD/sandblaster.jpeg">
-<meta property="og:updated_time" content="2016-10-06T08:33:42.448Z">
+<meta property="og:updated_time" content="2016-10-06T08:36:03.839Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Downpour SGD(大规模分布式深度网络)">
-<meta name="twitter:description" content="摘要最近关于无监督特征学习（unsupervised feature learning）和深度学习（deep learning）的工作表明，具有训练大型模型能力的系统能够显著地提升深度神经网络的训练效果。在这篇文章中，我们针对的问题是利用多达10^4数量的CPU来训练一个具有10^9数量的参数（parameter）的深度网络。为了达到训练的目的，我们开发了称为DistBelief的软件框架，其利用">
+<meta name="twitter:description" content="Parallel SGD PaperLarge Scale Distributed Deep Networks">
 <meta name="twitter:image" content="http://wlyPKU.github.io/2016/10/06/Downpour-SGD/large_scale.png">
 
 
@@ -330,7 +330,8 @@
       
 
       
-        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>最近关于无监督特征学习（unsupervised feature learning）和深度学习（deep learning）的工作表明，具有训练大型模型能力的系统能够显著地提升深度神经网络的训练效果。在这篇文章中，我们针对的问题是利用多达10^4数量的CPU来训练一个具有10^9数量的参数（parameter）的深度网络。为了达到训练的目的，我们开发了称为DistBelief的软件框架，其利用具有上千节点（译者注：为了一致性，译文中的节点均指机器，即计算节点；而神经网络中的节点，均称为单元）的计算集群来训练大型模型。</p>
+        <p>Parallel SGD Paper<br><a href="http://doi.org/10.1109/ICDAR.2011.95" target="_blank" rel="external"><strong>Large Scale Distributed Deep Networks</strong></a><br><a id="more"></a></p>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>最近关于无监督特征学习（unsupervised feature learning）和深度学习（deep learning）的工作表明，具有训练大型模型能力的系统能够显著地提升深度神经网络的训练效果。在这篇文章中，我们针对的问题是利用多达10^4数量的CPU来训练一个具有10^9数量的参数（parameter）的深度网络。为了达到训练的目的，我们开发了称为DistBelief的软件框架，其利用具有上千节点（译者注：为了一致性，译文中的节点均指机器，即计算节点；而神经网络中的节点，均称为单元）的计算集群来训练大型模型。</p>
 <p>在该框架中，实现了两个算法用于大规模分布训练：</p>
 <ol>
 <li>Downpour（译者注：猜测这里的Downpour主要是指并行地参数更新，就像倾盆大雨中，雨点从多处同时落下一样）SGD（stochastic gradient descent），一个支持大量模型副本的异步随机梯度下降过程。</li>
@@ -342,7 +343,7 @@
 <h1 id="模型并行"><a href="#模型并行" class="headerlink" title="模型并行"></a>模型并行</h1><p>为了使超大规模深度网络的训练变得容易，我们开发了软件框架——DistBelief，用以支持神经网络的并行计算和分层图形模型。用户只需定义发生在每个单元上的计算过程以单元在向上传递和向下传递（原作者注：对于神经网络而言，“向上”和“向下”指的是“前馈”和“反向传播”，而对于隐式Markov模型，它们与“前向”和“后向”意思更相近）时需发送的消息。对于大型模型，用户可能会将模型加以划分（如图1所示），使得不同节点的计算任务被分配到了不同机器上。DistBelief自动地利用CPU资源将节点内计算并行化，同时它还管理了底层通信、同步化和在训练和推断时的机器间数据传输。 将深度网络分布到多个机器上所带来的性能提升主要取决于模型的连通结构和计算需求。具有大量参数或高计算需求的模型通过增加CPU和内存数量通常可以提升训练速度，直到增加到通信开销成为系统的瓶颈。我们已成功地在144个划分（机器）上运行DistBelief框架，且获得了显著的性能提升，同时在8或16个划分上运行的一个中等大小模型，也获得了很好的效果（请参考第5节中模型并行化基准测试中的实验结果）。显然地，局部连通的网络模型，因为需要更少的网络通信，所以比全连通网络模型更易于分布化。导致性能退化的一个主要原因是因不同机器上处理时间的不同，导致大量的机器在等待一个或单个节点完成本阶段任务（译者注：和MapReduce中Map阶段的长尾问题类似）。尽管如此，对于我们最大的模型来讲，我们仍可以高效地用总共有512核CPU 的32台机器（每台机器平均使用16核CPU的计算资源）来训练单个神经网络。当和下一节中讲到的利用模型多副本方法的分布式优化算法相结合时，将使得在多达10K的CPU数量上训练单个网络成为可能，从而进一步减少总的训练时间。</p>
 <h1 id="分布式优化算法"><a href="#分布式优化算法" class="headerlink" title="分布式优化算法"></a>分布式优化算法</h1><p>DistBelief框架中的并行计算方法使我们能够部署和运行比前期工作中提到的大得多的神经网络模型。但是为了在合理时间内训练如此规模的模型，这就要求我们不仅需实现单个DistBelief实例内的并行，而且需要将训练任务分发到多个DistBelief实例。在本节中，我们将具体阐述这第二级的并行，即采用多个DistBelief模型的实例（或副本），同时来达到一个优化目标。<br><img src="/2016/10/06/Downpour-SGD/large_scale.png" alt="large_scale.png" title=""></p>
 <ul>
-<li>左：Downpour SGD，模型的副本采用异步方式从参数服务器（Parameter Server）中获取参数w和上传ΔwΔw到参数服务器。</li>
+<li>左：Downpour SGD，模型的副本采用异步方式从参数服务器（Parameter Server）中获取参数w和上传Δw到参数服务器。</li>
 <li>右：Sandblaster L-BFGS：单个协调器（Coordinator）实例发送简短消息（message）到模型副本和参数服务器以协调批量优化过程。</li>
 </ul>
 <p>下面我们来对这两个分布优化方法做比较：Downpour SGD是在线方法，而L-BFGS是批量方法。两方法中模型副本都利用了中心分割化服务器组的概念来共享参数，也都利用了每个模型副本中DistBelief的并行性。但更重要的是，对不同副本的处理时间的不同，甚至整个模型副本的失效、移除和重启等情况都在两方法的考虑范围之内。</p>
