@@ -407,10 +407,33 @@
 <li><p><a href="https://github.com/acharuva/svm_cd/blob/master/svm_cd.py" target="_blank" rel="external">SVM Coordinate demo</a></p>
 </li>
 </ul>
+<p>parallel</p>
+<ul>
+<li><a href="https://arxiv.org/pdf/1105.5379v1.pdf" target="_blank" rel="external">Parallel Coordinate Descent for L1-Regularized Loss Minimization</a></li>
+<li><a href="https://www.csie.ntu.edu.tw/~cjlin/papers/multicore_cddual.pdf" target="_blank" rel="external">Parallel Dual Coordinate Descent Method for Large-scale Linear Classification in Multi-core Environments(SVM parallel)</a></li>
+</ul>
 <h1 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h1><ul>
 <li><p><a href="http://www.cs.rpi.edu/~magdon/courses/LFD-Slides/SlidesLect09.pdf" target="_blank" rel="external">Logistic Regression and Gradient Descent(PPT)</a></p>
 </li>
 <li><p><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/tricks-2012.pdf" target="_blank" rel="external"><strong>Stochastic Gradient Descent Tricks</strong></a></p>
+</li>
+</ul>
+<p>variants</p>
+<ul>
+<li><a href="http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf" target="_blank" rel="external">Adaptive Subgradient Methods for Online Learning and Stochastic Optimization</a></li>
+<li><a href="https://arxiv.org/pdf/1212.5701v1.pdf" target="_blank" rel="external">ADADELTA: AN ADAPTIVE LEARNING RATE METHOD</a></li>
+<li><a href="https://arxiv.org/pdf/1412.6980v8.pdf" target="_blank" rel="external">ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION</a></li>
+<li><a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf" target="_blank" rel="external">RMSprop(ppt)</a></li>
+<li><a href="https://arxiv.org/pdf/1312.6055v3.pdf" target="_blank" rel="external">Unit Tests for Stochastic Optimization</a></li>
+</ul>
+<p>parallel</p>
+<ul>
+<li><a href="https://people.eecs.berkeley.edu/~brecht/papers/hogwildTR.pdf" target="_blank" rel="external">Hogwild!: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent</a></li>
+<li><a href="http://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/43138.pdf" target="_blank" rel="external">Delay-Tolerant Algorithms for Asynchronous Distributed Online Learning</a></li>
+<li><a href="https://papers.nips.cc/paper/4687-large-scale-distributed-deep-networks.pdf" target="_blank" rel="external">Large Scale Distributed Deep Networks(Downpour SGD)</a></li>
+<li><p><a href="https://arxiv.org/pdf/1412.6651v8.pdf" target="_blank" rel="external">Deep learning with Elastic Averaging SGD</a></p>
+</li>
+<li><p><a href="http://sebastianruder.com/optimizing-gradient-descent/" target="_blank" rel="external"><strong>An overview of gradient descent optimization algorithms</strong></a></p>
 </li>
 </ul>
 <h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><ul>
