@@ -6,7 +6,12 @@
     <entry>
       <title><![CDATA[Parallel SGD]]></title>
       <url>http://wlyPKU.github.io/2016/10/07/Parallel-SGD/</url>
-      <content type="html"><![CDATA[<h1 id="Parallelized-Stochastic-Gradient-Descent"><a href="#Parallelized-Stochastic-Gradient-Descent" class="headerlink" title="Parallelized Stochastic Gradient Descent"></a>Parallelized Stochastic Gradient Descent</h1><ul>
+      <content type="html"><![CDATA[<p>Parallelizing and distributing SGD</p>
+<ul>
+<li>Parallelized Stochastic Gradient Descent</li>
+<li>Hogwild!</li>
+<li>Downpour SGD<a id="more"></a>
+<h1 id="Parallelized-Stochastic-Gradient-Descent"><a href="#Parallelized-Stochastic-Gradient-Descent" class="headerlink" title="Parallelized Stochastic Gradient Descent"></a>Parallelized Stochastic Gradient Descent</h1></li>
 <li><a href="http://www.research.rutgers.edu/~lihong/pub/Zinkevich11Parallelized.pdf" target="_blank" rel="external">Parallelized Stochastic Gradient Descent</a></li>
 </ul>
 <p>算法步骤:</p>
@@ -68,7 +73,17 @@
 </ul>
 <p>Nadam类似于带有Nesterov动量项的Adam。公式如下：<br>\begin{equation}<br>\hat{g_t}=\frac{g_t}{1-\Pi_{i=1}^t\beta_{1i}}<br>\end{equation}<br>\begin{equation}<br>m_t=\beta_{1t} \times m_{t-1}+(1-\beta_{1t})\times g_t<br>\end{equation}<br>\begin{equation}<br>\hat{m_t}=\frac{m_t}{1-\Pi_{i=1}^{t+1}\beta_{1i}}<br>\end{equation}<br>\begin{equation}<br>n_t=\beta_2\times n_{t-1}+(1-\beta_2)\times g_t^2<br>\end{equation}<br>\begin{equation}<br>\bar{m_t}=(1-\beta_{1t})\times \hat{g_t}+\beta_{1(t+1)}\times \hat{m_t}<br>\end{equation}<br>\begin{equation}<br>\hat{n_t}=\frac{n_t}{1-\beta_{2}^t}<br>\end{equation}<br>\begin{equation}<br>\Delta{\theta_t}=-\eta*\frac{\bar{m_t}}{\sqrt{\hat{n_t}}+\epsilon}<br>\end{equation}<br>可以看出，Nadam对学习率有了更强的约束，同时对梯度的更新也有更直接的影响。一般而言，在想使用带动量的RMSprop，或者Adam的地方，大多可以使用Nadam取得更好的效果。</p>
 <p>parameter: Keras recommend: lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=1e-08, schedule_decay=0.004<br><strong>All algorithms used $\beta_2$ = .999and $\epsilon$ = 1e−8 as suggested, with a momentum schedule given by $\beta_{1t} = \beta_1\times (1−0.5\times 0.96^{\frac{t}{250}})$ with $\beta_1$ = .99</strong></p>
-<h1 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h1><p>Experiment: </p>
+<h1 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h1><p>经验之谈</p>
+<ul>
+<li>对于稀疏数据，尽量使用学习率可自适应的优化方法，不用手动调节，而且最好采用默认值</li>
+<li>SGD通常训练时间更长，但是在好的初始化和学习率调度方案的情况下，结果更可靠</li>
+<li>如果在意更快的收敛，并且需要训练较深较复杂的网络时，推荐使用学习率自适应的优化方法。</li>
+<li>Adadelta，RMSprop，Adam是比较相近的算法，在相似的情况下表现差不多。</li>
+<li>在想使用带动量的RMSprop，或者Adam的地方，大多可以使用Nadam取得更好的效果</li>
+</ul>
+<img src="/2016/10/06/SGD-variants/contours_evaluation_optimizers.gif" alt="SGD optimization on loss surface contours" title="SGD optimization on loss surface contours">
+<img src="/2016/10/06/SGD-variants/saddle_point_evaluation_optimizers.gif" alt="SGD optimization on saddle point" title="SGD optimization on saddle point">
+<p>Experiment: </p>
 <ul>
 <li>MNIST Logistic regression<br>Adam&gt; Nesterov &gt; AdaGrad ( converage cost)</li>
 <li>IMDB BoW feature logsitic regression<br> $ Adam \approx Adagrad \approx RMSProp \approx Nesterov$</li>

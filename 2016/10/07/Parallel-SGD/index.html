@@ -84,35 +84,32 @@
 
 
 
-<meta name="description" content="Parallelized Stochastic Gradient Descent
+<meta name="description" content="Parallelizing and distributing SGD
+
 Parallelized Stochastic Gradient Descent
-
-算法步骤:
-
-将训练数据集$D$负载均衡地划分为$c$个子集: $D=\bigcup_{i=1}^{c}D_i$,其中$\left|D_1\right|=\left|D_2\right|=\left|D_3\right|=…=\lef">
+Hogwild!
+Downpour SGD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Parallel SGD">
 <meta property="og:url" content="http://wlyPKU.github.io/2016/10/07/Parallel-SGD/index.html">
 <meta property="og:site_name" content="wlyPKU">
-<meta property="og:description" content="Parallelized Stochastic Gradient Descent
+<meta property="og:description" content="Parallelizing and distributing SGD
+
 Parallelized Stochastic Gradient Descent
-
-算法步骤:
-
-将训练数据集$D$负载均衡地划分为$c$个子集: $D=\bigcup_{i=1}^{c}D_i$,其中$\left|D_1\right|=\left|D_2\right|=\left|D_3\right|=…=\lef">
+Hogwild!
+Downpour SGD">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/07/Parallel-SGD/psgd.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/07/Parallel-SGD/psgd1.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/07/Parallel-SGD/hogwild!.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2016/10/07/Parallel-SGD/hogwild!1.png">
-<meta property="og:updated_time" content="2016-10-07T15:41:25.557Z">
+<meta property="og:updated_time" content="2016-10-08T08:14:25.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Parallel SGD">
-<meta name="twitter:description" content="Parallelized Stochastic Gradient Descent
+<meta name="twitter:description" content="Parallelizing and distributing SGD
+
 Parallelized Stochastic Gradient Descent
-
-算法步骤:
-
-将训练数据集$D$负载均衡地划分为$c$个子集: $D=\bigcup_{i=1}^{c}D_i$,其中$\left|D_1\right|=\left|D_2\right|=\left|D_3\right|=…=\lef">
+Hogwild!
+Downpour SGD">
 <meta name="twitter:image" content="http://wlyPKU.github.io/2016/10/07/Parallel-SGD/psgd.png">
 
 
@@ -345,7 +342,12 @@ Parallelized Stochastic Gradient Descent
       
 
       
-        <h1 id="Parallelized-Stochastic-Gradient-Descent"><a href="#Parallelized-Stochastic-Gradient-Descent" class="headerlink" title="Parallelized Stochastic Gradient Descent"></a>Parallelized Stochastic Gradient Descent</h1><ul>
+        <p>Parallelizing and distributing SGD</p>
+<ul>
+<li>Parallelized Stochastic Gradient Descent</li>
+<li>Hogwild!</li>
+<li>Downpour SGD<a id="more"></a>
+<h1 id="Parallelized-Stochastic-Gradient-Descent"><a href="#Parallelized-Stochastic-Gradient-Descent" class="headerlink" title="Parallelized Stochastic Gradient Descent"></a>Parallelized Stochastic Gradient Descent</h1></li>
 <li><a href="http://www.research.rutgers.edu/~lihong/pub/Zinkevich11Parallelized.pdf" target="_blank" rel="external">Parallelized Stochastic Gradient Descent</a></li>
 </ul>
 <p>算法步骤:</p>
