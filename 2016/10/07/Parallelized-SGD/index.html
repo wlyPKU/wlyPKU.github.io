@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="机器学习,优化算法," />
 
 
 
@@ -84,12 +84,33 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="wlyPKU">
-<meta property="og:url" content="http://wlyPKU.github.io/categories/机器学习/index.html">
+<meta name="description" content="Parallelizing SGD
+
+Parallelized Stochastic Gradient Descent
+Hogwild!
+Downpour SGD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Parallel SGD">
+<meta property="og:url" content="http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/index.html">
 <meta property="og:site_name" content="wlyPKU">
+<meta property="og:description" content="Parallelizing SGD
+
+Parallelized Stochastic Gradient Descent
+Hogwild!
+Downpour SGD">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/psgd.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/psgd1.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/hogwild!.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/hogwild!1.png">
+<meta property="og:updated_time" content="2016-10-08T13:07:23.727Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wlyPKU">
+<meta name="twitter:title" content="Parallel SGD">
+<meta name="twitter:description" content="Parallelizing SGD
+
+Parallelized Stochastic Gradient Descent
+Hogwild!
+Downpour SGD">
+<meta name="twitter:image" content="http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/psgd.png">
 
 
 
@@ -110,9 +131,9 @@
 
 
 
-  <link rel="canonical" href="http://wlyPKU.github.io/categories/机器学习/"/>
+  <link rel="canonical" href="http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/"/>
 
-  <title> 分类: 机器学习 | wlyPKU </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Parallel SGD | wlyPKU </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,7 +154,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left  ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,131 +255,198 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        机器学习
-        <small>分类</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/07/Parallelized-SGD/" itemprop="url">
-              
-                <span itemprop="name">Parallel SGD</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-07T16:36:58+08:00"
-              content="2016-10-07" >
-          10-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/06/SGD-variants/" itemprop="url">
-              
-                <span itemprop="name">SGD 变种</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-06T19:41:27+08:00"
-              content="2016-10-06" >
-          10-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/06/Downpour-SGD/" itemprop="url">
-              
-                <span itemprop="name">Downpour SGD(大规模分布式深度网络)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-06T16:11:33+08:00"
-              content="2016-10-06" >
-          10-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/23/一阶机器学习优化算法/" itemprop="url">
-              
-                <span itemprop="name">一阶机器学习优化算法Paper汇总</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-23T19:26:10+08:00"
-              content="2016-08-23" >
-          08-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Parallel SGD
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-07T16:36:58+08:00" content="2016-10-07">
+              2016-10-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/07/Parallelized-SGD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/07/Parallelized-SGD/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Parallelizing SGD</p>
+<ul>
+<li>Parallelized Stochastic Gradient Descent</li>
+<li>Hogwild!</li>
+<li>Downpour SGD<a id="more"></a>
+<h1 id="Parallelized-Stochastic-Gradient-Descent"><a href="#Parallelized-Stochastic-Gradient-Descent" class="headerlink" title="Parallelized Stochastic Gradient Descent"></a>Parallelized Stochastic Gradient Descent</h1></li>
+<li><a href="http://www.research.rutgers.edu/~lihong/pub/Zinkevich11Parallelized.pdf" target="_blank" rel="external">Parallelized Stochastic Gradient Descent</a></li>
+</ul>
+<p>算法步骤:</p>
+<ol>
+<li>将训练数据集$D$负载均衡地划分为$c$个子集: $D=\bigcup_{i=1}^{c}D_i$,其中$\left|D_1\right|=\left|D_2\right|=\left|D_3\right|=…=\left|D_c\right|=T$,并将子集$D_i$分配到第i台机器.</li>
+<li>在每台机器上，给定学习率$\eta$,并令向量$v:=0$.</li>
+<li>对于$i\in\left\{ 1,2,…,c \right\} $,<strong>并行地</strong>执行:<ol>
+<li>将$D_i$中的元素随机打乱,设得到的样本序列为$ \left\{  \tilde{x}_j , \tilde{y}_j \right\}^T_{j=1}$</li>
+<li>初始化$w_0^{(i)}:=v$.</li>
+<li>按照以下循环更新参数.<br><strong>FOR </strong> $j = 1,2,…,T$  <strong>DO</strong><br>{<br>$\quad\quad w_j^{(i)} = w_{j-1}^{(i)}-\eta\left. \frac{\partial l(x_i, y_i,w)}{\partial w}\right|_{(\tilde{x}_j , \tilde{y}_j , {w_{j-1}^{(i)}})}$<br>}</li>
+</ol>
+</li>
+<li>通过<strong>全归约</strong>操作,使每台机器获得<strong>平均</strong>权值向量$v=\frac{1}{c} \sum_{k=1}^c w_T^{(i)}$</li>
+<li>若达到收敛准则,则算法结束,返回$v$;否则,转至3.</li>
+</ol>
+<p>算法只涉及<strong>数据并行</strong>,没有<strong>模型并行</strong>(每台机器上都有一份完整的模型参数$w$),因此它适合于模型参数量相对较小,而训练数据集相对较大的情形.每台机器各自负责一个本地数据块的计算,计算完成后,执行一次通信(step 4),获取更新后的值.<br><img src="/2016/10/07/Parallelized-SGD/psgd.png" alt="算法示意" title="算法示意"><br><img src="/2016/10/07/Parallelized-SGD/psgd1.png" alt="实验示意" title="实验示意"></p>
+<h1 id="Hogwild"><a href="#Hogwild" class="headerlink" title="Hogwild!"></a>Hogwild!</h1><ul>
+<li><a href="https://people.eecs.berkeley.edu/~brecht/papers/hogwildTR.pdf" target="_blank" rel="external">Hogwild!: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent</a></li>
+</ul>
+<p>Niu提出了被称为Hogwild的并行SGD方法。该方法在多个CPU时间进行并行。处理器通过共享内存来访问参数，并且这些参数不进行加锁。它为每一个cpu分配不重叠的一部分参数（分配互斥），每个cpu只更新其负责的参数。该方法只适合处理数据特征是稀疏的。该方法几乎可以达到一个最优的收敛速度，因为cpu之间不会进行相同信息重写。<br><img src="/2016/10/07/Parallelized-SGD/hogwild!.png" alt="算法示意" title="算法示意"><br><img src="/2016/10/07/Parallelized-SGD/hogwild!1.png" alt="实验示意" title="实验示意"></p>
+<h1 id="Downpour-SGD"><a href="#Downpour-SGD" class="headerlink" title="Downpour SGD"></a>Downpour SGD</h1><ul>
+<li><a href="http://doi.org/10.1109/ICDAR.2011.95" target="_blank" rel="external">Large Scale Distributed Deep Networks</a></li>
+</ul>
+<p>Downpour SGD 是 Dean et al. 4在 Google 的 DistBelief 框架中使用的一个异步 SGD 的变种（TensorFlow 的前身）。它在训练数据的子集上并行运行多个模型的复制。它们会把自己的更新发送到一个参数服务器上，而完整的参数被分发到许多的机器上。每个机器负责一小部分的模型参数的存储和更新。然而，因为各个复制模型直接并没有通信，即分享权重或者更新，它们的参数会持续遇到发散、妨碍收敛的问题。<br>请见:<a href="https://wlypku.github.io/2016/10/06/Downpour-SGD/">Downpour SGD</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+            <a href="/tags/优化算法/" rel="tag">#优化算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/06/SGD-variants/" rel="next" title="SGD 变种">
+                <i class="fa fa-chevron-left"></i> SGD 变种
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/10/07/Parallelized-SGD/"
+     data-title="Parallel SGD"
+     data-content=""
+     data-url="http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -366,6 +454,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/07/Parallelized-SGD/"
+           data-title="Parallel SGD" data-url="http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -385,8 +481,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -465,6 +570,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Parallelized-Stochastic-Gradient-Descent"><span class="nav-number">1.</span> <span class="nav-text">Parallelized Stochastic Gradient Descent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hogwild"><span class="nav-number">2.</span> <span class="nav-text">Hogwild!</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Downpour-SGD"><span class="nav-number">3.</span> <span class="nav-text">Downpour SGD</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -551,6 +667,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

@@ -5,8 +5,8 @@
     
     <entry>
       <title><![CDATA[Parallel SGD]]></title>
-      <url>http://wlyPKU.github.io/2016/10/07/Parallel-SGD/</url>
-      <content type="html"><![CDATA[<p>Parallelizing and distributing SGD</p>
+      <url>http://wlyPKU.github.io/2016/10/07/Parallelized-SGD/</url>
+      <content type="html"><![CDATA[<p>Parallelizing SGD</p>
 <ul>
 <li>Parallelized Stochastic Gradient Descent</li>
 <li>Hogwild!</li>
@@ -27,11 +27,11 @@
 <li>通过<strong>全归约</strong>操作,使每台机器获得<strong>平均</strong>权值向量$v=\frac{1}{c} \sum_{k=1}^c w_T^{(i)}$</li>
 <li>若达到收敛准则,则算法结束,返回$v$;否则,转至3.</li>
 </ol>
-<p>算法只涉及<strong>数据并行</strong>,没有<strong>模型并行</strong>(每台机器上都有一份完整的模型参数$w$),因此它适合于模型参数量相对较小,而训练数据集相对较大的情形.每台机器各自负责一个本地数据块的计算,计算完成后,执行一次通信(step 4),获取更新后的值.<br><img src="/2016/10/07/Parallel-SGD/psgd.png" alt="算法示意" title="算法示意"><br><img src="/2016/10/07/Parallel-SGD/psgd1.png" alt="实验示意" title="实验示意"></p>
+<p>算法只涉及<strong>数据并行</strong>,没有<strong>模型并行</strong>(每台机器上都有一份完整的模型参数$w$),因此它适合于模型参数量相对较小,而训练数据集相对较大的情形.每台机器各自负责一个本地数据块的计算,计算完成后,执行一次通信(step 4),获取更新后的值.<br><img src="/2016/10/07/Parallelized-SGD/psgd.png" alt="算法示意" title="算法示意"><br><img src="/2016/10/07/Parallelized-SGD/psgd1.png" alt="实验示意" title="实验示意"></p>
 <h1 id="Hogwild"><a href="#Hogwild" class="headerlink" title="Hogwild!"></a>Hogwild!</h1><ul>
 <li><a href="https://people.eecs.berkeley.edu/~brecht/papers/hogwildTR.pdf" target="_blank" rel="external">Hogwild!: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent</a></li>
 </ul>
-<p>Niu提出了被称为Hogwild的并行SGD方法。该方法在多个CPU时间进行并行。处理器通过共享内存来访问参数，并且这些参数不进行加锁。它为每一个cpu分配不重叠的一部分参数（分配互斥），每个cpu只更新其负责的参数。该方法只适合处理数据特征是稀疏的。该方法几乎可以达到一个最优的收敛速度，因为cpu之间不会进行相同信息重写。<br><img src="/2016/10/07/Parallel-SGD/hogwild!.png" alt="算法示意" title="算法示意"><br><img src="/2016/10/07/Parallel-SGD/hogwild!1.png" alt="实验示意" title="实验示意"></p>
+<p>Niu提出了被称为Hogwild的并行SGD方法。该方法在多个CPU时间进行并行。处理器通过共享内存来访问参数，并且这些参数不进行加锁。它为每一个cpu分配不重叠的一部分参数（分配互斥），每个cpu只更新其负责的参数。该方法只适合处理数据特征是稀疏的。该方法几乎可以达到一个最优的收敛速度，因为cpu之间不会进行相同信息重写。<br><img src="/2016/10/07/Parallelized-SGD/hogwild!.png" alt="算法示意" title="算法示意"><br><img src="/2016/10/07/Parallelized-SGD/hogwild!1.png" alt="实验示意" title="实验示意"></p>
 <h1 id="Downpour-SGD"><a href="#Downpour-SGD" class="headerlink" title="Downpour SGD"></a>Downpour SGD</h1><ul>
 <li><a href="http://doi.org/10.1109/ICDAR.2011.95" target="_blank" rel="external">Large Scale Distributed Deep Networks</a></li>
 </ul>
