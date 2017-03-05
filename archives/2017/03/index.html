@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,优化算法," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,16 +84,12 @@
 
 
 
-<meta name="description" content="对一阶机器学习优化算法ADMM、Coordinate Descent和Gradient Descent的paper加以简单整理。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="一阶机器学习优化算法Paper汇总">
-<meta property="og:url" content="http://wlyPKU.github.io/2016/08/23/一阶机器学习优化算法/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小小小宇">
+<meta property="og:url" content="http://wlyPKU.github.io/archives/2017/03/index.html">
 <meta property="og:site_name" content="小小小宇">
-<meta property="og:description" content="对一阶机器学习优化算法ADMM、Coordinate Descent和Gradient Descent的paper加以简单整理。">
-<meta property="og:updated_time" content="2016-10-08T07:35:14.784Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一阶机器学习优化算法Paper汇总">
-<meta name="twitter:description" content="对一阶机器学习优化算法ADMM、Coordinate Descent和Gradient Descent的paper加以简单整理。">
+<meta name="twitter:title" content="小小小宇">
 
 
 
@@ -114,9 +110,9 @@
 
 
 
-  <link rel="canonical" href="http://wlyPKU.github.io/2016/08/23/一阶机器学习优化算法/"/>
+  <link rel="canonical" href="http://wlyPKU.github.io/archives/2017/03/"/>
 
-  <title> 一阶机器学习优化算法Paper汇总 | 小小小宇 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 归档 | 小小小宇 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +133,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,235 +254,66 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 13 篇日志。 继续努力。
+    </span>
+
     
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                一阶机器学习优化算法Paper汇总
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-23T19:26:10+08:00" content="2016-08-23">
-              2016-08-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/23/一阶机器学习优化算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/一阶机器学习优化算法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
-      
-        <p>对一阶机器学习优化算法ADMM、Coordinate Descent和Gradient Descent的paper加以简单整理。<br><a id="more"></a></p>
-<h1 id="ADMM"><a href="#ADMM" class="headerlink" title="ADMM"></a>ADMM</h1><ul>
-<li><p><a href="https://web.stanford.edu/~boyd/papers/pdf/admm_distr_stats.pdf" target="_blank" rel="external">Distributed Optimization and Statistical Learning via the Alternating Direction Method of Multipliers</a></p>
-</li>
-<li><p><a href="https://web.stanford.edu/~boyd/papers/pdf/admm_slides.pdf" target="_blank" rel="external">Alternating Direction Method of Multipliers (PPT)</a></p>
-</li>
-<li><p><a href="http://www.simonlucey.com/lasso-using-admm/" target="_blank" rel="external">LASSO using ADMM</a></p>
-</li>
-<li><p><a href="http://users.ece.gatech.edu/~justin/CVXOPT-Spring-2015/resources/14-notes-admm.pdf" target="_blank" rel="external">Alternating direction method of multipliers</a></p>
-</li>
-<li><p><a href="https://web.stanford.edu/~boyd/papers/admm/logreg-l1/logreg.html" target="_blank" rel="external">L1 logistic regression ADMM demo</a></p>
-</li>
-<li><p><a href="http://mullover.me/2016/01/19/admm-for-distributed-statistical-learning/" target="_blank" rel="external"><strong>用ADMM实现统计学习问题的分布式计算</strong></a></p>
-</li>
-<li><p><a href="http://joegaotao.github.io/cn/2014/02/admm/" target="_blank" rel="external"><strong>分布式计算、统计学习与ADMM算法</strong></a></p>
-</li>
-</ul>
-<h1 id="Coordinate-Descent"><a href="#Coordinate-Descent" class="headerlink" title="Coordinate Descent"></a>Coordinate Descent</h1><ul>
-<li><p><a href="http://www.slideshare.net/sanghyukchun/131121-2-coordinate-descent-method" target="_blank" rel="external">Coordinate Descent method(PPT)</a></p>
-</li>
-<li><p><a href="https://www.cs.cmu.edu/~ggordon/10725-F12/slides/25-coord-desc.pdf" target="_blank" rel="external">Coordinate descent(PPT)</a></p>
-</li>
-<li><p><a href="http://www.jmlr.org/papers/volume13/yuan12a/yuan12a.pdf" target="_blank" rel="external">An Improved GLMNET for L1-regularized Logistic Regression</a></p>
-</li>
-<li><p><a href="http://www.optimization-online.org/DB_FILE/2014/12/4679.pdf" target="_blank" rel="external">Coordinate Descent Algorithms</a></p>
-</li>
-<li><p><a href="http://www.csie.ntu.edu.tw/~cjlin/papers/l1.pdf" target="_blank" rel="external"><strong>A Comparison of Optimization Methods and Software for Large-scale L1-regularized Linear Classification
-</strong></a></p>
-</li>
-<li><p><a href="https://arxiv.org/pdf/0803.3876.pdf" target="_blank" rel="external">COORDINATE DESCENT ALGORITHMS FOR LASSO PENALIZED REGRESSION</a></p>
-</li>
-<li><p><a href="https://github.com/acharuva/svm_cd/blob/master/svm_cd.py" target="_blank" rel="external">SVM Coordinate demo</a></p>
-</li>
-</ul>
-<p>parallel</p>
-<ul>
-<li><a href="https://arxiv.org/pdf/1105.5379v1.pdf" target="_blank" rel="external">Parallel Coordinate Descent for L1-Regularized Loss Minimization</a></li>
-<li><a href="https://www.csie.ntu.edu.tw/~cjlin/papers/multicore_cddual.pdf" target="_blank" rel="external">Parallel Dual Coordinate Descent Method for Large-scale Linear Classification in Multi-core Environments(SVM parallel)</a></li>
-</ul>
-<h1 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h1><ul>
-<li><p><a href="http://www.cs.rpi.edu/~magdon/courses/LFD-Slides/SlidesLect09.pdf" target="_blank" rel="external">Logistic Regression and Gradient Descent(PPT)</a></p>
-</li>
-<li><p><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/tricks-2012.pdf" target="_blank" rel="external"><strong>Stochastic Gradient Descent Tricks</strong></a></p>
-</li>
-</ul>
-<p>variants</p>
-<ul>
-<li><a href="http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf" target="_blank" rel="external">Adaptive Subgradient Methods for Online Learning and Stochastic Optimization</a></li>
-<li><a href="https://arxiv.org/pdf/1212.5701v1.pdf" target="_blank" rel="external">ADADELTA: AN ADAPTIVE LEARNING RATE METHOD</a></li>
-<li><a href="https://arxiv.org/pdf/1412.6980v8.pdf" target="_blank" rel="external">ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION</a></li>
-<li><a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf" target="_blank" rel="external">RMSprop(ppt)</a></li>
-<li><a href="https://arxiv.org/pdf/1312.6055v3.pdf" target="_blank" rel="external">Unit Tests for Stochastic Optimization</a><br>parallel</li>
-<li><a href="https://people.eecs.berkeley.edu/~brecht/papers/hogwildTR.pdf" target="_blank" rel="external">Hogwild!: A Lock-Free Approach to Parallelizing Stochastic Gradient Descent</a></li>
-<li><a href="http://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/43138.pdf" target="_blank" rel="external">Delay-Tolerant Algorithms for Asynchronous Distributed Online Learning</a></li>
-<li><a href="https://papers.nips.cc/paper/4687-large-scale-distributed-deep-networks.pdf" target="_blank" rel="external">Large Scale Distributed Deep Networks(Downpour SGD)</a></li>
-<li><p><a href="https://arxiv.org/pdf/1412.6651v8.pdf" target="_blank" rel="external">Deep learning with Elastic Averaging SGD</a></p>
-</li>
-<li><p><a href="http://sebastianruder.com/optimizing-gradient-descent/" target="_blank" rel="external"><strong>An overview of gradient descent optimization algorithms</strong></a></p>
-</li>
-</ul>
-<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><ul>
-<li><a href="http://mlss.tuebingen.mpg.de/2013/wright_slides.pdf" target="_blank" rel="external"><strong>Optimization (and Learning)</strong></a></li>
-</ul>
-
-      
-    </div>
-
-    <div>
       
         
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
-          
-            <a href="/tags/优化算法/" rel="tag">#优化算法</a>
-          
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
         </div>
       
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/" rel="next" title="利用GitHub Pages和Hexo快速搭建个人博客">
-                <i class="fa fa-chevron-left"></i> 利用GitHub Pages和Hexo快速搭建个人博客
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/23/Stunnel-Squid访问Facebook/" rel="prev" title="Stunnel+Squid访问Facebook">
-                Stunnel+Squid访问Facebook <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
-      
-    </footer>
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2017/03/05/Leetcode-week22/" itemprop="url">
+              
+                <span itemprop="name">LeetCode Weekly Contest 22</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-05T20:47:06+08:00"
+              content="2017-03-05" >
+          03-05
+        </time>
+      </div>
+
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-        <div class="ds-share flat" data-thread-key="2016/08/23/一阶机器学习优化算法/"
-     data-title="一阶机器学习优化算法Paper汇总"
-     data-content=""
-     data-url="http://wlyPKU.github.io/2016/08/23/一阶机器学习优化算法/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
+    
 
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+  </section>
 
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
+  
+
 
 
           </div>
@@ -494,14 +321,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/08/23/一阶机器学习优化算法/"
-           data-title="一阶机器学习优化算法Paper汇总" data-url="http://wlyPKU.github.io/2016/08/23/一阶机器学习优化算法/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -521,17 +340,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ww3.sinaimg.cn/mw690/770b0925jw8f39az302pwj20w00w0dnd.jpg"
@@ -610,17 +420,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ADMM"><span class="nav-number">1.</span> <span class="nav-text">ADMM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Coordinate-Descent"><span class="nav-number">2.</span> <span class="nav-text">Coordinate Descent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">3.</span> <span class="nav-text">Gradient Descent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">4.</span> <span class="nav-text">Summary</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -714,9 +513,11 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   
