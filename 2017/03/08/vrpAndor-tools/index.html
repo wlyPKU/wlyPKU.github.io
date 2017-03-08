@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="算法/工具调研," />
 
 
 
@@ -84,12 +84,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="小小小宇">
-<meta property="og:url" content="http://wlyPKU.github.io/index.html">
+<meta name="description" content="TSP问题与VRP问题TSP问题旅行推销员问题（英语：Travelling salesman problem, TSP）是这样一个问题：给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。它是组合优化中的一个NP困难问题，在运筹学和理论计算机科学中非常重要。尽管问题在计算上很困难，但已经有了大量的启发式和精确方法，因此可以完全求解城市数量上万的实例，并且甚至能在误差">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VRP 与or-tools调研">
+<meta property="og:url" content="http://wlyPKU.github.io/2017/03/08/vrpAndor-tools/index.html">
 <meta property="og:site_name" content="小小小宇">
+<meta property="og:description" content="TSP问题与VRP问题TSP问题旅行推销员问题（英语：Travelling salesman problem, TSP）是这样一个问题：给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。它是组合优化中的一个NP困难问题，在运筹学和理论计算机科学中非常重要。尽管问题在计算上很困难，但已经有了大量的启发式和精确方法，因此可以完全求解城市数量上万的实例，并且甚至能在误差">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/03/08/vrpAndor-tools/DependsOn-tsp-cc.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/03/08/vrpAndor-tools/DependsOn-tsp-cc-all.png">
+<meta property="og:updated_time" content="2017-03-08T14:15:27.445Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小小小宇">
+<meta name="twitter:title" content="VRP 与or-tools调研">
+<meta name="twitter:description" content="TSP问题与VRP问题TSP问题旅行推销员问题（英语：Travelling salesman problem, TSP）是这样一个问题：给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。它是组合优化中的一个NP困难问题，在运筹学和理论计算机科学中非常重要。尽管问题在计算上很困难，但已经有了大量的启发式和精确方法，因此可以完全求解城市数量上万的实例，并且甚至能在误差">
+<meta name="twitter:image" content="http://wlyPKU.github.io/2017/03/08/vrpAndor-tools/DependsOn-tsp-cc.png">
 
 
 
@@ -110,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://wlyPKU.github.io/"/>
+  <link rel="canonical" href="http://wlyPKU.github.io/2017/03/08/vrpAndor-tools/"/>
 
-  <title> 小小小宇 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> VRP 与or-tools调研 | 小小小宇 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,9 +140,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -255,9 +260,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -277,10 +282,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/03/08/vrpAndor-tools/" itemprop="url">
-                  VRP 与or-tools调研
-                </a>
+                VRP 与or-tools调研
               
             
           </h1>
@@ -346,9 +348,7 @@
       
 
       
-        
-          
-            <h1 id="TSP问题与VRP问题"><a href="#TSP问题与VRP问题" class="headerlink" title="TSP问题与VRP问题"></a>TSP问题与VRP问题</h1><h2 id="TSP问题"><a href="#TSP问题" class="headerlink" title="TSP问题"></a>TSP问题</h2><p>旅行推销员问题（英语：Travelling salesman problem, TSP）是这样一个问题：给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。它是组合优化中的一个NP困难问题，在运筹学和理论计算机科学中非常重要。尽管问题在计算上很困难，但已经有了大量的启发式和精确方法，因此可以完全求解城市数量上万的实例，并且甚至能在误差1%范围内估计上百万个城市的问题。<br>问题定义如下：给定若干城市与城市间的距离集合，求经过所有城市恰好一次的最短回路。即：给定图G=(V, E, W)，其中V为顶点集合，|V|=n，E为边集合，W为边权函数，求集合{1, 2, …, n}的一个排列$\pi$ 使得下式最小。<br>$$<br>\sum_{i=1}^{n-1}w(v_{\pi(i) },v_{\pi(i+1)})+w(v_{\pi(n)},v_{\pi(1)})<br>$$</p>
+        <h1 id="TSP问题与VRP问题"><a href="#TSP问题与VRP问题" class="headerlink" title="TSP问题与VRP问题"></a>TSP问题与VRP问题</h1><h2 id="TSP问题"><a href="#TSP问题" class="headerlink" title="TSP问题"></a>TSP问题</h2><p>旅行推销员问题（英语：Travelling salesman problem, TSP）是这样一个问题：给定一系列城市和每对城市之间的距离，求解访问每一座城市一次并回到起始城市的最短回路。它是组合优化中的一个NP困难问题，在运筹学和理论计算机科学中非常重要。尽管问题在计算上很困难，但已经有了大量的启发式和精确方法，因此可以完全求解城市数量上万的实例，并且甚至能在误差1%范围内估计上百万个城市的问题。<br>问题定义如下：给定若干城市与城市间的距离集合，求经过所有城市恰好一次的最短回路。即：给定图G=(V, E, W)，其中V为顶点集合，|V|=n，E为边集合，W为边权函数，求集合{1, 2, …, n}的一个排列$\pi$ 使得下式最小。<br>$$<br>\sum_{i=1}^{n-1}w(v_{\pi(i) },v_{\pi(i+1)})+w(v_{\pi(n)},v_{\pi(1)})<br>$$</p>
 <p>问题同样可以用整数线性规划问题来形式化，我们用数字1,…,n标记这些城市，并定义：<br>$$<br>x_{ij}= \begin{cases}1, &amp; \text {路径选择从i到j} \\ 0, &amp; \text{otherwise} \end{cases}<br>$$</p>
 <p>对于i=1,2,…,n,令$c_{ij}$ 表示从城市i到j的距离，那么TSP问题可以写成下面的整数线性规划问题:<br>$$<br>\min \sum_{i=0}^n\sum_{j\neq i,j=1}^n c_{ij}w_{ij} \\<br>0\leq x_{ij}\leq1        \ \ \ \ \ \ \ \ \ \ i,j=1,…,n \\<br>u_i \in {Z}        \ \ \ \ \ \ \ \ \ \ i=1,…,n \\<br>\sum_{i=1,i\neq j}^n x_{ij}=1       \ \ \ \ \ j=1,…,n \\<br>\sum_{j=1,j\neq i}^n x_{ij}=1       \ \ \ \ \ i=1,…,n \\<br>u_i-u_j+nx_{ij}\leq n-1  \ \ \ \ 2\leq i\neq j \leq n<br>$$<br>第一组等式要求每个城市都能另一个城市前来，而第二组等式要求每个城市都能出发。最后的约束迫使覆盖所有城市的路径只有一条，而不是两条或者多条分散的路径在一起覆盖的。</p>
 <p>证明可行解中的每个子回路经过1号城市（注意到等式保证了只有一条这样的路径），就能证明所有可行解只包含一个封闭城市序列。对于若我们对所有$x_{ij}=1$ 对应的不等式求和的话，对 <em>k</em> 步不经过1号城市的任何子回路，我们得到：$nk\leq (n-1)k$, 矛盾。 </p>
@@ -577,537 +577,78 @@
 <p><strong>Reference</strong> </p>
 <p><a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem" target="_blank" rel="external">https://en.wikipedia.org/wiki/Travelling_salesman_problem</a><br><a href="https://en.wikipedia.org/wiki/Vehicle_routing_problem" target="_blank" rel="external">https://en.wikipedia.org/wiki/Vehicle_routing_problem</a><br><a href="https://developers.google.com/optimization/reference/constraint_solver/routing/" target="_blank" rel="external">https://developers.google.com/optimization/reference/constraint_solver/routing/</a><br><a href="https://acrogenesis.com/or-tools/documentation/documentation_hub.html#user_manual" target="_blank" rel="external">https://acrogenesis.com/or-tools/documentation/documentation_hub.html#user_manual</a><br><a href="https://developers.google.com/optimization/" target="_blank" rel="external">https://developers.google.com/optimization/</a><br><a href="https://developers.google.com/optimization/routing/tsp/tsp" target="_blank" rel="external">https://developers.google.com/optimization/routing/tsp/tsp</a><br><a href="https://developers.google.com/optimization/routing/tsp/vehicle_routing_time_windows" target="_blank" rel="external">https://developers.google.com/optimization/routing/tsp/vehicle_routing_time_windows</a><br><a href="https://github.com/google/or-tools/blob/master/src/constraint_solver/routing.h" target="_blank" rel="external">https://github.com/google/or-tools/blob/master/src/constraint_solver/routing.h</a></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/05/Leetcode-week22/" itemprop="url">
-                  LeetCode Weekly Contest 22
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-05T20:47:06+08:00" content="2017-03-05">
-              2017-03-05
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/05/Leetcode-week22/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/Leetcode-week22/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/算法-工具调研/" rel="tag">#算法/工具调研</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>LeetCode Weekly Contest 22<br>[2017-03-05]</p>
-<ol>
-<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-22/problems/k-diff-pairs-in-an-array/">k-diff Pairs in an Array</a></li>
-<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-22/problems/lonely-pixel-i/">Lonely Pixel I</a></li>
-<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-22/problems/lonely-pixel-ii/">Lonely Pixel II</a></li>
-<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-22/problems/freedom-trail/">Freedom Trail</a>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/05/Leetcode-week22/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/05/Leetcode-week22/" rel="next" title="LeetCode Weekly Contest 22">
+                <i class="fa fa-chevron-left"></i> LeetCode Weekly Contest 22
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/11/Java-Math-exp/" itemprop="url">
-                  Java中Math.exp的近似算法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-11T20:10:42+08:00" content="2017-01-11">
-              2017-01-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/11/Java-Math-exp/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/11/Java-Math-exp/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>实验过程中发现Java的Math.exp()操作特别耗时间,在坐标下降求解Logistic Regression的过程中Math.exp()几乎用到了70%的时间,因此我们思考是否可以通过近似的方法计算$e^x$的值,文中整理了两种实用的近似计算Math.exp()方法。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/11/Java-Math-exp/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
+
+    <div class="post-spread">
       
+        <div class="ds-share flat" data-thread-key="2017/03/08/vrpAndor-tools/"
+     data-title="VRP 与or-tools调研"
+     data-content=""
+     data-url="http://wlyPKU.github.io/2017/03/08/vrpAndor-tools/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
 
-  
-  
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/07/Parallelized-SGD/" itemprop="url">
-                  Parallel SGD
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-07T16:36:58+08:00" content="2016-10-07">
-              2016-10-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/07/Parallelized-SGD/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/07/Parallelized-SGD/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Parallelizing SGD</p>
-<ul>
-<li>Parallelized Stochastic Gradient Descent</li>
-<li>Hogwild!</li>
-<li>Downpour SGD
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/07/Parallelized-SGD/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/06/SGD-variants/" itemprop="url">
-                  SGD 变种
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-06T19:41:27+08:00" content="2016-10-06">
-              2016-10-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/06/SGD-variants/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/06/SGD-variants/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>A brief introduction to stochastic gradient descent and its variants.<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/06/SGD-variants/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -1115,6 +656,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/08/vrpAndor-tools/"
+           data-title="VRP 与or-tools调研" data-url="http://wlyPKU.github.io/2017/03/08/vrpAndor-tools/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -1134,8 +683,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://ww3.sinaimg.cn/mw690/770b0925jw8f39az302pwj20w00w0dnd.jpg"
@@ -1214,6 +772,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TSP问题与VRP问题"><span class="nav-number">1.</span> <span class="nav-text">TSP问题与VRP问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TSP问题"><span class="nav-number">1.1.</span> <span class="nav-text">TSP问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VRP问题"><span class="nav-number">1.2.</span> <span class="nav-text">VRP问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般VRP问题"><span class="nav-number">1.2.1.</span> <span class="nav-text">一般VRP问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变种VRP问题"><span class="nav-number">1.2.2.</span> <span class="nav-text">变种VRP问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-tools-工具包介绍"><span class="nav-number">2.</span> <span class="nav-text">or-tools 工具包介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#or-tools-功能介绍"><span class="nav-number">2.1.</span> <span class="nav-text">or-tools 功能介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#or-tools-结构介绍"><span class="nav-number">2.2.</span> <span class="nav-text">or-tools 结构介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-tools-求解vrp问题示例"><span class="nav-number">3.</span> <span class="nav-text">or-tools 求解vrp问题示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tsp问题求解"><span class="nav-number">3.1.</span> <span class="nav-text">tsp问题求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vrp问题求解"><span class="nav-number">3.2.</span> <span class="nav-text">vrp问题求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-使用到的相关代码"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 使用到的相关代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-关键变量、函数与API"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 关键变量、函数与API</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1307,6 +876,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
