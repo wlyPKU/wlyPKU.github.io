@@ -92,7 +92,7 @@
 <meta property="og:description" content="VRP问题及Google工具or-tools的基础调研。">
 <meta property="og:image" content="http://wlyPKU.github.io/2017/03/08/vrpAndor-tools/DependsOn-tsp-cc.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2017/03/08/vrpAndor-tools/DependsOn-tsp-cc-all.png">
-<meta property="og:updated_time" content="2017-03-08T15:44:58.617Z">
+<meta property="og:updated_time" content="2017-03-10T14:17:31.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VRP 与or-tools调研">
 <meta name="twitter:description" content="VRP问题及Google工具or-tools的基础调研。">
@@ -491,6 +491,15 @@
 <li><code>fix_start_cumul_to_zero</code> — Since the value is <code>True</code>, the <a href="https://developers.google.com/optimization/routing/tsp/vehicle_routing#dim_vars" target="_blank" rel="external">cumulative variable</a> for time is set to 0 at the start of each vehicle’s route.</li>
 <li><code>time</code> — The name of the dimension, which you can use to access data or variables stored in it.</li>
 </ul>
+<p>4.加入时间维度的限制</p>
+<ul>
+<li>获取该dimension</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">time_dimension = routing.GetDimensionOrDie(time)</div></pre></td></tr></table></figure>
+<ul>
+<li>为其中的每个站点设置开始、结束时间值</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> location <span class="keyword">in</span> range(<span class="number">1</span>, num_locations):</div><div class="line">	start = start_time[location]</div><div class="line">	end = end_time[location]</div><div class="line">	time_dimension.CmulVar(location).SetRange(start, end)</div></pre></td></tr></table></figure>
 <h2 id="3-3-使用到的相关代码"><a href="#3-3-使用到的相关代码" class="headerlink" title="3.3 使用到的相关代码"></a>3.3 使用到的相关代码</h2><img src="/2017/03/08/vrpAndor-tools/DependsOn-tsp-cc.png" alt="DependsOn-tsp-cc.png" title="">
 <img src="/2017/03/08/vrpAndor-tools/DependsOn-tsp-cc-all.png" alt="DependsOn-tsp-cc-all.png" title="">
 <h2 id="3-4-关键变量、函数与API"><a href="#3-4-关键变量、函数与API" class="headerlink" title="3.4 关键变量、函数与API"></a>3.4 关键变量、函数与API</h2><p>1.求解相关</p>
@@ -546,6 +555,7 @@
 <blockquote>
 <p>Quantities at a node are represented by “cumul” variables and the increase or decrease of quantities between nodes are represented by “transit” variables. These variables are linked as follows: if j == next(i), cumul(j) = cumul(i) + transit(i) + slack(i)</p>
 </blockquote>
+<p><strong>整理PPT：<a href="or-tools.pptx">or_tool.pptx</a></strong></p>
 <p><strong>Reference</strong> </p>
 <p><a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem" target="_blank" rel="external">https://en.wikipedia.org/wiki/Travelling_salesman_problem</a><br><a href="https://en.wikipedia.org/wiki/Vehicle_routing_problem" target="_blank" rel="external">https://en.wikipedia.org/wiki/Vehicle_routing_problem</a><br><a href="https://developers.google.com/optimization/reference/constraint_solver/routing/" target="_blank" rel="external">https://developers.google.com/optimization/reference/constraint_solver/routing/</a><br><a href="https://acrogenesis.com/or-tools/documentation/documentation_hub.html#user_manual" target="_blank" rel="external">https://acrogenesis.com/or-tools/documentation/documentation_hub.html#user_manual</a><br><a href="https://developers.google.com/optimization/" target="_blank" rel="external">https://developers.google.com/optimization/</a><br><a href="https://developers.google.com/optimization/routing/tsp/tsp" target="_blank" rel="external">https://developers.google.com/optimization/routing/tsp/tsp</a><br><a href="https://developers.google.com/optimization/routing/tsp/vehicle_routing_time_windows" target="_blank" rel="external">https://developers.google.com/optimization/routing/tsp/vehicle_routing_time_windows</a><br><a href="https://github.com/google/or-tools/blob/master/src/constraint_solver/routing.h" target="_blank" rel="external">https://github.com/google/or-tools/blob/master/src/constraint_solver/routing.h</a></p>
 
@@ -586,6 +596,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/spark-hadoop-storm/" rel="prev" title="Spark、Hadoop、Storm对比">
+                Spark、Hadoop、Storm对比 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -676,7 +690,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

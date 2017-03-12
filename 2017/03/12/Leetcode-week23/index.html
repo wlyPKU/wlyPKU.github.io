@@ -1,0 +1,930 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LeetCode," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="LeetCode Weekly Contest 23[2017-03-12]
+
+Reverse String II
+Minimum Time Difference
+Construct Binary Tree from String
+Word Abbreviation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Weekly Contest 23">
+<meta property="og:url" content="http://wlyPKU.github.io/2017/03/12/Leetcode-week23/index.html">
+<meta property="og:site_name" content="小小小宇">
+<meta property="og:description" content="LeetCode Weekly Contest 23[2017-03-12]
+
+Reverse String II
+Minimum Time Difference
+Construct Binary Tree from String
+Word Abbreviation">
+<meta property="og:updated_time" content="2017-03-12T12:41:46.562Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode Weekly Contest 23">
+<meta name="twitter:description" content="LeetCode Weekly Contest 23[2017-03-12]
+
+Reverse String II
+Minimum Time Difference
+Construct Binary Tree from String
+Word Abbreviation">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wlyPKU.github.io/2017/03/12/Leetcode-week23/"/>
+
+  <title> LeetCode Weekly Contest 23 | 小小小宇 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小小小宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LeetCode Weekly Contest 23
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-12T12:03:00+08:00" content="2017-03-12">
+              2017-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/12/Leetcode-week23/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/12/Leetcode-week23/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>LeetCode Weekly Contest 23<br>[2017-03-12]</p>
+<ol>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-23/problems/reverse-string-ii/" target="_blank" rel="external">Reverse String II</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-23/problems/minimum-time-difference/" target="_blank" rel="external">Minimum Time Difference</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-23/problems/construct-binary-tree-from-string/" target="_blank" rel="external">Construct Binary Tree from String</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-23/problems/word-abbreviation/" target="_blank" rel="external">Word Abbreviation</a><a id="more"></a>
+</li>
+</ol>
+<hr>
+<h1 id="Reverse-String-II"><a href="#Reverse-String-II" class="headerlink" title="Reverse String II"></a>Reverse String II</h1><p>Given a string and an integer k, you need to reverse the first k characters for every 2k characters counting from the start of the string. If there are less than k characters left, reverse all of them. If there are less than 2k but greater than or equal to k characters, then reverse the first k characters and left the other as original.<br><strong>Example:</strong><br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Input:</span> s = <span class="string">"abcdefg"</span>, k = <span class="number">2</span></div><div class="line"><span class="symbol">Output:</span> <span class="string">"bacdfeg"</span></div></pre></td></tr></table></figure></p>
+<p><strong>Restrictions:</strong></p>
+<ol>
+<li>The string consists of lower English letters only.</li>
+<li>Length of the given string and k will in the range [1, 10000]</li>
+</ol>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">reverseStr</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> k)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); i += <span class="number">2</span> * k)</div><div class="line">            reverse(s.begin() + i, s.begin() + min((<span class="keyword">int</span>)s.size(), i + k));</div><div class="line">        <span class="keyword">return</span> s;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Minimum-Time-Difference"><a href="#Minimum-Time-Difference" class="headerlink" title="Minimum Time Difference"></a>Minimum Time Difference</h1><p>Given a list of 24-hour clock time points in “Hour:Minutes” format, find the minimum minutes difference between any two time points in the list.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Input:</span> [<span class="string">"23:59"</span>,<span class="string">"00:00"</span>]</div><div class="line"><span class="symbol">Output:</span> <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The number of time points in the given list is at least 2 and won’t exceed 20000.</li>
+<li>The input time is legal and ranges from 00:00 to 23:59.</li>
+</ol>
+<h2 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h2><p>O(n) Time O(1) Space<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMinDifference</span><span class="params">(List&lt;String&gt; timePoints)</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">boolean</span>[] timeSeen = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">1440</span>];</div><div class="line">    <span class="keyword">for</span> (String s : timePoints) &#123;</div><div class="line">        <span class="keyword">int</span> mins = Integer.parseInt(s.split(<span class="string">":"</span>)[<span class="number">0</span>])*<span class="number">60</span> + Integer.parseInt(s.split(<span class="string">":"</span>)[<span class="number">1</span>]);</div><div class="line">        <span class="keyword">if</span> (timeSeen[mins]) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        timeSeen[mins] = <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    Integer firstTimeSeen = <span class="keyword">null</span>, prevTimeSeen = <span class="keyword">null</span>, minDiff = Integer.MAX_VALUE;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">1440</span>;i++) &#123;</div><div class="line">        <span class="keyword">if</span> (!timeSeen[i]) <span class="keyword">continue</span>;</div><div class="line">        <span class="keyword">if</span> (firstTimeSeen == <span class="keyword">null</span>) &#123;firstTimeSeen = i; prevTimeSeen = i;&#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">          minDiff = Math.min(minDiff, Math.min(i - prevTimeSeen, <span class="number">1440</span> - i + prevTimeSeen));</div><div class="line">          prevTimeSeen = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    minDiff = Math.min(minDiff, Math.min(prevTimeSeen - firstTimeSeen, <span class="number">1440</span> - prevTimeSeen + firstTimeSeen));</div><div class="line">    <span class="keyword">return</span> minDiff;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>O(nlog(n)) Time O(1) Space:<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="built_in">int</span> findMinDifference(List&lt;<span class="keyword">String</span>&gt; timePoints) &#123;</div><div class="line">    Collections.<span class="built_in">sort</span>(timePoints);</div><div class="line">    <span class="built_in">int</span> minDiff = Integer.MAX_VALUE;</div><div class="line">    <span class="keyword">String</span> prev = timePoints.<span class="built_in">get</span>(timePoints.<span class="built_in">size</span>()<span class="number">-1</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">String</span> s : timePoints) &#123;</div><div class="line">        <span class="built_in">int</span> prevMins = Integer.parseInt(prev.<span class="built_in">split</span>(<span class="string">":"</span>)[<span class="number">0</span>])*<span class="number">60</span> + Integer.parseInt(prev.<span class="built_in">split</span>(<span class="string">":"</span>)[<span class="number">1</span>]);</div><div class="line">        <span class="built_in">int</span> curMins = Integer.parseInt(s.<span class="built_in">split</span>(<span class="string">":"</span>)[<span class="number">0</span>])*<span class="number">60</span> + Integer.parseInt(s.<span class="built_in">split</span>(<span class="string">":"</span>)[<span class="number">1</span>]);</div><div class="line">        <span class="built_in">int</span> diff = curMins - prevMins;</div><div class="line">        <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) diff += <span class="number">1440</span>;</div><div class="line">        minDiff = Math.<span class="built_in">min</span>(minDiff, Math.<span class="built_in">min</span>(diff, <span class="number">1440</span> - diff));</div><div class="line">        prev = s;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> minDiff;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="Construct-Binary-Tree-from-String"><a href="#Construct-Binary-Tree-from-String" class="headerlink" title="Construct Binary Tree from String"></a>Construct Binary Tree from String</h1><p>You need to construct a binary tree from a string consisting of parenthesis and integers.<br>The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis. The integer represents the root’s value and a pair of parenthesis contains a child binary tree with the same structure.<br>You always start to construct the left child node of the parent first if it exists.</p>
+<p><strong>Example:</strong><br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Input</span>: "4(2(3)(1))(6(5))"</div><div class="line"><span class="attribute">Output</span>: return the tree root node representing the following tree:</div><div class="line"></div><div class="line"><span class="lsl">       <span class="number">4</span></span></div><div class="line">     /   \</div><div class="line">    <span class="number">2</span>     <span class="number">6</span></div><div class="line">   / \   / </div><div class="line">  <span class="number">3</span>   <span class="number">1</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>There will only be ‘(‘, ‘)’, ‘-‘ and ‘0’ ~ ‘9’ in the input string.</li>
+</ol>
+<h2 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">str2tree</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> s.size() == <span class="number">0</span> ? <span class="literal">nullptr</span> : build(s, i);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">string</span>&amp; s, <span class="keyword">int</span>&amp; i)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> start = i;</div><div class="line">        <span class="keyword">if</span> (s[i] == <span class="string">'-'</span>) &#123;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (<span class="built_in">isdigit</span>(s[i])) &#123;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">int</span> num = stoi(s.substr(start, i - start));</div><div class="line">        TreeNode* node = <span class="keyword">new</span> TreeNode(num);</div><div class="line">        <span class="keyword">if</span> (s[i] == <span class="string">'('</span>) &#123;</div><div class="line">            node-&gt;left = build(s, ++i);</div><div class="line">            i++;    <span class="comment">// )</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (s[i] == <span class="string">'('</span>) &#123;</div><div class="line">            node-&gt;right = build(s, ++i);</div><div class="line">            i++;    <span class="comment">// )</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> node;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Word-Abbreviation"><a href="#Word-Abbreviation" class="headerlink" title="Word Abbreviation"></a>Word Abbreviation</h1><p>Given an array of n distinct non-empty strings, you need to generate minimal possible abbreviations for every word following rules below.</p>
+<ol>
+<li>Begin with the first character and then the number of characters abbreviated, which followed by the last character.</li>
+<li>If there are any conflict, that is more than one words share the same abbreviation, a longer prefix is used instead of only the first character until making the map from word to abbreviation become unique. In other words, a final abbreviation cannot map to more than one original words.</li>
+<li>If the abbreviation doesn’t make the word shorter, then keep it as original.</li>
+</ol>
+<p><strong>Example:</strong><br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Input:</span> [<span class="string">"like"</span>, <span class="string">"god"</span>, <span class="string">"internal"</span>, <span class="string">"me"</span>, <span class="string">"internet"</span>, <span class="string">"interval"</span>, <span class="string">"intension"</span>, <span class="string">"face"</span>, <span class="string">"intrusion"</span>]</div><div class="line"><span class="symbol">Output:</span> [<span class="string">"l2e"</span>,<span class="string">"god"</span>,<span class="string">"internal"</span>,<span class="string">"me"</span>,<span class="string">"i6t"</span>,<span class="string">"interval"</span>,<span class="string">"inte4n"</span>,<span class="string">"f2e"</span>,<span class="string">"intr4n"</span>]</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>Both n and the length of each word will not exceed 400.</li>
+<li>The length of each word is greater than 1.</li>
+<li>The words consist of lowercase English letters only.</li>
+<li>The return answers should be in the same order as the original array.<h2 id="code-3"><a href="#code-3" class="headerlink" title="code"></a>code</h2></li>
+</ol>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> Solution &#123;</div><div class="line">    <span class="keyword">public</span> List&lt;<span class="keyword">String</span>&gt; wordsAbbreviation(List&lt;<span class="keyword">String</span>&gt; dict) &#123;</div><div class="line">        Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; wordToAbbr = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        Map&lt;Integer, List&lt;<span class="keyword">String</span>&gt;&gt; groups = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        </div><div class="line">        <span class="comment">// Try to group words by their length. Because no point to compare words with different length.</span></div><div class="line">        <span class="comment">// Also no point to look at words with length &lt; 4.</span></div><div class="line">        <span class="built_in">for</span> (<span class="keyword">String</span> <span class="keyword">word</span> : dict) &#123;</div><div class="line">            <span class="keyword">int</span> len = <span class="keyword">word</span>.length();</div><div class="line">            <span class="built_in">if</span> (len &lt; <span class="number">4</span>) &#123;</div><div class="line">                wordToAbbr.<span class="built_in">put</span>(<span class="keyword">word</span>, <span class="keyword">word</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">else</span> &#123;</div><div class="line">                List&lt;<span class="keyword">String</span>&gt; g = groups.getOrDefault(len, <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;());</div><div class="line">                g.add(<span class="keyword">word</span>);</div><div class="line">                groups.<span class="built_in">put</span>(len, g);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">// For each group of words with same length, generate a result HashMap.</span></div><div class="line">        <span class="built_in">for</span> (<span class="keyword">int</span> len : groups.keySet()) &#123;</div><div class="line">            Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; res = getAbbr(groups.<span class="built_in">get</span>(len));</div><div class="line">            <span class="built_in">for</span> (<span class="keyword">String</span> <span class="keyword">word</span> : res.keySet()) &#123;</div><div class="line">                wordToAbbr.<span class="built_in">put</span>(<span class="keyword">word</span>, res.<span class="built_in">get</span>(<span class="keyword">word</span>));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">// Generate the result list</span></div><div class="line">        List&lt;<span class="keyword">String</span>&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="built_in">for</span> (<span class="keyword">String</span> <span class="keyword">word</span> : dict) &#123;</div><div class="line">            result.add(wordToAbbr.<span class="built_in">get</span>(<span class="keyword">word</span>));</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="built_in">return</span> result;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; getAbbr(List&lt;<span class="keyword">String</span>&gt; words) &#123;</div><div class="line">        Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; res = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        <span class="keyword">int</span> len = words.<span class="built_in">get</span>(<span class="number">0</span>).length();</div><div class="line">        </div><div class="line">        <span class="comment">// Try to abbreviate a word from index 1 to len - 2 </span></div><div class="line">        <span class="built_in">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len - <span class="number">2</span>; i++) &#123;</div><div class="line">            Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; abbrToWord = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">            <span class="built_in">for</span> (<span class="keyword">String</span> s : words) &#123;</div><div class="line">                <span class="built_in">if</span> (res.containsKey(s)) <span class="built_in">continue</span>;</div><div class="line">                <span class="comment">// Generate the current abbreviation</span></div><div class="line">                <span class="keyword">String</span> abbr = s.substring(<span class="number">0</span>, i) + (len - <span class="number">1</span> - i) + s.charAt(len - <span class="number">1</span>);</div><div class="line">                <span class="comment">// Tick: use reversed abbreviation to word map to check if there is any duplicated abbreviation</span></div><div class="line">                <span class="built_in">if</span> (!abbrToWord.containsKey(abbr)) &#123;</div><div class="line">                    abbrToWord.<span class="built_in">put</span>(abbr, s);</div><div class="line">                &#125;</div><div class="line">                <span class="built_in">else</span> &#123;</div><div class="line">                    abbrToWord.<span class="built_in">put</span>(abbr, <span class="string">""</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// Add unique abbreviations find during this round to result HashMap</span></div><div class="line">            <span class="built_in">for</span> (<span class="keyword">String</span> abbr : abbrToWord.keySet()) &#123;</div><div class="line">                <span class="keyword">String</span> s = abbrToWord.<span class="built_in">get</span>(abbr);</div><div class="line">                <span class="comment">// Not a unique abbreviation</span></div><div class="line">                <span class="built_in">if</span> (s.length() == <span class="number">0</span>) <span class="built_in">continue</span>;</div><div class="line">                res.<span class="built_in">put</span>(s, abbr);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">// Add all words that can't be shortened.</span></div><div class="line">        <span class="built_in">for</span> (<span class="keyword">String</span> s : words) &#123;</div><div class="line">            <span class="built_in">if</span> (!res.containsKey(s)) &#123;</div><div class="line">                res.<span class="built_in">put</span>(s, s);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="built_in">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/11/spark-hadoop-storm/" rel="next" title="Spark、Hadoop、Storm对比">
+                <i class="fa fa-chevron-left"></i> Spark、Hadoop、Storm对比
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/03/12/Leetcode-week23/"
+     data-title="LeetCode Weekly Contest 23"
+     data-content=""
+     data-url="http://wlyPKU.github.io/2017/03/12/Leetcode-week23/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/12/Leetcode-week23/"
+           data-title="LeetCode Weekly Contest 23" data-url="http://wlyPKU.github.io/2017/03/12/Leetcode-week23/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww3.sinaimg.cn/mw690/770b0925jw8f39az302pwj20w00w0dnd.jpg"
+               alt="wlyPKU" />
+          <p class="site-author-name" itemprop="name">wlyPKU</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlyPKU" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wangly2011/profile" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/wangly.cs" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Reverse-String-II"><span class="nav-number">1.</span> <span class="nav-text">Reverse String II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">1.1.</span> <span class="nav-text">code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Minimum-Time-Difference"><span class="nav-number">2.</span> <span class="nav-text">Minimum Time Difference</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code-1"><span class="nav-number">2.1.</span> <span class="nav-text">code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Construct-Binary-Tree-from-String"><span class="nav-number">3.</span> <span class="nav-text">Construct Binary Tree from String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code-2"><span class="nav-number">3.1.</span> <span class="nav-text">code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Word-Abbreviation"><span class="nav-number">4.</span> <span class="nav-text">Word Abbreviation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code-3"><span class="nav-number">4.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlyPKU</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wlypku"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+</body>
+</html>
