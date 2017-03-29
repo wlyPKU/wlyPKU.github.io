@@ -45,6 +45,7 @@
 <img src="/2017/03/29/Class-imbalance-in-classification/ml_zzh.png" alt="周志华PPT" title="周志华PPT">
 <p>Reference:</p>
 <ul>
+<li><a href="http://m.blog.csdn.net/article/details?id=52304670" target="_blank" rel="external">不平衡数据分类算法介绍与比较</a></li>
 <li><a href="https://arxiv.org/abs/1608.06048" target="_blank" rel="external">Survey of resampling techniques for improving classification performance in unbalanced datasets</a></li>
 <li><a href="http://d.wanfangdata.com.cn/periodical/njdxxb200602005" target="_blank" rel="external">一种基于级联模型的类别不平衡数据分类方法</a></li>
 <li><a href="/2017/03/29/Class-imbalance-in-classification/Chap03_v3.pdf">机器学习.周志华 PPT Chapter 3</a></li>
