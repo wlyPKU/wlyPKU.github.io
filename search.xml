@@ -4,6 +4,126 @@
   
     
     <entry>
+      <title><![CDATA[Class imbalance in classification]]></title>
+      <url>http://wlyPKU.github.io/2017/03/29/Class-imbalance-in-classification/</url>
+      <content type="html"><![CDATA[<p>本文是分类算法正负例数量不平衡问题的解决方案。<br><a id="more"></a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>在数据挖掘中，经常会存在不平衡数据的分类问题，比如在异常监控预测中，由于异常就大多数情况下都不会出现，因此想要达到良好的识别效果普通的分类算法还远远不够，这里介绍几种处理不平衡数据的常用方法及对比。</p>
+<p>记多数类的样本集合为L，少数类的样本集合为S。<br>用r=|S|/|L|表示少数类与多数类的比例。</p>
+<p>基准<br>我们先用一个逻辑斯谛回归作为该实验的基准： </p>
+<h1 id="Weighted-loss-function"><a href="#Weighted-loss-function" class="headerlink" title="Weighted loss function"></a>Weighted loss function</h1><p>一个处理非平衡数据常用的方法就是设置损失函数的权重，使得少数类判别错误的损失大于多数类判别错误的损失。在python的scikit-learn中我们可以使用class_weight参数来设置权重。<br><img src="/2017/03/29/Class-imbalance-in-classification/weightFunction.png" alt="weightLossFunction" title="weightLossFunction"></p>
+<h1 id="欠采样方法-undersampling"><a href="#欠采样方法-undersampling" class="headerlink" title="欠采样方法(undersampling)"></a>欠采样方法(undersampling)</h1><h2 id="Random-undersampling-of-majority-class"><a href="#Random-undersampling-of-majority-class" class="headerlink" title="Random undersampling of majority class"></a>Random undersampling of majority class</h2><p>一个最简单的方法就是从多数类中随机抽取样本从而减少多数类样本的数量，使数据达到平衡。<br>但对于欠抽样算法，将多数类样本删除有可能会导致分类器丢失有关多数类的重要信息。<br><img src="/2017/03/29/Class-imbalance-in-classification/randomUndersample.png" alt="randomUndersample" title="randomUndersample"></p>
+<h2 id="Edited-Nearest-Neighbor-ENN"><a href="#Edited-Nearest-Neighbor-ENN" class="headerlink" title="Edited Nearest Neighbor (ENN)"></a>Edited Nearest Neighbor (ENN)</h2><p>我们将那些L类的样本，如果他的大部分k近邻样本都跟他自己本身的类别不一样，我们就将他删除。<br>缺点：因为大多数的多数类样本的样本附近都是多数类，所以该方法所能删除的多数类样本十分有限。<br><img src="/2017/03/29/Class-imbalance-in-classification/ENN.png" alt="ENN" title="ENN"><br><img src="/2017/03/29/Class-imbalance-in-classification/ENN_2.png" alt="ENN示例" title="ENN示例"></p>
+<h2 id="Repeated-Edited-Nearest-Neighbor"><a href="#Repeated-Edited-Nearest-Neighbor" class="headerlink" title="Repeated Edited Nearest Neighbor"></a>Repeated Edited Nearest Neighbor</h2><p>这个方法就是不断的重复上述的删除过程，直到无法再删除为止。<br><img src="/2017/03/29/Class-imbalance-in-classification/RENN.png" alt="RENN" title="RENN"></p>
+<h2 id="Tomek-Link-Removal"><a href="#Tomek-Link-Removal" class="headerlink" title="Tomek Link Removal"></a>Tomek Link Removal</h2><p>如果有两个不同类别的样本，它们的最近邻都是对方，也就是A的最近邻是B，B的最近邻是A，那么A,B就是Tomek link。我们要做的就是讲所有Tomek link都删除掉。那么一个删除Tomek link的方法就是，将组成Tomek link的两个样本，如果有一个属于多数类样本，就将该多数类样本删除掉。<br><img src="/2017/03/29/Class-imbalance-in-classification/Tomek_1.png" alt="Tomek Link Removal示例" title="Tomek Link Removal示例"><br><img src="/2017/03/29/Class-imbalance-in-classification/Tomek_2.png" alt="Tomek Link Removal示例" title="Tomek Link Removal示例"></p>
+<h1 id="过采样方法-Oversampling"><a href="#过采样方法-Oversampling" class="headerlink" title="过采样方法(Oversampling)"></a>过采样方法(Oversampling)</h1><p>我们可以通过欠抽样来减少多数类样本的数量从而达到平衡的目的，同样我们也可以通过，过抽样来增加少数类样本的数量，从而达到平衡的目的。</p>
+<h2 id="Random-oversampling-of-minority-class"><a href="#Random-oversampling-of-minority-class" class="headerlink" title="Random oversampling of minority class"></a>Random oversampling of minority class</h2><p>一个最简单的方法，就是通过有放回的抽样，不断的从少数类的抽取样本，不过要注意的是这个方法很容易会导致过拟合。我们通过调整抽样的数量可以控制使得r=0.5<br><img src="/2017/03/29/Class-imbalance-in-classification/overSampling.png" alt="overSampling" title="overSampling"></p>
+<h2 id="Synthetic-Minority-Oversampling-Technique-SMOTE"><a href="#Synthetic-Minority-Oversampling-Technique-SMOTE" class="headerlink" title="Synthetic Minority Oversampling Technique(SMOTE)"></a>Synthetic Minority Oversampling Technique(SMOTE)</h2><p>利用少数类样本控制人工样本的生成与分布，实现数据集均衡的目的，而且该方法可以有效地解决由于决策区间较小导致的分类过拟合问题。<br>这是一个更为复杂的过抽样方法，他的方法步骤如下：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">For <span class="keyword">each</span> point p <span class="keyword">in</span> S:</div><div class="line"><span class="number">1.</span> Compute its k nearest neighbors <span class="keyword">in</span> S.</div><div class="line"><span class="number">2.</span> Randomly choose r ≤ k <span class="keyword">of</span> <span class="keyword">the</span> neighbors (<span class="keyword">with</span> replacement).</div><div class="line"><span class="number">3.</span> Choose <span class="keyword">a</span> <span class="built_in">random</span> point along <span class="keyword">the</span> <span class="keyword">lines</span> joining p <span class="keyword">and</span></div><div class="line"><span class="keyword">each</span> <span class="keyword">of</span> <span class="keyword">the</span> r selected neighbors.</div><div class="line"><span class="number">4.</span> Add these synthetic points <span class="built_in">to</span> <span class="keyword">the</span> dataset <span class="keyword">with</span> class</div><div class="line"></div><div class="line">For <span class="keyword">each</span> point p <span class="keyword">in</span> S：</div><div class="line"><span class="number">1.</span> 计算点p在S中的k个最近邻</div><div class="line"><span class="number">2.</span> 有放回地随机抽取R≤k个邻居</div><div class="line"><span class="number">3.</span> 对这R个点，每一个点与点p可以组成一条直线，然后在这条直线上随机取一个点，就产生了一个新的样本，一共可以这样做从而产生R个新的点。</div><div class="line"><span class="number">4.</span>  将这些新的点加入S中</div></pre></td></tr></table></figure></p>
+<p>缺点</p>
+<ul>
+<li>Overgeneralization<ul>
+<li>SMOTE’s procedure is inherently dangerous since it blindly generalizes the minority area without regard to the majority class.</li>
+<li>This strategy is particularly problematic in the case of highly skewed class distributions since, in such cases, the minority class is very sparse with respect to the majority class, thus resulting in a greater chance of class mixture.</li>
+</ul>
+</li>
+<li>Lack of Flexibility <ul>
+<li>The number of synthetic samples generated by SMOTE is fixed in advance, thus not allowing for any flexibility in the re-balancing rate.</li>
+</ul>
+</li>
+</ul>
+<img src="/2017/03/29/Class-imbalance-in-classification/SMOTE.png" alt="SMOTE示例" title="SMOTE示例">
+<img src="/2017/03/29/Class-imbalance-in-classification/SMOTE1.png" alt="SMOTE示例" title="SMOTE示例">
+<h2 id="Borderline-SMOTE1"><a href="#Borderline-SMOTE1" class="headerlink" title="Borderline-SMOTE1"></a>Borderline-SMOTE1</h2><p>这里介绍两种方法来提升SMOTE的方法。<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">For</span> <span class="keyword">each</span> point p <span class="keyword">in</span> S:</div><div class="line">    <span class="number">1.</span> Compute its m nearest neighbors <span class="keyword">in</span> T. <span class="keyword">Call</span> this <span class="keyword">set</span> Mp <span class="keyword">and</span> <span class="keyword">let</span> m<span class="comment">'= |Mp ∩ L|.</span></div><div class="line">    <span class="number">2.</span> <span class="keyword">If</span> m<span class="comment">'= m, p is a noisy example. Ignore p and continue to the next point.</span></div><div class="line">    <span class="number">3.</span> <span class="keyword">If</span> <span class="number">0</span> ≤ m<span class="comment">'≤m/2, p is safe. Ignore p and continue to the next point.</span></div><div class="line">    <span class="number">4.</span> <span class="keyword">If</span> m/<span class="number">2</span> ≤ m<span class="comment">'≤ m, add p to the set DANGER.</span></div><div class="line"><span class="keyword">For</span> <span class="keyword">each</span> point d <span class="keyword">in</span> DANGER, apply the SMOTE algorithm <span class="keyword">to</span> generate synthetic examples.</div><div class="line"></div><div class="line"><span class="keyword">For</span> <span class="keyword">each</span> point p <span class="keyword">in</span> S:</div><div class="line">    <span class="number">1.</span> 计算点p在训练集T上的m个最近邻。我们称这个集合为Mp然后设 m<span class="comment">'= |Mp ∩ L| (表示点p的最近邻中属于L的数量).</span></div><div class="line">    <span class="number">2.</span> <span class="keyword">If</span> m<span class="comment">'= m, p 是一个噪声,不做任何操作.</span></div><div class="line">    <span class="number">3.</span> <span class="keyword">If</span> <span class="number">0</span> ≤m<span class="comment">'≤m/2, 则说明p很安全，不做任何操作.</span></div><div class="line">    <span class="number">4.</span> <span class="keyword">If</span> m/<span class="number">2</span> ≤ m<span class="comment">'≤ m, 那么点p就很危险了，我们需要在这个点附近生成一些新的少数类点，所以我们把它加入到DANGER中.</span></div><div class="line">最后，对于每个在DANGER中的点d，使用SMOTE算法生成新的样本.</div></pre></td></tr></table></figure></p>
+<img src="/2017/03/29/Class-imbalance-in-classification/SMOTE_1.png" alt="Borderline-SMOTE1示例" title="Borderline-SMOTE1示例">
+<h2 id="Borderline-SMOTE2"><a href="#Borderline-SMOTE2" class="headerlink" title="Borderline-SMOTE2"></a>Borderline-SMOTE2</h2><p>这个与Borderline-SMOTE1很像，只有最后一步不一样。<br>在DANGER集中的点不仅从S集中求最近邻并生成新的少数类点，而且在L集中求最近邻，并生成新的少数类点，这会使得少数类的点更加接近其真实值。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">FOR <span class="selector-tag">p</span> <span class="keyword">in</span> DANGER:</div><div class="line">    <span class="number">1</span>.在S和L中分别得到k个最近邻样本Sk和Lk。</div><div class="line">    <span class="number">2</span>.在Sk中选出α比例的样本点和p作随机的线性插值产生新的少数类样本</div><div class="line">    <span class="number">3</span>.在Lk中选出<span class="number">1</span>−α比例的样本点和p作随机的线性插值产生新的少数类样本。</div></pre></td></tr></table></figure></p>
+<p>为了达到r=0.5 实验取k=5<br><img src="/2017/03/29/Class-imbalance-in-classification/SMOTE_2.png" alt="Borderline-SMOTE2示例" title="Borderline-SMOTE2示例"></p>
+<h1 id="集成方法-Ensemble"><a href="#集成方法-Ensemble" class="headerlink" title="集成方法(Ensemble)"></a>集成方法(Ensemble)</h1><h2 id="EasyEnsemble"><a href="#EasyEnsemble" class="headerlink" title="EasyEnsemble"></a>EasyEnsemble</h2><p>一个最简单的集成方法就是不断从多数类中抽取样本，使得每个模型的多数类样本数量和少数类样本数量都相同，最后将这些模型集成起来。<br>算法伪代码如下：</p>
+<ol>
+<li>For i = 1, …, N:<br> (a) 随机从 L中抽取样本Li使得|Li| = |S|.<br> (b) 使用Li和S数据集，训练AdaBoost分类器Fi。<br>   $$F_i(x)=sgn(\sum_{j=1}^nw_{ij}f_{ij}(x)-b_i)$$</li>
+<li>将上述分类器联合起来<br>   $$F(x)=sgn(\sum_{j=1}^nw_{ij}f_{i}(x))$$</li>
+</ol>
+<h2 id="BalanceCascade"><a href="#BalanceCascade" class="headerlink" title="BalanceCascade"></a>BalanceCascade</h2><p>这个方法跟EasyEnsemble有点像，但不同的是，每次训练adaboost后都会扔掉已被正确分类的样本，经过不断地扔掉样本后，数据就会逐渐平衡。<br><img src="/2017/03/29/Class-imbalance-in-classification/balanceCascade.png" alt="balanceCascade" title="balanceCascade"></p>
+<img src="/2017/03/29/Class-imbalance-in-classification/ml_zzh.png" alt="周志华PPT" title="周志华PPT">
+<p>Reference:</p>
+<ul>
+<li><a href="https://arxiv.org/abs/1608.06048" target="_blank" rel="external">Survey of resampling techniques for improving classification performance in unbalanced datasets</a></li>
+<li><a href="http://d.wanfangdata.com.cn/periodical/njdxxb200602005" target="_blank" rel="external">一种基于级联模型的类别不平衡数据分类方法</a></li>
+<li><a href="/2017/03/29/Class-imbalance-in-classification/Chap03_v3.pdf">机器学习.周志华 PPT Chapter 3</a></li>
+<li><a href="/2017/03/29/Class-imbalance-in-classification/classImbalance.pptx">PPT</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Interview Prepare]]></title>
+      <url>http://wlyPKU.github.io/2017/03/29/Interview-Prepare/</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[主成份分析算法 PCA]]></title>
+      <url>http://wlyPKU.github.io/2017/03/20/IntroductionToPCA/</url>
+      <content type="html"><![CDATA[<p>本文是LDA算法的基本介绍。<br><a id="more"></a><br>维数约减 (Dimensionality Reduction)是把<strong>高维度数据</strong>在<strong>损失最小</strong>的情况下转换为<strong>低维度数据</strong>的动作。</p>
+<h1 id="动机：为什么需要维数约减"><a href="#动机：为什么需要维数约减" class="headerlink" title="动机：为什么需要维数约减"></a>动机：为什么需要维数约减</h1><h2 id="动机一：数据压缩"><a href="#动机一：数据压缩" class="headerlink" title="动机一：数据压缩"></a>动机一：数据压缩</h2><p>维数约减即减少数据的维度，比如从 2 维降成 1 维，从 3 维降成 2 维等。好处是节省内存，提高运算速度。比如，我们有多个特征，其中两个特征的相关性非常大，一个是用 cm 测量的长度，另外一个是用 inch 测量的长度 (实际上这可能是个真实的例子，因为一个实际问题可能有 1000 个特征，而采集这些特征的工程师可能不是同一个人，这样他们采集回来的数据就可能存在重复，即高相关性)。那么我们可以把这两个高相关性的特征用一条直线来表示，$x^{(i)} = {x_1^{(i)}, x_2^{(i)}}$ 简化为 $z^{(i)} = {z_1^{(i)}}$。相同的原理，如果在一个 3 维空间里，一些点基本分布在一个平面上，那么就可以把 3 维降成 2 维，即 $x^{(i)} = {x_1^{(i)}, x_2^{(i)}, x_3^{(i)}}$ 简化为 $z^{(i)} = {z_1^{(i)}, z_2^{(i)}}$。<br><img src="/2017/03/20/IntroductionToPCA/ml_pca_data_compress.png" alt="数据压缩" title="数据压缩"></p>
+<p>上图示例的就是把用英寸测量的特征和用厘米测量的特征合并起来的示意图。这里有个问题，为什么按 inch 测量的特征和按 cm 测量的特征不是在同一条直线上，而是在一条直线周围波动？实际上这个是正常的，因为测量的人和误差等方面的原因，会导致特征采集时数据会在误差范围内波动。</p>
+<h2 id="动机二：数据可视化"><a href="#动机二：数据可视化" class="headerlink" title="动机二：数据可视化"></a>动机二：数据可视化</h2><p>比如考查一个国家的经济状况，可能会有 50 个特征，经济总量，人均 GDP，出口值，进口值等等。如果想要直观地观察多个特征之间的关系，就比较难办。因为我们很难画出 50 个特征的图出来。这个时候，我们可以把 50 个特征简化为 2 维或 3 维的数据，然后画出 2D 或 3D 图出来，就可以直观地观察这些数据的样子。</p>
+<hr>
+<h1 id="主成份分析法"><a href="#主成份分析法" class="headerlink" title="主成份分析法"></a>主成份分析法</h1><p>主成份分析法简称 PCA (Principal Component Analysis)，这是目前最常用和流行的数据降维方法。</p>
+<p>假设需要把 2 维数据降为 1 维数据时，我们需要找出一个向量 $u^{(1)}$ ，以便让 2 维数据的点在这个向量所在的直线上的<strong>投射误差</strong>最小。<br><img src="/2017/03/20/IntroductionToPCA/ml_pca_2d_1d.png" alt="2D降维" title="2D降维"></p>
+<p>上图中，我们的目标就是找到红色的向量所在的直线，以便让所有黑色的点到这条直线的平均距离最短，这样我们就可以把原来在二维平面上的点映射到在红色直线所在的一维直线上的绿色的点来表示。即把二维数据降为一维数据。</p>
+<p>假如需要把 3 维数据降为 2 维数据时，我们需要找出两个向量 $u^{(1)}, u^{(2)}$，以便让 3 维数据的点在这两个向量所决定的平面上的投射误差最小。</p>
+<p>从数学角度更一般地描述 PCA 算法，当我们需要从 n 维数据降为 k 维数据时，我们需要找出 k 个向量 $u^{(1)}, u^{(2)}, … , u^{(k)}$ ，把 n 维的数据投射到这 k 个向量决定的线性空间里，最终使<strong>投射误差最小化</strong>的过程。</p>
+<h1 id="PCA-算法主要步骤"><a href="#PCA-算法主要步骤" class="headerlink" title="PCA 算法主要步骤"></a>PCA 算法主要步骤</h1><h2 id="步骤一：数据归一化和缩放"><a href="#步骤一：数据归一化和缩放" class="headerlink" title="步骤一：数据归一化和缩放"></a>步骤一：数据归一化和缩放</h2><p>在进行 PCA 算法前，需要对数据进行预处理。预处理包括两个步骤：</p>
+<ul>
+<li>数据归一化 (Mean Normalization)：使数据的均值为零。加快 PCA 运算速度。</li>
+<li>数据缩放 (Feature Scaling)：使不同的特征数值在同一个数量级。</li>
+</ul>
+<p>数据归一化公式为：<br>$$<br>z_j^{(i)} = x_j^{(i)} - \mu_j<br>$$<br>其中，$\mu_j$ 是训练样本中第 j 个特征 ($x_j^{(i)}$) 的平均值。然后用 $z_j^{(i)}$ 代替 $x_j^{(i)}$ 进行 PCA 运算。<br>接着对数据进行缩放，缩放只在不同特征数据不在同一个数量级上时才使用。<br>$$<br>x_j^{(i)} = \frac{x_j^{(i)} - \mu_j}{s_j}<br>$$<br>其中，$\mu_j$ 是训练样本中第 j 个特征 ($x_j^{(i)}$) 的平均值<br>$$<br>\mu_j = \frac{1}{m} \sum_{i=1}^m x_j^{(i)}<br>$$<br>$s_j$ 是训练样本中第 j 个特征 ($x_j^{(i)}$) 的范围，即 $s_j = max(x_j^{(i)}) - min(x_j^{(i)})$。</p>
+<h2 id="步骤二：计算协方差矩阵的特征向量"><a href="#步骤二：计算协方差矩阵的特征向量" class="headerlink" title="步骤二：计算协方差矩阵的特征向量"></a>步骤二：计算协方差矩阵的特征向量</h2><p>数据预处理完，我们需要计算<strong>协方差矩阵 (Covariance Matrix)</strong>，用大写的 Sigma 表示 (大写的 Sigma 和累加运算符看起来几乎一样，但这里其实是一个数学符号而已，不是累加运算)：<br>$$<br>\Sigma = \frac{1}{m} \sum_{i=1}^m (x^{(i)}) (x^{(i)})^T<br>$$<br>如果把训练样例用行向量来表示，那么 X 将是一个 m x n 的矩阵，m 是训练样例个数，n 是特征个数。向量化计算 Sigma 的公式将是：<br>$$<br>\Sigma = \frac{1}{m} X^T X<br>$$<br>计算结果 Sigma 将是一个 n x n 矩阵。接着，计算协方差矩阵的<strong>特征向量 (eigenvectors)</strong>：<br>$$<br>[U, S, V] = svd(Sigma)<br>$$<br>svd 是奇异值分解 (Singular Value Decomposition)，是高级线性代数的内容。在 Octave 里，也可以使用 eig 函数来求解协方差矩阵的特征向量。这里，Sigma 是 n x n 矩阵，经过 svd 运算后，我们真正关心的是 U。它是一个 n x n 矩阵。如果我们选择 U 的列作为向量，那么我们得到 n 个列向量 $u^{(1)}, u^{(2)}, … , u^{(n)}$，我们如果需要把数据降维为 k 维，那么我们只需要选取前 k 个向量即可，即 $u^{(1)}, u^{(2)}, … , u^{(k)}$。</p>
+<h2 id="步骤三：数据降维"><a href="#步骤三：数据降维" class="headerlink" title="步骤三：数据降维"></a>步骤三：数据降维</h2><p>接着，我们计算降维后的值 z，假设降维前的值为 $x^{(i)}$，降维后为 $z^{(i)}$，那么：</p>
+<p>$$<br>z^{(i)} = U_{reduce}^T x^{(i)}<br>$$</p>
+<p>其中，$U_{reduce} = [u^{(1)} u^{(2)} … u^{(k)}]$。看一下数据维度，$U_{reduce}$ 是 n x k 矩阵，$x^{(i)}$ 是 n x 1 矩阵，$z^{(i)}$ 是 k x 1 矩阵。</p>
+<p>实现时可以用向量化来提高性能。假设 X 是 m x n 矩阵，m 表示训练样例个数，n 表示特征数。用大写的 Z 表示降维后的数据，是一个 m x k 的矩阵。$U_{reduce}$ 是 n x k 的主成份特征矩阵，每列表示一个主成份特征。那么他们满足下面的关系：</p>
+<p>$$<br>Z = X * U_{reduce}<br>$$</p>
+<p>要从数学上证明这样计算出来的 $z^{(i)}$ 就是 $x^{(i)}$ 在 $U_{reduce}$ 线性空间投射，使得其投射误差最小，将是一个非常复杂的过程。所幸如果我们单纯从应用 PCA 算法来对数据进行降维的角度来看的话，借用 Octave/Matlab 等现成函数，计算过程相对比较简单。</p>
+<hr>
+<h1 id="PCA-的应用"><a href="#PCA-的应用" class="headerlink" title="PCA 的应用"></a>PCA 的应用</h1><h2 id="数据还原"><a href="#数据还原" class="headerlink" title="数据还原"></a>数据还原</h2><p>我们怎么样从压缩过的数据里还原出压缩前的数据呢？从前文的计算公式，我们知道降维后的数据计算公式 $z^{(i)} = U_{reduce}^T x^{(i)}$。所以，如果要还原数据，我们可以使用下面的公式：</p>
+<p>$$<br>x_{approx}^{(i)} = U_{reduce} z^{(i)}<br>$$</p>
+<p>其中，$U_{reduce}$ 是 n x k 维矩阵，$z^{(i)}$ 是 k x 1 列向量。这样算出来的 $x^{(i)}$ 就是 n x 1 列向量。</p>
+<p>向量化运算公式为：</p>
+<p>$$<br>X_{approx} = Z * U_{reduce}^T<br>$$</p>
+<p>其中 $X_{approx}$ 是还原回来的数据，是个 m x n 矩阵，每行表示一个训练样例。Z 是个 m x k 矩阵，是压缩后的数据。$U_{reduce}$ 是 n x k 的主成份特征矩阵，每列表示一个主成份特征。</p>
+<h2 id="PCA-算法中-K-参数的选择"><a href="#PCA-算法中-K-参数的选择" class="headerlink" title="PCA 算法中 K 参数的选择"></a>PCA 算法中 K 参数的选择</h2><p>怎么样选择参数 K 呢？K 是主成份分析法中主成份的个数。可以用下面的公式来判断选择的 K 是否合适：</p>
+<p>$$<br>\frac{ \frac{1}{m} \sum_{i-1}^m | x^{(i)} - x_{approx}^{(i)} |^2 }{ \frac{1}{m} \sum_{i=1}^m | x^{(i)} | } \le 0.01<br>$$</p>
+<p>其中分子部分表示平均投射误差的平方；分母部分表示所有训练样例到原点的距离的平均值。这里的物理意义用术语可以描述为 <strong>99% 的数据真实性被保留下来了 (99% of variance is retianed)</strong>。简单地理解为压缩后的数据还原出原数据的的准确度为 99%。另外常用的比率还有 0.05 ，这个时候准确度就是 95%。在实际应用中，可以根据要解决的问题的场景来决定这个比率。</p>
+<p>假设我们的还原率要求是 99%，那么用下面的算法来选择参数 K：</p>
+<ol>
+<li>让 K = 1</li>
+<li>运行 PCA 算法，计算出 $U_{reduce}, z^{(1)}, z^{(2)}, … , z^{(m)}, x_{approx}^{(1)}, x_{approx}^{(2)}, … , x_{approx}^{(m)}$</li>
+<li>利用 $\frac{ \frac{1}{m} \sum_{i-1}^m | x^{(i)} - x_{approx}^{(i)} |^2 }{ \frac{1}{m} \sum_{i=1}^m | x^{(i)} | }$ 计算投射误差率，并判断是否满足要求，如果不满足要求，K = K + 1，继续步骤 2；如果满足要求，K 即是我们选择的参数</li>
+</ol>
+<p>这个算法容易理解，但实际上效率非常低下，因为每做一次循环都需要运行一遍 PCA 算法。另外一个更高效的方法是利用 svd 函数返回的 S 矩阵：$[U, S, V] = svd(Sigma)$。其中 S 是个 n x n 对角矩阵，即只有对角线上的值非零其他元素均为零。</p>
+<p>从数学上可以证明（从应用角度，可以忽略这个证明过程），投射误差率也可以使用下面的公式计算：</p>
+<p>$$<br>1 - \frac{\sum_{i=1}^k S_{ii}}{\sum_{i=1}^n S_{ii}}<br>$$</p>
+<p>这样运算效率大大提高，我们只需要调用一次 svd 函数即可。</p>
+<h2 id="加快监督机器学习算法的运算速度"><a href="#加快监督机器学习算法的运算速度" class="headerlink" title="加快监督机器学习算法的运算速度"></a>加快监督机器学习算法的运算速度</h2><p>PCA 的一个典型应用是用来<strong>加快监督学习 (Supervised Learning) 的速度</strong>。</p>
+<p>比如，我们有 m 个训练数据 $(x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), … , (x^{(m)}, y^{(m)})$，其中 $x^{(1)}$ 是 10,000 维的数据，想像一下，如果这是个图片分类问题，如果输入的图片是 100 x 100 分辨率的。那么我们就有 10,000 维的输入数据。</p>
+<p>使用 PCA 来加快算法运算速度时，我们把输入数据分解出来 $x^{(1)}, x^{(2)}, … , x^{(m)}$，然后运用 PCA 算法对输入数据进行降维压缩，得到降维后的数据 $z^{(1)}, z^{(2)}, … , z^{(m)}$，最后得到新的训练样例 $(z^{(1)}, y^{(1)}), (z^{(2)}, y^{(2)}), … , (z^{(m)}, y^{(m)})$。利用新的训练样例训练出关于压缩后的变量 $z$ 的预测函数 $h_\theta(z)$。</p>
+<p>需要注意，PCA 算法只用来处理训练样例，运行 PCA 算法得到的转换参数 $U_{reduce}$ 可以用来对交叉验证数据集 $x_{cv}^{(i)}$ 以及测试数据集 $x_{test}^{(i)}$ 进行转换。当然，还需要相应地对数据进行归一化处理或对数据进行缩放。</p>
+<h2 id="PCA-误用"><a href="#PCA-误用" class="headerlink" title="PCA 误用"></a>PCA 误用</h2><p>PCA 的典型应用场景是对数据进行压缩，减少磁盘/内存占用，加快算法运行速度。另外一个是用来数据可视化 (降到 2 维或 3 维)。我们了解到 PCA 可以对数据进行降维，即减少特征数，有人用 PCA 来解决过拟合问题。这可能在某些情况下会起作用，但实际上 <strong>PCA 不是一个好的解决过拟合的方法</strong>。解决过拟合应该使用正则化，加大成本函数里正则项的比重。</p>
+<h2 id="PCA-滥用"><a href="#PCA-滥用" class="headerlink" title="PCA 滥用"></a>PCA 滥用</h2><p>另外一个场景是在设计机器学习算法时，一开始就引入 PCA 来对数据进行压缩降维。实际上这不是好的方法。我们应该尽量使用原始数据来进行机器学习运算，当出现问题时，比如内存占用太大，运算时间太长等问题时，我们才考虑用 PCA 来优化。PCA 是算法优化的一个步骤，而不是机器学习系统里的必须步骤。</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://www.coursera.org/learn/machine-learning/home/welcome" target="_blank" rel="external">Machine Learning(Week 8)</a></li>
+<li><a href="https://d18ky98rnyall9.cloudfront.net/_a5935af6cf0625a072cb6e2962e4a47f_Lecture14.pdf?Expires=1490140800&amp;Signature=aUOVugE2R-Nh1wGea1FNmNZaWsFm6rXVomckNNpoojTLbvm-LSvioCU13Bm3lkoqF3AnLGc391yHiGMav3Vlee7pm3T-tp4RQJZ5XSvLWse5ZM82GutbJcytv99gpr7hip1IBuQDhDp6Ai-BEKam9nzpj-lgwxiTiU2e27SNzHg_&amp;Key-Pair-Id=APKAJLTNE6QMUY6HBC5A" target="_blank" rel="external">Machine Learning–PCA slides</a></li>
+<li><a href="https://www.cs.princeton.edu/picasso/mats/Lecture1_jps.ppt" target="_blank" rel="external">Factor and Component Analysis</a></li>
+<li><a href="http://blog.kamidox.com/pca.html" target="_blank" rel="external">主成份分析算法 PCA</a></li>
+<li><a href="https://www.zhihu.com/question/47121788" target="_blank" rel="external">知乎PCA 过拟合讨论</a></li>
+<li><a href="/2017/03/20/IntroductionToPCA/introductionToPCA.pptx">PPT</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[LeetCode Weekly Contest 24]]></title>
       <url>http://wlyPKU.github.io/2017/03/19/Leetcode-week24/</url>
       <content type="html"><![CDATA[<p>LeetCode Weekly Contest 24<br>[2017-03-19]</p>
@@ -55,7 +175,7 @@
     <entry>
       <title><![CDATA[LDA Model学习]]></title>
       <url>http://wlyPKU.github.io/2017/03/19/LDAModel/</url>
-      <content type="html"><![CDATA[<p><a href="http://blog.csdn.net/v_july_v/article/details/41209515" target="_blank" rel="external">通俗理解LDA主题模型</a><br><a href="https://pan.baidu.com/s/1dF3QlTB" target="_blank" rel="external">主题模型</a></p>
+      <content type="html"><![CDATA[<p><a href="http://blog.csdn.net/v_july_v/article/details/41209515" target="_blank" rel="external">通俗理解LDA主题模型</a><br><a href="/2017/03/19/LDAModel/introductionToLDA.pdf">主题模型</a></p>
 ]]></content>
     </entry>
     
