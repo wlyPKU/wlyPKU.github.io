@@ -92,13 +92,14 @@
 <meta property="og:url" content="http://wlyPKU.github.io/2017/03/29/Interview-Prepare/index.html">
 <meta property="og:site_name" content="小小小宇">
 <meta property="og:description" content="Anything about the interview preparing.">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/03/29/Interview-Prepare/elf.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2017/03/29/Interview-Prepare/currency.jpg">
 <meta property="og:image" content="http://wlyPKU.github.io/2017/03/29/Interview-Prepare/JVM.jpg">
-<meta property="og:updated_time" content="2017-03-29T15:29:22.495Z">
+<meta property="og:updated_time" content="2017-03-31T15:46:30.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Interview Prepare">
 <meta name="twitter:description" content="Anything about the interview preparing.">
-<meta name="twitter:image" content="http://wlyPKU.github.io/2017/03/29/Interview-Prepare/currency.jpg">
+<meta name="twitter:image" content="http://wlyPKU.github.io/2017/03/29/Interview-Prepare/elf.png">
 
 
 
@@ -110,7 +111,7 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: undefined,
       author: '博主'
     }
   };
@@ -327,7 +328,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2017/03/29/Interview-Prepare/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/29/Interview-Prepare/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/03/29/Interview-Prepare/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -352,17 +353,59 @@
       
         <p>Anything about the interview preparing.<br><a id="more"></a></p>
 <h1 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h1><h2 id="编译链接"><a href="#编译链接" class="headerlink" title="编译链接"></a>编译链接</h2><p><a href="http://blog.csdn.net/edisonlg/article/details/7081357" target="_blank" rel="external">C++编译链接过程</a></p>
-<h2 id="ELF结构"><a href="#ELF结构" class="headerlink" title="ELF结构"></a>ELF结构</h2><p><a href="http://www.itcast.cn/news/20151228/16592094239.shtml?zx" target="_blank" rel="external">C++培训之Linux系统典型文件格式ELF</a></p>
+<hr>
+<h2 id="ELF结构"><a href="#ELF结构" class="headerlink" title="ELF结构"></a>ELF结构</h2><img src="/2017/03/29/Interview-Prepare/elf.png" alt="ELF结构" title="ELF结构">
+<p><a href="http://www.itcast.cn/news/20151228/16592094239.shtml?zx" target="_blank" rel="external">C++培训之Linux系统典型文件格式ELF</a></p>
 <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="final-static-const"><a href="#final-static-const" class="headerlink" title="final static const"></a>final static const</h2><p><strong>final</strong><br>final修饰类：该类不可继承<br>final修饰方法：该方法不能被子类覆盖（但它不能修饰构造函数）<br>final修饰字段属性：属性值第一次初始化后不能被修改<br>使用final可以提高程序执行的效率，将一个方法设成final后编译器就可以把对那个方法的所有调用都置入“嵌入”调用里。</p>
 <p><strong>static</strong><br>static修饰成员函数则该函数不能使用this对象<br>static不能修饰构造函数、函数参数、局部成员变量<br>static修饰成员字段则当类被虚拟机加载时按照声明先后顺序对static成员字段进行初始化。<br>static修饰语句块：当类被虚拟机加载时按照声明先后顺序初始化static成员字段和static语句块<br>static所修饰的方法和字段只属于类，所有对象共享，java不能直接定义全局变量，是通过static来实现的。</p>
 <p>java中没有const，不能直接定义常量，是通过static final组合来实现的。</p>
+<hr>
+<h2 id="并行容器与同步容器"><a href="#并行容器与同步容器" class="headerlink" title="并行容器与同步容器"></a>并行容器与同步容器</h2><h3 id="简述同步容器与并发容器"><a href="#简述同步容器与并发容器" class="headerlink" title="简述同步容器与并发容器"></a>简述同步容器与并发容器</h3><p>在Java并发编程中，经常听到同步容器、并发容器之说，那什么是同步容器与并发容器呢？<strong>同步容器可以简单地理解为通过synchronized来实现同步的容器，比如Vector、Hashtable以及SynchronizedList等容器，如果有多个线程调用同步容器的方法，它们将会串行执行。</strong><br>而<strong>并发容器(线程安全的容器)则要满足线程安全的类无需调用方进行额外的同步</strong>。<br>可以通过查看Vector、Hashtable等同步容器的实现代码，可以看到这些容器实现线程安全的方式就是将它们的状态封装起来，并在需要同步的方法上加上关键字synchronized，但在某些情况下，同步容器不一定就是线程安全的，比如获取最后一个元素或者删除最后一个元素，我们需要实现额外的同步操作：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">getLast</span><span class="params">(Vector <span class="built_in">list</span>)</span> </span>&#123;  </div><div class="line">    <span class="keyword">int</span> lastIndex = <span class="built_in">list</span>.size() - <span class="number">1</span>;  </div><div class="line">    <span class="keyword">return</span> <span class="built_in">list</span>.get(lastIndex);  </div><div class="line">&#125;  </div><div class="line">      </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteLast</span><span class="params">(Vector <span class="built_in">list</span>)</span> </span>&#123;  </div><div class="line">    <span class="keyword">int</span> lastIndex = <span class="built_in">list</span>.size() - <span class="number">1</span>;  </div><div class="line">    <span class="built_in">list</span>.remove(lastIndex);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>虽然上面的方法看起来没有问题，Vector自身的方法也是同步的，但是在多线程环境中还是隐藏着问题。如果有两个线程A,B同时调用上面的两个方法，假设list的大小为10，这里计算得到的lastIndex为9，线程B首先执行了删除操作（多线程之间操作执行的不确定性导致），而后线程A调用了list.get方法，这时就会发生数组越界异常，导致问题的原因就是上面的复合操作不是原子操作，这里可以通过在方法内部使用list对象锁来实现原子操作。<br>同步容器会导致多个线程中对容器方法调用的串行执行，降低并发性，因为它们都是以容器自身对象为锁，所以在需要支持并发的环境中，可以考虑使用并发容器来替代。并发容器是针对多个线程并发访问而设计的，在jdk5.0引入了concurrent包，其中提供了很多并发容器，如ConcurrentHashMap、CopyOnWriteArrayList等。<br>其实同步容器与并发容器都为多线程并发访问提供了合适的线程安全，不过并发容器的可扩展性更高。在Java5之前，程序员们只有同步容器，且在多线程并发访问的时候会导致争用，阻碍了系统的扩展性。Java5介绍了并发容器，并发容器使用了与同步容器完全不同的加锁策略来提供更高的并发性和伸缩性，例如，在ConcurrentHashMap中采用了一种粒度更细的加锁机制，可以称为分段锁，在这种锁机制下，允许任意数量的读线程并发地访问map，并且执行读操作的线程和写操作的线程也可以并发的访问map，同时允许一定数量的写操作线程并发地修改map，所以它可以在并发环境下实现更高的吞吐量，另外，并发容器提供了一些在使用同步容器时需要自己实现的复合操作，包括putIfAbsent等，但是由于并发容器不能通过加锁来独占访问，所以我们无法通过加锁来实现其他复合操作了。</p>
+<h3 id="高效的映像、集合和队列"><a href="#高效的映像、集合和队列" class="headerlink" title="高效的映像、集合和队列"></a>高效的映像、集合和队列</h3><p>Java.util.concurrent包提供了映像、有序集和队列的高效实现： ConcurrentHashMap、ConcurrentSkipListMap、 ConcurrentSkipListSet和ConcurrentLinkedQueue。这些集合使用复杂的算法，通过允许并发地访问数据结构的不同部分来使竞争极小化。与大多数集合不同， size方法不必在常量时间内操作。确定这样的集合当前的大小通常需要遍历。<br>集合返回弱一致性的迭代器。这意味着迭代器不一定能反映出它们被构造之后的所有的修改，但是，它们不会被同一值返回两次，也不会抛出ConcurrentModificationException异常。</p>
+<h3 id="写数组的拷贝"><a href="#写数组的拷贝" class="headerlink" title="写数组的拷贝"></a>写数组的拷贝</h3><p>CopyOnWriteArrayList和CopyOnWriteArraySet是线程安全的集合，其中所有的修改线程对底层数组进行复制。如果在集合上进行迭代的线程数超过修改线程数，这样的安排是很有用的。当构建一个迭代器的时候，它包含一个对当前数组的引用。如果数组后来被修改了，迭代器仍然引用旧数组，但是，集合的数组已经被替换了。因此，旧的迭代器拥有一致的试图，访问它无须任何同步开销。<br>CopyOnWrite并发容器用于读多写少的并发场景。比如白名单，黑名单，商品类目的访问和更新场景，假如我们有一个搜索网站，用户在这个网站的搜索框中，输入关键字搜索内容，但是某些关键字不允许被搜索。这些不能被搜索的关键字会被放在一个黑名单当中，黑名单每天晚上更新一次。当用户搜索时，会检查当前关键字在不在黑名单当中，如果在，则提示不能搜索。<br>CopyOnWrite容器有很多优点，但是同时也存在两个问题，即内存占用问题和数据一致性问题。所以在开发的时候需要注意一下。</p>
+<ul>
+<li>内存占用问题。因为CopyOnWrite的写时复制机制，所以在进行写操作的时候，内存里会同时驻扎两个对象的内存，旧的对象和新写入的对象（注意:在复制的时候只是复制容器里的引用，只是在写的时候会创建新对象添加到新容器里，而旧容器的对象还在使用，所以有两份对象内存）。如果这些对象占用的内存比较大，比如说200M左右，那么再写入100M数据进去，内存就会占用300M，那么这个时候很有可能造成频繁的Yong GC和Full GC。之前我们系统中使用了一个服务由于每晚使用CopyOnWrite机制更新大对象，造成了每晚15秒的Full GC，应用响应时间也随之变长。<br>针对内存占用问题，可以通过压缩容器中的元素的方法来减少大对象的内存消耗，比如，如果元素全是10进制的数字，可以考虑把它压缩成36进制或64进制。或者不使用CopyOnWrite容器，而使用其他的并发容器，如ConcurrentHashMap。</li>
+<li>数据一致性问题。CopyOnWrite容器只能保证数据的最终一致性，不能保证数据的实时一致性。所以如果你希望写入的的数据，马上能读到，请不要使用CopyOnWrite容器。</li>
+</ul>
+<p>Ref:<a href="http://www.cnblogs.com/dolphin0520/p/3938914.html" target="_blank" rel="external">Java并发编程：并发容器之CopyOnWriteArrayList（转载）</a></p>
+<h3 id="较早的线程安全集合"><a href="#较早的线程安全集合" class="headerlink" title="较早的线程安全集合"></a>较早的线程安全集合</h3><p>从Java的初始版本开始，Vector和Hashtable类就提供了线程安全的动态数组和散列表的实现。现在这些类被弃用了，取而代之的是ArrayList和HashMap类。这些类不是线程安全的，而集合库中提供了不同的机制。任何集合类通过使用同步包装器变成线程安全的：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">List</span>&lt;<span class="keyword">E</span>&gt; synchArrayList = Collections.synchronizedList(new ArrayList&lt;<span class="keyword">E</span>&gt;());  </div><div class="line"><span class="keyword">Map</span>&lt;<span class="keyword">K</span>,V&gt; synchHashMap = Collections.synchronizedMap(new HashMap&lt;<span class="keyword">K</span>,V&gt;());</div></pre></td></tr></table></figure></p>
+<p>应该确保没有任何线程通过原始的非同步方法访问数据结构。最便利的方法是确保不保存任何指向原始对象的引用，简单地构造一个集合并立即传递给包装器。<br>如果在另一个线程可能进行修改时要对集合进行迭代，仍然需要使用“客户端”锁定：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">synchronized</span> (synchHashMap) &#123;  </div><div class="line">            <span class="keyword">Iterator&lt;K&gt; </span><span class="keyword">iter </span>= synchHashMap.keySet().<span class="keyword">iterator(); </span> </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>如果使用foreach循环必须使用同样代码，因为循环使用了迭代器。</strong></p>
+<ul>
+<li>同步的集合包装器 synchronizedMap 和 synchronizedList ，有时也被称作 有条件地线程安全――所有 单个的操作都是线程安全的，但是多个操作组成的操作序列却可能导致数据争用，因为在操作序列中控制流取决于前面操作的结果。 清单1中第一片段展示了公用的put-if-absent语句块――如果一个条目不在 Map 中，那么添加这个条目。不幸的是， 在 containsKey() 方法返回到 put() 方法被调用这段时间内，可能会有另一个线程也插入一个带有相同键的值。如果您想确保只有一次插入，您需要用一个对 Map m 进行同步的同步块将这一对语句包装起来。</li>
+<li>集合框架引入了迭代器，用于遍历一个列表或者其他集合，从而优化了对一个集合中的元素进行迭代的过程。然而，在 java.util 集合类中实现的迭代器极易崩溃，也就是说，如果在一个线程正在通过一个 Iterator 遍历集合时，另一个线程也来修改这个 集合，那么接下来的 Iterator.hasNext() 或 Iterator.next() 调用将抛出 ConcurrentModificationException 异常。就拿 刚才这个例子来讲，如果想要防止出现 ConcurrentModificationException 异常，那么当您正在进行迭代时，您必须 使用一个在 List l 上同步的 synchronized 块将该 List 包装起来，从而锁住整个 List 。（或者，您也可以调用 List.toArray() ，在 不同步的情况下对数组进行迭代，但是如果列表比较大的话这样做代价很高）。</li>
+</ul>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>有如下几种</p>
+<hr>
+<ol>
+<li>concurrent 包 set map queue</li>
+<li>copyOnWriteArrayList copyOnWriteArraySet</li>
+<li>vector hashTable</li>
+<li>Collections.synchronizedList synchronizedMap</li>
+</ol>
+<hr>
+<h4 id="vector与synchronizedList比较"><a href="#vector与synchronizedList比较" class="headerlink" title="vector与synchronizedList比较"></a>vector与synchronizedList比较</h4><p>Vector类中对get以及remove，size方法都加了synchronized关键字来保证同步，也就说当一个线程调用了这些方法时，其他线程不能再同时调用这些方法。换言之，<strong>不能出现两个及两个以上的线程在同时调用这些同步方法</strong>。 </p>
+<p>区别就是Vector本身所有方法都是用synchronized修饰的，所以线程安全，而ArrayList没有<br>还有一个区别就是新增元素的时候Vector的增量是原来的一倍，而ArrayList增加原来的一半.<br>synchronizedList修饰的list如下:<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;<span class="keyword">String</span>&gt; TEST_LIST = Collections.synchronizedList(<span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;());</div></pre></td></tr></table></figure></p>
+<p>包裹了普通的ArrayList提供了线程安全的机制，类似Vector，</p>
+<ol>
+<li>到此为止synchronizedList与Vector的区别就是ArrayList与Vector的增量速度区别，所以需要线程安全操作时，增量比较快的时候推荐使用Vector.</li>
+<li>SynchronizedList中实现的类并没有都使用synchronized同步代码块。其中有listIterator和listIterator(int index)并没有做同步处理。但是Vector却对该方法加了方法锁。 所以说，在使用SynchronizedList进行遍历的时候要手动加锁。</li>
+<li>SynchronizedList有很好的扩展和兼容功能。他可以将所有的List的子类转成线程安全的类。</li>
+</ol>
+<p>Ref:<a href="http://www.cnblogs.com/yanghuahui/p/3365976.html" target="_blank" rel="external">ArrayList和Vector以及synchronizedList</a><br>Ref:<a href="http://www.hollischuang.com/archives/498" target="_blank" rel="external">SynchronizedList和Vector的区别</a></p>
+<h4 id="Map的同步比较"><a href="#Map的同步比较" class="headerlink" title="Map的同步比较:"></a>Map的同步比较:</h4><p>Hashtable 的后继者 HashMap 是作为JDK1.2中的集合框架的一部分出现的，它通过提供一个不同步的基类和一个同步的包装器 Collections.synchronizedMap ，解决了线程安全性问题。 通过将基本的功能从线程安全性中分离开来， Collections.synchronizedMap 允许需要同步的用户可以拥有同步，而不需要同步的用户则不必为同步付出代价。<br>Hashtable 和 synchronizedMap 所采取的获得同步的简单方法（同步 Hashtable 中或者同步的 Map 包装器对象中的每个方法）有两个主要的不足。首先，这种方法对于可伸缩性是一种障碍，因为一次只能有一个线程可以访问hash表。 同时，这样仍不足以提供真正的线程安全性，许多公用的混合操作仍然需要额外的同步。虽然诸如 get() 和 put() 之类的简单操作可以在不需要额外同步的情况下安全地完成，但还是有一些公用的操作序列 ，例如迭代或者put-if-absent（空则放入），需要外部的同步，以避免数据争用。</p>
+<p>concurrentHashMap的具体见:<a href="http://www.cnblogs.com/studyLog-share/p/5283646.html" target="_blank" rel="external">java并发：同步容器&amp;并发容器</a><br>HashTable与ConcurrentHashMap的比较？<br>相同点： Hashtable 和 ConcurrentHashMap都是线程安全的，可以在多线程环境中运行； key跟value都不能是null<br>区别： 两者主要是性能上的差异，Hashtable的所有操作都会锁住整个对象，虽然能够保证线程安全，但是性能较差； ConcurrentHashMap内部使用Segment数组，每个Segment类似于Hashtable，在“写”线程或者部分特殊的“读”线程中锁住的是某个Segment对象，其它的线程能够并发执行其它的Segment对象。</p>
+<hr>
 <h2 id="参数传递–值传递"><a href="#参数传递–值传递" class="headerlink" title="参数传递–值传递"></a>参数传递–值传递</h2><p>首先要说明的是java中是没有指针的，java中只存在值传递，只存在值传递！！！  然而我们经常看到对于对象（数组，类，接口）的传递似乎有点像引用传递，可以改变对象中某个属性的值。但是不要被这个假象所蒙蔽，实际上这个传入函数的值是对象引用的拷贝，即传递的是引用的地址值，所以还是按值传递。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test3</span> &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span>(<span class="params"><span class="keyword">int</span> a</span>)</span>&#123;</div><div class="line">        a=<span class="number">50</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</div><div class="line">        <span class="keyword">int</span> a=<span class="number">10</span>;</div><div class="line">        System.<span class="keyword">out</span>.println(a);</div><div class="line">        change(a);</div><div class="line">        System.<span class="keyword">out</span>.println(a);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>输出 10 10</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test3</span> &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">change</span>(<span class="params"><span class="keyword">int</span> []a</span>)</span>&#123;</div><div class="line">        a[<span class="number">0</span>]=<span class="number">50</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</div><div class="line">        <span class="keyword">int</span> []a=&#123;<span class="number">10</span>,<span class="number">20</span>&#125;;</div><div class="line">        System.<span class="keyword">out</span>.println(a[<span class="number">0</span>]);</div><div class="line">        change(a);</div><div class="line">        System.<span class="keyword">out</span>.println(a[<span class="number">0</span>]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>输出10 50 实际传递的是引用的地址值。</p>
+<hr>
 <h2 id="大数处理"><a href="#大数处理" class="headerlink" title="大数处理"></a>大数处理</h2><p>在Java中有两个类BigInteger和BigDecimal分别表示大整数类和大浮点数类，至于两个类的对象能表示最大范围不清楚，理论上能够表示无线大的数，只要计算机内存足够大。<br>这两个类都在java.math.*包中，因此每次必须在开头处引用该包。<br>Ⅰ基本函数：<br>1.valueOf(parament); 将参数转换为制定的类型<br>   比如 int a=3;<br>       BigInteger b=BigInteger.valueOf(a);<br>     则b=3;<br>         String s=”12345”;<br>       BigInteger c=BigInteger.valueOf(s);<br>       则c=12345；</p>
 <p>2.add(); 大整数相加<br>   BigInteger a=new BigInteger(“23”);<br>   BigInteger b=new BigInteger(“34”);<br>a.      add(b);</p>
 <p>3.subtract(); 相减<br>4.multiply(); 相乘<br>5.divide();    相除取整<br>6.remainder(); 取余<br>7.pow();   a.pow(b)=a^b<br>8.gcd();   最大公约数<br>9.abs(); 绝对值<br>10.negate(); 取反数<br>11.mod(); a.mod(b)=a%b=a.remainder(b);<br>12.max(); min();<br>13.punlic int comareTo();<br>14.boolean equals(); 是否相等</p>
+<hr>
 <h2 id="extends-and-implements"><a href="#extends-and-implements" class="headerlink" title="extends and implements"></a>extends and implements</h2><p>接口实现的注意点：</p>
 <ul>
 <li>实现一个接口就是要实现该接口的所有的方法(抽象类除外)。</li>
@@ -385,13 +428,17 @@
 <hr>
 <p>a.f()对应的应该是B类的方法f()<br>调用构造函数建立实例过后，对应方法的入口已经确定了。<br>如此以来，a虽被上传为A类，但其中重写的方法f()仍然是B的方法f()。也就是说，每个对象知道自己应该调用哪个方法。<br>A a1 = new B();<br>A a2 = new C();<br>a1,a2两个虽然都是A类对象，但各自的f()不同。这正是多态性的体现。</p>
 <hr>
+<hr>
 <h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><p>public char charAt(int index)<br>返回字符串中第index个字符；<br>public int length()<br>返回字符串的长度；<br>public int indexOf(String str)<br>返回字符串中第一次出现str的位置；<br>public int indexOf(String str,int fromIndex)<br>返回字符串从fromIndex开始第一次出现str的位置；<br>public boolean equalsIgnoreCase(String another)<br>比较字符串与another是否一样（忽略大小写）；<br>public String replace(char oldchar,char newChar)<br>在字符串中用newChar字符替换oldChar字符<br>public boolean startsWith(String prefix)<br>判断字符串是否以prefix字符串开头；<br>public boolean endsWith(String suffix)<br>判断一个字符串是否以suffix字符串结尾；<br>public String toUpperCase()<br>返回一个字符串为该字符串的大写形式；<br>public String toLowerCase()<br>返回一个字符串为该字符串的小写形式<br>public String substring(int beginIndex)<br>返回该字符串从beginIndex开始到结尾的子字符串；<br>public String substring(int beginIndex,int endIndex)<br>返回该字符串从beginIndex开始到endsIndex结尾的子字符串<br>public String trim()<br>返回该字符串去掉开头和结尾空格后的字符串<br>public String[] split(String regex)<br>将一个字符串按照指定的分隔符分隔，返回分隔后的字符串数组</p>
+<hr>
 <h2 id="JVM线程安全"><a href="#JVM线程安全" class="headerlink" title="JVM线程安全"></a>JVM线程安全</h2><h3 id="synchronized详解"><a href="#synchronized详解" class="headerlink" title="synchronized详解"></a>synchronized详解</h3><p>Ref: <a href="http://www.cnblogs.com/GnagWang/archive/2011/02/27/1966606.html" target="_blank" rel="external">java synchronized详解</a></p>
 <h3 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h3><p>jvm运行时刻内存的分配。其中有一个内存区域是jvm虚拟机栈，每一个线程运行时都有一个线程栈，线程栈保存了线程运行时候变量值信息。当线程访问某一个对象时候值的时候，首先通过对象的引用找到对应在堆内存的变量的值，然后把堆内存变量的具体值load到线程本地内存中，建立一个变量副本，之后线程就不再和对象在堆内存变量值有任何关系，而是直接修改副本变量的值，在修改完之后的某一个时刻（线程退出之前），自动把线程变量副本的值回写到对象在堆中变量。这样在堆中的对象的值就产生变化了。下面一幅图描述这写交互<br><img src="/2017/03/29/Interview-Prepare/currency.jpg" alt="内存示意" title="内存示意"><br>read and load 从主存复制变量到当前工作内存<br>use and assign  执行代码，改变共享变量值<br>store and write 用工作内存数据刷新主存相关内容</p>
 <p>其中use and assign 可以多次出现。<br>Ref: <a href="http://blog.csdn.net/libing13820393394/article/details/48582999" target="_blank" rel="external">volatile解析</a></p>
+<hr>
 <h2 id="JVM内存"><a href="#JVM内存" class="headerlink" title="JVM内存"></a>JVM内存</h2><img src="/2017/03/29/Interview-Prepare/JVM.jpg" alt="JVM" title="JVM">
-<p><strong>1.程序计数器</strong><br>每一个Java线程都有一个程序计数器来用于保存程序执行到当前方法的哪一个指令。<br><strong>2.线程栈</strong><br>线程的每个方法被执行的时候，都会同时创建一个帧（Frame）用于存储本地变量表、操作栈、动态链接、方法出入口等信息。每一个方法的调用至完成，就意味着一个帧在VM栈中的入栈至出栈的过程。如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果VM栈可以动态扩展（VM Spec中允许固定长度的VM栈），当扩展时无法申请到足够内存则抛出OutOfMemoryError异常。<br><strong>3.本地方法栈</strong><br><strong>4.堆</strong><br>每个线程的栈都是该线程私有的，堆则是所有线程共享的。当我们new一个对象时，该对象就被分配到了堆中。但是堆，并不是一个简单的概念，堆区又划分了很多区域，为什么堆划分成这么多区域，这是为了JVM的内存垃圾收集，似乎越扯越远了，扯到垃圾收集了，现在的jvm的gc都是按代收集，堆区大致被分为三大块：新生代，旧生代，持久代（虚拟的）；新生代又分为eden区，s0区，s1区。新建一个对象时，基本小的对象，生命周期短的对象都会放在新生代的eden区中，eden区满时，有一个小范围的gc（minor gc），整个新生代满时，会有一个大范围的gc（major gc），将新生代里的部分对象转到旧生代里。<br><strong>5.方法区</strong><br>其实就是永久代（Permanent Generation），方法区中存放了每个Class的结构信息，包括常量池、字段描述、方法描述等等。VM Space描述中对这个区域的限制非常宽松，除了和Java堆一样不需要连续的内存，也可以选择固定大小或者可扩展外，甚至可以选择不实现垃圾收集。相对来说，垃圾收集行为在这个区域是相对比较少发生的，但并不是某些描述那样永久代不会发生GC（至 少对当前主流的商业JVM实现来说是如此），这里的GC主要是对常量池的回收和对类的卸载，虽然回收的“成绩”一般也比较差强人意，尤其是类卸载，条件相当苛刻。<br><strong>6.常量池</strong><br> Class文件中除了有类的版本、字段、方法、接口等描述等信息外，还有一项信息是常量表(constant_pool table)，用于存放编译期已可知的常量，这部分内容将在类加载后进入方法区（永久代）存放。但是Java语言并不要求常量一定只有编译期预置入Class的常量表的内容才能进入方法区常量池，运行期间也可将新内容放入常量池（最典型的String.intern()方法）。</p>
+<p><strong>1.程序计数器</strong><br>每一个Java线程都有一个程序计数器来用于保存程序执行到当前方法的哪一个指令。<br><strong>2.线程栈</strong><br>线程的每个方法被执行的时候，都会同时创建一个帧（Frame）用于存储本地变量表、操作栈、动态链接、方法出入口等信息。每一个方法的调用至完成，就意味着一个帧在VM栈中的入栈至出栈的过程。如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果VM栈可以动态扩展（VM Spec中允许固定长度的VM栈），当扩展时无法申请到足够内存则抛出OutOfMemoryError异常。<br><strong>3.本地方法栈</strong><br>a. 经过反复测试的库<br>b. 追求效率<br>c. 与本地硬件交互(如system.io)<br><strong>4.堆</strong><br>每个线程的栈都是该线程私有的，堆则是所有线程共享的。当我们new一个对象时，该对象就被分配到了堆中。但是堆，并不是一个简单的概念，堆区又划分了很多区域，为什么堆划分成这么多区域，这是为了JVM的内存垃圾收集，似乎越扯越远了，扯到垃圾收集了，现在的jvm的gc都是按代收集，堆区大致被分为三大块：新生代，旧生代，持久代（虚拟的）；新生代又分为eden区，s0区，s1区。新建一个对象时，基本小的对象，生命周期短的对象都会放在新生代的eden区中，eden区满时，有一个小范围的gc（minor gc），整个新生代满时，会有一个大范围的gc（major gc），将新生代里的部分对象转到旧生代里。<br><strong>5.方法区</strong><br>其实就是永久代（Permanent Generation），方法区中存放了每个Class的结构信息，包括常量池、字段描述、方法描述等等。VM Space描述中对这个区域的限制非常宽松，除了和Java堆一样不需要连续的内存，也可以选择固定大小或者可扩展外，甚至可以选择不实现垃圾收集。相对来说，垃圾收集行为在这个区域是相对比较少发生的，但并不是某些描述那样永久代不会发生GC（至 少对当前主流的商业JVM实现来说是如此），这里的GC主要是对常量池的回收和对类的卸载，虽然回收的“成绩”一般也比较差强人意，尤其是类卸载，条件相当苛刻。<br><strong>6.常量池</strong><br> Class文件中除了有类的版本、字段、方法、接口等描述等信息外，还有一项信息是常量表(constant_pool table)，用于存放编译期已可知的常量，这部分内容将在类加载后进入方法区（永久代）存放。但是Java语言并不要求常量一定只有编译期预置入Class的常量表的内容才能进入方法区常量池，运行期间也可将新内容放入常量池（最典型的String.intern()方法）。</p>
 <p>关于垃圾收集，在此不多说，流到垃圾收集那一章再详细说吧。关于java的同步，其实还有基于CPU原语的比较并交换的非阻塞算法（CAS），不过这个在java的并发包里已经实现了很多，因此关于这点，就留到java并发包那一章介绍吧。后面我会专门写一篇文章，JVM内存与垃圾收集。<br>Ref: <a href="http://www.cnblogs.com/dingyingsi/p/3760447.html" target="_blank" rel="external">深入理解JVM—JVM内存模型</a></p>
+<hr>
 <h2 id="Java内存回收"><a href="#Java内存回收" class="headerlink" title="Java内存回收"></a>Java内存回收</h2><p>虚拟机中的共划分为三个代：年轻代（Young Generation）、老年代（Old Generation）和持久代（Permanent Generation）。其中持久代主要存放的是Java类的类信息，与垃圾收集要收集的Java对象关系不大。年轻代和年老代的划分是对垃圾收集影响比较大的。    </p>
 <p><strong>年轻代</strong><br>所有新生成的对象首先都是放在年轻代的。年轻代的目标就是尽可能快速的收集掉那些生命周期短的对象。年轻代分三个区。一个Eden区，两个Survivor区(一般而言)。大部分对象在Eden区中生成。当Eden区满时，还存活的对象将被复制到Survivor区（两个中的一个），当这个Survivor区满时，此区的存活对象将被复制到另外一个Survivor区，当这个Survivor去也满了的时候，从第一个Survivor区复制过来的并且此时还存活的对象，将被复制“年老区(Tenured)”。需要注意，Survivor的两个区是对称的，没先后关系，所以同一个区中可能同时存在从Eden复制过来 对象，和从前一个Survivor复制过来的对象，而复制到年老区的只有从第一个Survivor去过来的对象。而且，Survivor区总有一个是空的。同时，根据程序需要，Survivor区是可以配置为多个的（多于两个），这样可以增加对象在年轻代中的存在时间，减少被放到年老代的可能。</p>
 <p><strong>年老代</strong><br>在年轻代中经历了N次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象。</p>
@@ -405,7 +452,36 @@
 <li>上一次GC之后Heap的各域分配策略动态变化</li>
 </ul>
 <hr>
-
+<h2 id="ThreadPool"><a href="#ThreadPool" class="headerlink" title="ThreadPool"></a>ThreadPool</h2><p><strong>为什么要用线程池:</strong></p>
+<ol>
+<li>减少了创建和销毁线程的次数，每个工作线程都可以被重复利用，可执行多个任务。</li>
+<li>可以根据系统的承受能力，调整线程池中工作线线程的数目，防止因为消耗过多的内存，而把服务器累趴下(每个线程需要大约1MB内存，线程开的越多，消耗的内存也就越大，最后死机)。</li>
+</ol>
+<p><strong>关键变量</strong><br>创建一个线程池需要输入几个参数：</p>
+<ul>
+<li>corePoolSize（线程池的基本大小）：当提交一个任务到线程池时，线程池会创建一个线程来执行任务，即使其他空闲的基本线程能够执行新任务也会创建线程，等到需要执行的任务数大于线程池基本大小时就不再创建。如果调用了线程池的prestartAllCoreThreads方法，线程池会提前创建并启动所有基本线程。</li>
+<li>runnableTaskQueue（任务队列）：用于保存等待执行的任务的阻塞队列。 可以选择以下几个阻塞队列。<ul>
+<li>ArrayBlockingQueue：是一个基于数组结构的有界阻塞队列，此队列按 FIFO（先进先出）原则对元素进行排序。</li>
+<li>LinkedBlockingQueue：一个基于链表结构的阻塞队列，此队列按FIFO （先进先出） 排序元素，吞吐量通常要高于ArrayBlockingQueue。静态工厂方法Executors.newFixedThreadPool()使用了这个队列。</li>
+<li>SynchronousQueue：一个不存储元素的阻塞队列。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于LinkedBlockingQueue，静态工厂方法Executors.newCachedThreadPool使用了这个队列。</li>
+<li>PriorityBlockingQueue：一个具有优先级的无限阻塞队列。</li>
+</ul>
+</li>
+<li>maximumPoolSize（线程池最大大小）：线程池允许创建的最大线程数。如果队列满了，并且已创建的线程数小于最大线程数，则线程池会再创建新的线程执行任务。值得注意的是如果使用了无界的任务队列这个参数就没什么效果。</li>
+<li>ThreadFactory：用于设置创建线程的工厂，可以通过线程工厂给每个创建出来的线程设置更有意义的名字。</li>
+<li>RejectedExecutionHandler（饱和策略）：当队列和线程池都满了，说明线程池处于饱和状态，那么必须采取一种策略处理提交的新任务。这个策略默认情况下是AbortPolicy，表示无法处理新任务时抛出异常。以下是JDK1.5提供的四种策略。<ul>
+<li>AbortPolicy：直接抛出异常。</li>
+<li>CallerRunsPolicy：只用调用者所在线程来运行任务。</li>
+<li>DiscardOldestPolicy：丢弃队列里最近的一个任务，并执行当前任务。</li>
+<li>DiscardPolicy：不处理，丢弃掉。</li>
+<li>当然也可以根据应用场景需要来实现RejectedExecutionHandler接口自定义策略。如记录日志或持久化不能处理的任务。</li>
+</ul>
+</li>
+<li>keepAliveTime（线程活动保持时间）：线程池的工作线程空闲后，保持存活的时间。所以如果任务很多，并且每个任务执行的时间比较短，可以调大这个时间，提高线程的利用率。</li>
+<li>TimeUnit（线程活动保持时间的单位）：可选的单位有天（DAYS），小时（HOURS），分钟（MINUTES），毫秒(MILLISECONDS)，微秒(MICROSECONDS, 千分之一毫秒)和毫微秒(NANOSECONDS, 千分之一微秒)。</li>
+</ul>
+<p>Ref:<a href="https://www.oschina.net/question/565065_86540" target="_blank" rel="external">Java线程池使用说明</a></p>
+<h2 id="Ref-【Java高级】ThreadPool用法与优势"><a href="#Ref-【Java高级】ThreadPool用法与优势" class="headerlink" title="Ref:【Java高级】ThreadPool用法与优势"></a>Ref:<a href="http://blog.csdn.net/scboyhj__/article/details/48805881" target="_blank" rel="external">【Java高级】ThreadPool用法与优势</a></h2>
       
     </div>
 
@@ -461,25 +537,6 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/03/29/Interview-Prepare/"
-     data-title="Interview Prepare"
-     data-content=""
-     data-url="http://wlyPKU.github.io/2017/03/29/Interview-Prepare/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
@@ -491,8 +548,11 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/29/Interview-Prepare/"
-           data-title="Interview Prepare" data-url="http://wlyPKU.github.io/2017/03/29/Interview-Prepare/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -612,7 +672,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C"><span class="nav-number">1.</span> <span class="nav-text">C++</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译链接"><span class="nav-number">1.1.</span> <span class="nav-text">编译链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELF结构"><span class="nav-number">1.2.</span> <span class="nav-text">ELF结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java"><span class="nav-number">2.</span> <span class="nav-text">Java</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#final-static-const"><span class="nav-number">2.1.</span> <span class="nav-text">final static const</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数传递–值传递"><span class="nav-number">2.2.</span> <span class="nav-text">参数传递–值传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数处理"><span class="nav-number">2.3.</span> <span class="nav-text">大数处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extends-and-implements"><span class="nav-number">2.4.</span> <span class="nav-text">extends and implements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string"><span class="nav-number">2.5.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM线程安全"><span class="nav-number">2.6.</span> <span class="nav-text">JVM线程安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized详解"><span class="nav-number">2.6.1.</span> <span class="nav-text">synchronized详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile关键字"><span class="nav-number">2.6.2.</span> <span class="nav-text">volatile关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM内存"><span class="nav-number">2.7.</span> <span class="nav-text">JVM内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java内存回收"><span class="nav-number">2.8.</span> <span class="nav-text">Java内存回收</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C"><span class="nav-number">1.</span> <span class="nav-text">C++</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译链接"><span class="nav-number">1.1.</span> <span class="nav-text">编译链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELF结构"><span class="nav-number">1.2.</span> <span class="nav-text">ELF结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java"><span class="nav-number">2.</span> <span class="nav-text">Java</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#final-static-const"><span class="nav-number">2.1.</span> <span class="nav-text">final static const</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并行容器与同步容器"><span class="nav-number">2.2.</span> <span class="nav-text">并行容器与同步容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简述同步容器与并发容器"><span class="nav-number">2.2.1.</span> <span class="nav-text">简述同步容器与并发容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高效的映像、集合和队列"><span class="nav-number">2.2.2.</span> <span class="nav-text">高效的映像、集合和队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写数组的拷贝"><span class="nav-number">2.2.3.</span> <span class="nav-text">写数组的拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#较早的线程安全集合"><span class="nav-number">2.2.4.</span> <span class="nav-text">较早的线程安全集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较"><span class="nav-number">2.2.5.</span> <span class="nav-text">比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vector与synchronizedList比较"><span class="nav-number">2.2.5.1.</span> <span class="nav-text">vector与synchronizedList比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map的同步比较"><span class="nav-number">2.2.5.2.</span> <span class="nav-text">Map的同步比较:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数传递–值传递"><span class="nav-number">2.3.</span> <span class="nav-text">参数传递–值传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数处理"><span class="nav-number">2.4.</span> <span class="nav-text">大数处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extends-and-implements"><span class="nav-number">2.5.</span> <span class="nav-text">extends and implements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string"><span class="nav-number">2.6.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM线程安全"><span class="nav-number">2.7.</span> <span class="nav-text">JVM线程安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized详解"><span class="nav-number">2.7.1.</span> <span class="nav-text">synchronized详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile关键字"><span class="nav-number">2.7.2.</span> <span class="nav-text">volatile关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM内存"><span class="nav-number">2.8.</span> <span class="nav-text">JVM内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java内存回收"><span class="nav-number">2.9.</span> <span class="nav-text">Java内存回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadPool"><span class="nav-number">2.10.</span> <span class="nav-text">ThreadPool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ref-【Java高级】ThreadPool用法与优势"><span class="nav-number">2.11.</span> <span class="nav-text">Ref:【Java高级】ThreadPool用法与优势</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -723,30 +783,30 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wlypku"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'wlypku';
+      var disqus_identifier = '2017/03/29/Interview-Prepare/';
+      var disqus_title = "Interview Prepare";
+      var disqus_url = 'http://wlyPKU.github.io/2017/03/29/Interview-Prepare/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
 
 
 
@@ -902,7 +962,14 @@
       }
     });
   </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -921,10 +988,6 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-  
-
-  
 
 </body>
 </html>
