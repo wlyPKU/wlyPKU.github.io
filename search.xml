@@ -4,6 +4,68 @@
   
     
     <entry>
+      <title><![CDATA[LeetCode Weekly Contest 26]]></title>
+      <url>http://wlyPKU.github.io/2017/04/02/Leetcode-week26/</url>
+      <content type="html"><![CDATA[<p>LeetCode Weekly Contest 26<br>[2017-04-02]</p>
+<ol>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-26/problems/longest-uncommon-subsequence-i/" target="_blank" rel="external">Longest Uncommon Subsequence I</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-26/problems/longest-uncommon-subsequence-ii/" target="_blank" rel="external">Longest Uncommon Subsequence II</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-26/problems/friend-circles/" target="_blank" rel="external">Friend Circles</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-26/problems/split-array-with-equal-sum/" target="_blank" rel="external">Split Array with Equal Sum</a><a id="more"></a>
+</li>
+</ol>
+<hr>
+<h1 id="Longest-Uncommon-Subsequence-I"><a href="#Longest-Uncommon-Subsequence-I" class="headerlink" title="Longest Uncommon Subsequence I"></a>Longest Uncommon Subsequence I</h1><p>Given a group of two strings, you need to find the longest uncommon subsequence of this group of two strings. The longest uncommon subsequence is defined as the longest subsequence of one of these strings and this subsequence should not be any subsequence of the other strings.</p>
+<p>A <strong>subsequence</strong> is a sequence that can be derived from one sequence by deleting some characters without changing the order of the remaining elements. Trivially, any string is a subsequence of itself and an empty string is a subsequence of any string.</p>
+<p>The input will be two strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn’t exist, return -1.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: <span class="string">"aba"</span>, <span class="string">"cdc"</span></div><div class="line">Output: <span class="number">3</span></div><div class="line">Explanation: The longest uncommon subsequence is <span class="string">"aba"</span> (<span class="keyword">or</span> <span class="string">"cdc"</span>), </div><div class="line">because <span class="string">"aba"</span> is <span class="keyword">a</span> subsequence <span class="keyword">of</span> <span class="string">"aba"</span>, </div><div class="line">but <span class="keyword">not</span> <span class="keyword">a</span> subsequence <span class="keyword">of</span> <span class="keyword">any</span> other strings <span class="keyword">in</span> <span class="keyword">the</span> group <span class="keyword">of</span> <span class="literal">two</span> strings.</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Both strings’ lengths will not exceed 100.</li>
+<li>Only letters from a ~ z will appear in input strings.</li>
+</ul>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><p>两个字符串相同就无解;<br>否则输出两个字符串的长度中较大者;<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">int</span> findLUSlength(<span class="keyword">string</span> a, <span class="keyword">string</span> b) &#123;</div><div class="line">        <span class="built_in">if</span> (a == b)</div><div class="line">            <span class="built_in">return</span> <span class="number">-1</span>;</div><div class="line">        <span class="built_in">return</span> <span class="built_in">max</span>(<span class="keyword">int</span>(a.<span class="built_in">size</span>()), <span class="keyword">int</span>(b.<span class="built_in">size</span>()));</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="Longest-Uncommon-Subsequence-II"><a href="#Longest-Uncommon-Subsequence-II" class="headerlink" title="Longest Uncommon Subsequence II"></a>Longest Uncommon Subsequence II</h1><p>Given a list of strings, you need to find the longest uncommon subsequence among them. The longest uncommon subsequence is defined as the longest subsequence of one of these strings and this subsequence should not be <strong>any</strong> subsequence of the other strings.</p>
+<p>A <strong>subsequence</strong> is a sequence that can be derived from one sequence by deleting some characters without changing the order of the remaining elements. Trivially, any string is a subsequence of itself and an empty string is a subsequence of any string.</p>
+<p>The input will be a list of strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn’t exist, return -1.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Input:</span> <span class="string">"aba"</span>, <span class="string">"cdc"</span>, <span class="string">"eae"</span></div><div class="line"><span class="symbol">Output:</span> <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All the given strings’ lengths will not exceed 10.</li>
+<li>The length of the given list will be in the range of [2, 50].</li>
+</ul>
+<h2 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h2><p>因为最大长度为10;<br>所以把每个长度有哪些字符串记录下来;<br>然后从字符串长度由大到小枚举len;<br>假设这个答案序列为len长度的某个字符串;<br>然后看看len长度的字符串有没有和它一样的字符串(即出现两次及以上)<br>有的话不行,找另外一个长度为len的字符串;<br>否则<br>再看看这个字符串是不是长度比len长的字符串的子串；<br>如果不是的话;<br>就表示找到了;<br>直接输出len;<br>否则继续找长度为len的另外的字符串;<br>判断一个字符串是不是另外一个字符串的子串其实很简单的；<br>O(l1+l2)就能判断出来;<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">bool</span> judge(<span class="keyword">string</span> s, vector&lt;<span class="keyword">string</span>&gt;&amp; strs)&#123;</div><div class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.<span class="built_in">size</span>(); i++)&#123;</div><div class="line">            <span class="keyword">int</span> idx = <span class="number">0</span>;</div><div class="line">            <span class="built_in">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; strs[i].<span class="built_in">size</span>(); j++)&#123;</div><div class="line">                <span class="built_in">if</span>(idx == s.<span class="built_in">size</span>())&#123;</div><div class="line">                    <span class="built_in">break</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="built_in">if</span>(s[idx] == strs[i][j])&#123;</div><div class="line">                    idx++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">if</span>(idx == s.<span class="built_in">size</span>())&#123;</div><div class="line">                cnt++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">if</span>(cnt == <span class="number">1</span>)&#123;</div><div class="line">            <span class="built_in">return</span> true;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">return</span> false;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> findLUSlength(vector&lt;<span class="keyword">string</span>&gt;&amp; strs) &#123;</div><div class="line">        <span class="built_in">map</span>&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; m;</div><div class="line">        <span class="keyword">int</span> maxLength = <span class="number">-1</span>;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> s = <span class="number">0</span>; s &lt; strs.<span class="built_in">size</span>(); s++)&#123;</div><div class="line">            <span class="keyword">string</span> a = strs[s];</div><div class="line">            <span class="comment">/*Method 1</span></div><div class="line">			 When we add a letter Y to our candidate longest uncommon subsequence answer of X, </div><div class="line">			 it only makes it strictly harder to find a common subsequence. Thus our candidate</div><div class="line">			 longest uncommon subsequences will be chosen from the group of words itself.</div><div class="line">			   m[a]++;</div><div class="line">			*/</div><div class="line">			<span class="comment">/*Method 2*/</span></div><div class="line">			<span class="built_in">for</span>(<span class="keyword">int</span> i = a.<span class="built_in">size</span>(); i &gt;= <span class="number">1</span>; i--)&#123;</div><div class="line">                <span class="built_in">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= a.<span class="built_in">size</span>() - i; j++)&#123;</div><div class="line">                    <span class="built_in">if</span>(m.<span class="built_in">find</span>(a.substr(j, i)) == m.<span class="built_in">end</span>())&#123;</div><div class="line">                        m.insert(<span class="built_in">map</span>&lt;<span class="keyword">string</span>,<span class="keyword">int</span>&gt;::value_type(a.substr(j, i), <span class="number">1</span>));</div><div class="line">                    &#125;<span class="built_in">else</span>&#123;</div><div class="line">                        m[a.substr(j, i)] ++;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">auto</span> ite = m.<span class="built_in">begin</span>(); ite!= m.<span class="built_in">end</span>(); ite++)&#123;</div><div class="line">            <span class="keyword">string</span> sd = ite-&gt;first;</div><div class="line">            <span class="keyword">int</span> i = ite-&gt;second;</div><div class="line">            <span class="built_in">if</span>(i == <span class="number">1</span>)&#123;</div><div class="line">                <span class="built_in">if</span>(judge(sd, strs))</div><div class="line">                maxLength = <span class="built_in">max</span>(maxLength, (<span class="keyword">int</span>)sd.<span class="built_in">size</span>());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">return</span> maxLength;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="Friend-Circles"><a href="#Friend-Circles" class="headerlink" title="Friend Circles"></a>Friend Circles</h1><p>There are <strong>N</strong> students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a <strong>direct</strong> friend of B, and B is a <strong>direct</strong> friend of C, then A is an <strong>indirect</strong> friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.</p>
+<p>Given a <strong>N*N</strong> matrix <strong>M</strong> representing the friend relationship between students in the class. If M[i][j] = 1, then the ith and jth students are <strong>direct</strong> friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line"><span class="string">[[1,1,0],</span></div><div class="line"> [1,1,0],</div><div class="line"> [0,0,1]]</div><div class="line">Output: <span class="number">2</span></div><div class="line">Explanation:The <span class="number">0</span>th <span class="keyword">and</span> <span class="number">1</span>st students are direct friends, so they are <span class="keyword">in</span> a friend circle. </div><div class="line">The <span class="number">2</span>nd student himself is <span class="keyword">in</span> a friend circle. So <span class="keyword">return</span> <span class="number">2.</span></div></pre></td></tr></table></figure></p>
+<p><strong>Example 2:</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Inpu<span class="variable">t:</span> </div><div class="line">[[<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</div><div class="line"> [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],</div><div class="line"> [<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>]]</div><div class="line">Outpu<span class="variable">t:</span> <span class="number">1</span></div><div class="line">Explanation:The <span class="number">0</span><span class="keyword">th</span> <span class="built_in">and</span> <span class="number">1</span><span class="keyword">st</span> students are direct friends, the <span class="number">1</span><span class="keyword">st</span> <span class="built_in">and</span> <span class="number">2</span>nd students are direct friends, </div><div class="line"><span class="keyword">so</span> the <span class="number">0</span><span class="keyword">th</span> <span class="built_in">and</span> <span class="number">2</span>nd students are indirect friends. All of them are in the same friend circle, <span class="keyword">so</span> <span class="keyword">return</span> <span class="number">1</span>.</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>N is in range [1,200].</li>
+<li>M[i][i] = 1 for all students.</li>
+<li>If M[i][j] = 1, then M[j][i] = 1.</li>
+</ul>
+<h2 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">int</span>* unionFind;</div><div class="line">    <span class="keyword">void</span> unionFunction(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> unionFind[], <span class="keyword">int</span> <span class="built_in">size</span>)&#123;</div><div class="line">        <span class="built_in">if</span>(i == j)&#123;</div><div class="line">            <span class="built_in">return</span> ;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> tmpI = i;</div><div class="line">        <span class="built_in">while</span>(tmpI != unionFind[tmpI])&#123;</div><div class="line">            tmpI = unionFind[tmpI];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> tmpJ = j;</div><div class="line">        <span class="built_in">while</span>(tmpJ != unionFind[tmpJ])&#123;</div><div class="line">            tmpJ = unionFind[tmpJ];</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">if</span>(tmpJ &gt; tmpI)&#123;</div><div class="line">            unionFind[tmpJ] = tmpI;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">if</span>(tmpJ &lt; tmpI)&#123;</div><div class="line">            unionFind[tmpI] = tmpJ;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> findCircleNum(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; M) &#123;</div><div class="line">        <span class="keyword">int</span>* unionFind = <span class="keyword">new</span> <span class="keyword">int</span>[M.<span class="built_in">size</span>()];</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M.<span class="built_in">size</span>(); i++)&#123;</div><div class="line">            unionFind[i] = i;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M.<span class="built_in">size</span>(); i++)&#123;</div><div class="line">            <span class="built_in">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M.<span class="built_in">size</span>(); j++)&#123;</div><div class="line">                <span class="built_in">if</span>(M[i][j])</div><div class="line">                unionFunction(i, j, unionFind,M.<span class="built_in">size</span>());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        set&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M.<span class="built_in">size</span>(); i++)&#123;</div><div class="line">            <span class="built_in">if</span>(i == unionFind[i])</div><div class="line">            s.insert(i);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">return</span> s.<span class="built_in">size</span>();</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Split-Array-with-Equal-Sum"><a href="#Split-Array-with-Equal-Sum" class="headerlink" title="Split Array with Equal Sum"></a>Split Array with Equal Sum</h1><p>Given an array with n integers, you need to find if there are triplets (i, j, k) which satisfies following conditions:</p>
+<ol>
+<li>0 &lt; i, i + 1 &lt; j, j + 1 &lt; k &lt; n - 1</li>
+<li>Sum of subarrays (0, i - 1), (i + 1, j - 1), (j + 1, k - 1) and (k + 1, n - 1) should be equal.</li>
+</ol>
+<p>where we define that subarray (L, R) represents a slice of the original array starting from the element indexed L to the element indexed R.</p>
+<p><strong>Example:</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]</div><div class="line">Output: True</div><div class="line">Explanation:</div><div class="line"><span class="selector-tag">i</span> = <span class="number">1</span>, j = <span class="number">3</span>, k = <span class="number">5</span>. </div><div class="line"><span class="function"><span class="title">sum</span><span class="params">(<span class="number">0</span>, i - <span class="number">1</span>)</span></span> = sum(<span class="number">0</span>, <span class="number">0</span>) = <span class="number">1</span></div><div class="line"><span class="function"><span class="title">sum</span><span class="params">(i + <span class="number">1</span>, j - <span class="number">1</span>)</span></span> = sum(<span class="number">2</span>, <span class="number">2</span>) = <span class="number">1</span></div><div class="line"><span class="function"><span class="title">sum</span><span class="params">(j + <span class="number">1</span>, k - <span class="number">1</span>)</span></span> = sum(<span class="number">4</span>, <span class="number">4</span>) = <span class="number">1</span></div><div class="line"><span class="function"><span class="title">sum</span><span class="params">(k + <span class="number">1</span>, n - <span class="number">1</span>)</span></span> = sum(<span class="number">6</span>, <span class="number">6</span>) = <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>1 &lt;= n &lt;= 2000.</li>
+<li>Elements in the given array will be in range [-1,000,000, 1,000,000].</li>
+</ul>
+<h2 id="code-3"><a href="#code-3" class="headerlink" title="code"></a>code</h2><p>先枚举要删除的3个元素中的中间那个元素j;<br>然后把整个序列分成左边和右边两个部分;<br>然后再左边的序列中枚举i;<br>然后把0..j-1分成0..i-1和i+1..j-1两个部分;<br>然后看这两个部分各自的和是不是相同;<br>相同的话把和用map记录一下;<br>然后再枚举<br>右半部分即第3个元素k;<br>分成<br>j+1..k-1和k+1..n-1两个部分;<br>看看各自的和是不是相同;<br>相同的话,看看刚才左半部分记录的map里面有没有这个和;<br>有的话输出true<br>复杂度接近O(n^2)吧-&gt;用了map哦。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">map</span> &lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; dic;</div><div class="line">	<span class="keyword">int</span> pre[N],n;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">splitArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        n = nums.size();</div><div class="line">        pre[<span class="number">0</span>] = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;  i &lt; n; i++)</div><div class="line">        &#123;</div><div class="line">            pre[i] = pre[i - <span class="number">1</span>] + nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;  j &lt; n - <span class="number">1</span>; j++)</div><div class="line">        &#123;</div><div class="line">            dic.clear();</div><div class="line">            <span class="keyword">int</span> l = <span class="number">0</span>, r = j - <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = l + <span class="number">1</span>;  i &lt; r; i++)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span> (pre[i] - nums[i] == pre[r] - pre[i])</div><div class="line">                &#123;</div><div class="line">                    dic[pre[r] - pre[i]] = <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            l = j + <span class="number">1</span>, r = n - <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = l + <span class="number">1</span>;  i &lt; r; i++)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span> (dic[pre[r] - pre[i]] &amp;&amp; (pre[i] - nums[i] - pre[j]) == (pre[r] - pre[i]))</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Class imbalance in classification]]></title>
       <url>http://wlyPKU.github.io/2017/03/29/Class-imbalance-in-classification/</url>
       <content type="html"><![CDATA[<p>本文是分类算法正负例数量不平衡问题的解决方案。<br><a id="more"></a></p>
@@ -58,12 +120,49 @@
       <title><![CDATA[Interview Prepare]]></title>
       <url>http://wlyPKU.github.io/2017/03/29/Interview-Prepare/</url>
       <content type="html"><![CDATA[<p>Anything about the interview preparing.<br><a id="more"></a></p>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="线程与进程"><a href="#线程与进程" class="headerlink" title="线程与进程"></a>线程与进程</h2><p>要了解二者的区别与联系，首先得对进程与线程有一个宏观上的了解。</p>
+<p>  <strong>进程，是并发执行的程序在执行过程中分配和管理资源的基本单位，是一个动态概念，竟争计算机系统资源的基本单位。每一个进程都有一个自己的地址空间，即进程空间或（虚空间）。进程空间的大小 只与处理机的位数有关，一个 16 位长处理机的进程空间大小为$2^{16}$，而 32 位处理机的进程空间大小为 $2^{32}$ 。进程至少有 5 种基本状态，它们是：初始态，执行态，等待状态，就绪状态，终止状态。</strong></p>
+<p>  <strong>线程，在网络或多用户环境下，一个服务器通常需要接收大量且不确定数量用户的并发请求，为每一个请求都创建一个进程显然是行不通的，——无论是从系统资源开销方面或是响应用户请求的效率方面来看。因此，操作系统中线程的概念便被引进了。线程，是进程的一部分，一个没有线程的进程可以被看作是单线程的。线程有时又被称为轻权进程或轻量级进程，也是 CPU 调度的一个基本单位。</strong></p>
+<p>  说到这里，我们对进程与线程都有了一个大体上的印象，现在开始说说二者大致的区别。</p>
+<p>  <strong>进程的执行过程是线状的</strong>，尽管中间会发生中断或暂停，但该进程所拥有的资源只为该线状执行过程服务。一旦发生进程上下文切换，这些资源都是要被保护起来的。这是进程宏观上的执行过程。而进程又可有单线程进程与多线程进程两种。我们知道，进程有 一个进程控制块 PCB ，相关程序段 和 该程序段对其进行操作的数据结构集 这三部分，单线程进程的执行过程在宏观上是线性的，微观上也只有单一的执行过程；而多线程进程在宏观上的执行过程同样为线性的，但微观上却可以有多个执行操作（线程），如不同代码片段以及相关的数据结构集。<strong>线程的改变只代表了 CPU 执行过程的改变，而没有发生进程所拥有的资源变化。出了 CPU 之外，计算机内的软硬件资源的分配与线程无关，线程只能共享它所属进程的资源。</strong>与进程控制表和 PCB 相似，每个线程也有自己的线程控制表 TCB ，而这个 TCB 中所保存的线程状态信息则要比 PCB 表少得多，这些信息主要是相关指针用堆栈（系统栈和用户栈），寄存器中的状态数据。<strong>进程拥有一个完整的虚拟地址空间，不依赖于线程而独立存在；反之，线程是进程的一部分，没有自己的地址空间，与进程内的其他线程一起共享分配给该进程的所有资源。</strong></p>
+<p>  线程可以有效地提高系统的执行效率，但并不是在所有计算机系统中都是适用的，如某些很少做进程调度和切换的实时系统。使用线程的好处是有多个任务需要处理机处理时，减少处理机的切换时间；而且，线程的创建和结束所需要的系统开销也比进程的创建和结束要小得多。最适用使用线程的系统是多处理机系统和网络系统或分布式系统。</p>
+<ol>
+<li><p>线程的执行特性。<br> 线程只有 3 个基本状态：就绪，执行，阻塞。<br> 线程存在 5 种基本操作来切换线程的状态：派生，阻塞，激活，调度，结束。</p>
+</li>
+<li><p>进程通信。<br> 单机系统中进程通信有 4 种形式：主从式，会话式，消息或邮箱机制，共享存储区方式。<br> 主从式典型例子：终端控制进程和终端进程。<br> 会话式典型例子：用户进程与磁盘管理进程之间的通信。</p>
+</li>
+</ol>
+<p>同一进程间的线程究竟共享哪些资源呢，而又各自独享哪些资源呢？<br>共享的资源有</p>
+<ol>
+<li><strong>堆</strong>  由于堆是在进程空间中开辟出来的，所以它是理所当然地被共享的；因此new出来的都是共享的（16位平台上分全局堆和局部堆，局部堆是独享的）</li>
+<li><strong>全局变量</strong> 它是与具体某一函数无关的，所以也与特定线程无关；因此也是共享的</li>
+<li><strong>静态变量</strong> 虽然对于局部变量来说，它在代码中是“放”在某一函数中的，但是其存放位置和全局变量一样，存于堆中开辟的.bss和.data段，是共享的</li>
+<li><strong>文件等公用资源</strong>  这个是共享的，使用这些公共资源的线程必须同步。Win32 提供了几种同步资源的方式，包括信号、临界区、事件和互斥体</li>
+</ol>
+<p>独享的资源有</p>
+<ol>
+<li><strong>栈</strong> 栈是独享的</li>
+<li><strong>寄存器</strong>  这个可能会误解，因为电脑的寄存器是物理的，每个线程去取值难道不一样吗？其实线程里存放的是副本，包括程序计数器PC</li>
+</ol>
 <h1 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h1><h2 id="编译链接"><a href="#编译链接" class="headerlink" title="编译链接"></a>编译链接</h2><p><a href="http://blog.csdn.net/edisonlg/article/details/7081357" target="_blank" rel="external">C++编译链接过程</a></p>
 <hr>
 <h2 id="ELF结构"><a href="#ELF结构" class="headerlink" title="ELF结构"></a>ELF结构</h2><img src="/2017/03/29/Interview-Prepare/elf.png" alt="ELF结构" title="ELF结构">
 <p><a href="http://www.itcast.cn/news/20151228/16592094239.shtml?zx" target="_blank" rel="external">C++培训之Linux系统典型文件格式ELF</a></p>
-<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="final-static-const"><a href="#final-static-const" class="headerlink" title="final static const"></a>final static const</h2><p><strong>final</strong><br>final修饰类：该类不可继承<br>final修饰方法：该方法不能被子类覆盖（但它不能修饰构造函数）<br>final修饰字段属性：属性值第一次初始化后不能被修改<br>使用final可以提高程序执行的效率，将一个方法设成final后编译器就可以把对那个方法的所有调用都置入“嵌入”调用里。</p>
-<p><strong>static</strong><br>static修饰成员函数则该函数不能使用this对象<br>static不能修饰构造函数、函数参数、局部成员变量<br>static修饰成员字段则当类被虚拟机加载时按照声明先后顺序对static成员字段进行初始化。<br>static修饰语句块：当类被虚拟机加载时按照声明先后顺序初始化static成员字段和static语句块<br>static所修饰的方法和字段只属于类，所有对象共享，java不能直接定义全局变量，是通过static来实现的。</p>
+<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="final-static-const"><a href="#final-static-const" class="headerlink" title="final static const"></a>final static const</h2><p><strong>final</strong></p>
+<ul>
+<li>final修饰类：该类不可继承</li>
+<li>final修饰方法：该方法不能被子类覆盖（但它不能修饰构造函数）</li>
+<li>final修饰字段属性：属性值第一次初始化后不能被修改</li>
+<li>使用final可以提高程序执行的效率，将一个方法设成final后编译器就可以把对那个方法的所有调用都置入“嵌入”调用里。</li>
+</ul>
+<p><strong>static</strong></p>
+<ul>
+<li>static修饰成员函数则该函数不能使用this对象</li>
+<li>static不能修饰构造函数、函数参数、局部成员变量</li>
+<li>static修饰成员字段则当类被虚拟机加载时按照声明先后顺序对static成员字段进行初始化。</li>
+<li>static修饰语句块：当类被虚拟机加载时按照声明先后顺序初始化static成员字段和static语句块</li>
+<li>static所修饰的方法和字段只属于类，所有对象共享，java不能直接定义全局变量，是通过static来实现的。</li>
+</ul>
 <p>java中没有const，不能直接定义常量，是通过static final组合来实现的。</p>
 <hr>
 <h2 id="并行容器与同步容器"><a href="#并行容器与同步容器" class="headerlink" title="并行容器与同步容器"></a>并行容器与同步容器</h2><h3 id="简述同步容器与并发容器"><a href="#简述同步容器与并发容器" class="headerlink" title="简述同步容器与并发容器"></a>简述同步容器与并发容器</h3><p>在Java并发编程中，经常听到同步容器、并发容器之说，那什么是同步容器与并发容器呢？<strong>同步容器可以简单地理解为通过synchronized来实现同步的容器，比如Vector、Hashtable以及SynchronizedList等容器，如果有多个线程调用同步容器的方法，它们将会串行执行。</strong><br>而<strong>并发容器(线程安全的容器)则要满足线程安全的类无需调用方进行额外的同步</strong>。<br>可以通过查看Vector、Hashtable等同步容器的实现代码，可以看到这些容器实现线程安全的方式就是将它们的状态封装起来，并在需要同步的方法上加上关键字synchronized，但在某些情况下，同步容器不一定就是线程安全的，比如获取最后一个元素或者删除最后一个元素，我们需要实现额外的同步操作：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">getLast</span><span class="params">(Vector <span class="built_in">list</span>)</span> </span>&#123;  </div><div class="line">    <span class="keyword">int</span> lastIndex = <span class="built_in">list</span>.size() - <span class="number">1</span>;  </div><div class="line">    <span class="keyword">return</span> <span class="built_in">list</span>.get(lastIndex);  </div><div class="line">&#125;  </div><div class="line">      </div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteLast</span><span class="params">(Vector <span class="built_in">list</span>)</span> </span>&#123;  </div><div class="line">    <span class="keyword">int</span> lastIndex = <span class="built_in">list</span>.size() - <span class="number">1</span>;  </div><div class="line">    <span class="built_in">list</span>.remove(lastIndex);  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -82,18 +181,16 @@
 <li>同步的集合包装器 synchronizedMap 和 synchronizedList ，有时也被称作 有条件地线程安全――所有 单个的操作都是线程安全的，但是多个操作组成的操作序列却可能导致数据争用，因为在操作序列中控制流取决于前面操作的结果。 清单1中第一片段展示了公用的put-if-absent语句块――如果一个条目不在 Map 中，那么添加这个条目。不幸的是， 在 containsKey() 方法返回到 put() 方法被调用这段时间内，可能会有另一个线程也插入一个带有相同键的值。如果您想确保只有一次插入，您需要用一个对 Map m 进行同步的同步块将这一对语句包装起来。</li>
 <li>集合框架引入了迭代器，用于遍历一个列表或者其他集合，从而优化了对一个集合中的元素进行迭代的过程。然而，在 java.util 集合类中实现的迭代器极易崩溃，也就是说，如果在一个线程正在通过一个 Iterator 遍历集合时，另一个线程也来修改这个 集合，那么接下来的 Iterator.hasNext() 或 Iterator.next() 调用将抛出 ConcurrentModificationException 异常。就拿 刚才这个例子来讲，如果想要防止出现 ConcurrentModificationException 异常，那么当您正在进行迭代时，您必须 使用一个在 List l 上同步的 synchronized 块将该 List 包装起来，从而锁住整个 List 。（或者，您也可以调用 List.toArray() ，在 不同步的情况下对数组进行迭代，但是如果列表比较大的话这样做代价很高）。</li>
 </ul>
-<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>有如下几种</p>
-<hr>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>有如下几种”线程安全”的数据结构/包:</p>
 <ol>
-<li>concurrent 包 set map queue</li>
-<li>copyOnWriteArrayList copyOnWriteArraySet</li>
-<li>vector hashTable</li>
-<li>Collections.synchronizedList synchronizedMap</li>
+<li><strong>concurrent 包 set map queue</strong></li>
+<li><strong>copyOnWriteArrayList copyOnWriteArraySet</strong></li>
+<li><strong>vector hashTable</strong></li>
+<li><strong>Collections.synchronizedList synchronizedMap</strong></li>
 </ol>
-<hr>
 <h4 id="vector与synchronizedList比较"><a href="#vector与synchronizedList比较" class="headerlink" title="vector与synchronizedList比较"></a>vector与synchronizedList比较</h4><p>Vector类中对get以及remove，size方法都加了synchronized关键字来保证同步，也就说当一个线程调用了这些方法时，其他线程不能再同时调用这些方法。换言之，<strong>不能出现两个及两个以上的线程在同时调用这些同步方法</strong>。 </p>
-<p>区别就是Vector本身所有方法都是用synchronized修饰的，所以线程安全，而ArrayList没有<br>还有一个区别就是新增元素的时候Vector的增量是原来的一倍，而ArrayList增加原来的一半.<br>synchronizedList修饰的list如下:<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;<span class="keyword">String</span>&gt; TEST_LIST = Collections.synchronizedList(<span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;());</div></pre></td></tr></table></figure></p>
-<p>包裹了普通的ArrayList提供了线程安全的机制，类似Vector，</p>
+<p>区别就是Vector本身所有方法都是用synchronized修饰的，所以线程安全，而ArrayList没有<br>synchronizedList修饰的list包裹了普通的ArrayList提供了线程安全的机制，类似Vector，数据结构如下:<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;<span class="keyword">String</span>&gt; TEST_LIST = Collections.synchronizedList(<span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;());</div></pre></td></tr></table></figure></p>
+<p>还有一个区别就是新增元素的时候Vector的增量是原来的一倍，而ArrayList增加原来的一半.</p>
 <ol>
 <li>到此为止synchronizedList与Vector的区别就是ArrayList与Vector的增量速度区别，所以需要线程安全操作时，增量比较快的时候推荐使用Vector.</li>
 <li>SynchronizedList中实现的类并没有都使用synchronized同步代码块。其中有listIterator和listIterator(int index)并没有做同步处理。但是Vector却对该方法加了方法锁。 所以说，在使用SynchronizedList进行遍历的时候要手动加锁。</li>
@@ -122,33 +219,128 @@
 <p>比如：<br>class A extends B implements C,D,E {}    （class 子类名 extends 父类名 implenments 接口名）</p>
 <p><strong>父类与子类继承关系上的不同：</strong></p>
 <p>A a = new B(); 结果a是一个A类的实例，只能访问A中的方法，那么又和A a = new A();有什么区别呢？</p>
-<hr>
-<p>class B extends A<br>继承过后通常会定义一些父类没有的成员或者方法。<br>A a = new B();<br>这样是可以的，上传。<br>a是一个父类对象的实例，因而不能访问子类定义的新成员或方法。</p>
-<hr>
-<p>假如这样定义：<br>class A</p>
-<p>{<br>   int i;<br>   void f(){}<br>}<br>class B extends A</p>
-<p>{<br>    int j;<br>    void f(){}       //重写<br>    void g(){}<br>}<br>然后：<br>B b = new B();<br>b就是子类对象的实例，不仅能够访问自己的属性和方法，也能够访问父类的属性和方法。诸如b.i,b.j,b.f(),b.g()都是合法的。此时b.f()是访问的B中的f()</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span></div><div class="line">继承过后通常会定义一些父类没有的成员或者方法。</div><div class="line"><span class="type">A</span> a = <span class="keyword">new</span> <span class="type">B</span>();</div><div class="line">这样是可以的，上传。</div><div class="line">a是一个父类对象的实例，因而不能访问子类定义的新成员或方法。</div></pre></td></tr></table></figure>
+<p>假如这样定义：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></div><div class="line">&#123;</div><div class="line">   int i;</div><div class="line">   void f()&#123;&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span></div><div class="line">&#123;</div><div class="line">    int j;</div><div class="line">    void f()&#123;&#125;       <span class="comment">//重写</span></div><div class="line">    void g()&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后：<br>B b = new B();<br>b就是子类对象的实例，不仅能够访问自己的属性和方法，也能够访问父类的属性和方法。诸如b.i,b.j,b.f(),b.g()都是合法的。此时b.f()是访问的B中的f()</p>
 <p>A a = new B();<br>a虽然是用的B的构造函数，但经过upcast，成为父类对象的实例，不能访问子类的属性和方法。a.i,a.f()是合法的，而a.j,a.g()非法。此时访问a.f()是访问B中的f()</p>
-<hr>
 <p>A a = new B(); 这条语句，实际上有三个过程：<br>(1) A a;<br>将a声明为父类对象，只是一个引用，未分配空间<br>(2) B temp = new B();<br>通过B类的构造函数建立了一个B类对象的实例，也就是初始化<br>(3) a = (A)temp;<br>将子类对象temp转换未父类对象并赋给a，这就是上传(upcast)，是安全的。<br>经过以上3个过程，a就彻底成为了一个A类的实例。<br>子类往往比父类有更多的属性和方法，上传只是舍弃，是安全的；而下传(downcast)有时会增加，通常是不安全的。</p>
-<hr>
 <p>a.f()对应的应该是B类的方法f()<br>调用构造函数建立实例过后，对应方法的入口已经确定了。<br>如此以来，a虽被上传为A类，但其中重写的方法f()仍然是B的方法f()。也就是说，每个对象知道自己应该调用哪个方法。<br>A a1 = new B();<br>A a2 = new C();<br>a1,a2两个虽然都是A类对象，但各自的f()不同。这正是多态性的体现。</p>
 <hr>
-<hr>
 <h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><p>public char charAt(int index)<br>返回字符串中第index个字符；<br>public int length()<br>返回字符串的长度；<br>public int indexOf(String str)<br>返回字符串中第一次出现str的位置；<br>public int indexOf(String str,int fromIndex)<br>返回字符串从fromIndex开始第一次出现str的位置；<br>public boolean equalsIgnoreCase(String another)<br>比较字符串与another是否一样（忽略大小写）；<br>public String replace(char oldchar,char newChar)<br>在字符串中用newChar字符替换oldChar字符<br>public boolean startsWith(String prefix)<br>判断字符串是否以prefix字符串开头；<br>public boolean endsWith(String suffix)<br>判断一个字符串是否以suffix字符串结尾；<br>public String toUpperCase()<br>返回一个字符串为该字符串的大写形式；<br>public String toLowerCase()<br>返回一个字符串为该字符串的小写形式<br>public String substring(int beginIndex)<br>返回该字符串从beginIndex开始到结尾的子字符串；<br>public String substring(int beginIndex,int endIndex)<br>返回该字符串从beginIndex开始到endsIndex结尾的子字符串<br>public String trim()<br>返回该字符串去掉开头和结尾空格后的字符串<br>public String[] split(String regex)<br>将一个字符串按照指定的分隔符分隔，返回分隔后的字符串数组</p>
+<hr>
+<h2 id="string-stringBuffer-stringBuilder"><a href="#string-stringBuffer-stringBuilder" class="headerlink" title="string, stringBuffer, stringBuilder"></a>string, stringBuffer, stringBuilder</h2><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>String：字符串常量，字符串长度不可变。Java中String是immutable（不可变）的。<br>String类的包含如下定义：<br><figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** The value is used for character storage. */</span>  </div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];  </div><div class="line">  </div><div class="line"><span class="comment">/** The offset is the first index of the storage that is used. */</span>  </div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> offset;  </div><div class="line">  </div><div class="line"><span class="comment">/** The count is the number of characters in the String. */</span>  </div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> count;</div></pre></td></tr></table></figure></p>
+<p>用于存放字符的数组被声明为final的，因此只能赋值一次，不可再更改。</p>
+<h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h3><p>StringBuffer：<strong>字符串变量（Synchronized，即线程安全）</strong>。如果要频繁对字符串内容进行修改，出于效率考虑最好使用StringBuffer，如果想转成String类型，可以调用StringBuffer的toString()方法。<br>Java.lang.StringBuffer线程安全的可变字符序列。在任意时间点上它都包含某种特定的字符序列，但通过某些方法调用可以改变该序列的长度和内容。可将字符串缓冲区安全地用于多个线程。<br>StringBuffer 上的主要操作是 append 和 insert 方法，可重载这些方法，以接受任意类型的数据。每个方法都能有效地将给定的数据转换成字符串，然后将该字符串的字符追加或插入到字符串缓冲区中。append 方法始终将这些字符添加到缓冲区的末端；而 insert 方法则在指定的点添加字符。例如，如果 z 引用一个当前内容是“start”的字符串缓冲区对象，则此方法调用 z.append(“le”) 会使字符串缓冲区包含“startle”，而 z.insert(4, “le”) 将更改字符串缓冲区，使之包含“starlet”。</p>
+<h3 id="StringBuilder（JDK5-0）"><a href="#StringBuilder（JDK5-0）" class="headerlink" title="StringBuilder（JDK5.0）"></a>StringBuilder（JDK5.0）</h3><p>StringBuilder：字符串变量（非线程安全）。在内部，StringBuilder对象被当作是一个包含字符序列的变长数组。<br>java.lang.StringBuilder是一个可变的字符序列，是JDK5.0新增的。此类提供一个与 StringBuffer 兼容的 API，但不保证同步。该类被设计用作 StringBuffer 的一个简易替换，用在字符串缓冲区被单个线程使用的时候（这种情况很普遍）。<br>其构造方法如下：</p>
+<table>
+<thead>
+<tr>
+<th>构造方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StringBuilder()</td>
+<td>创建一个容量为16的StringBuilder对象（16个空元素）</td>
+</tr>
+<tr>
+<td>StringBuilder(CharSequence cs)</td>
+<td>创建一个包含cs的StringBuilder对象，末尾附加16个空元素</td>
+</tr>
+<tr>
+<td>StringBuilder(int initCapacity)</td>
+<td>创建一个容量为initCapacity的StringBuilder对象</td>
+</tr>
+<tr>
+<td>StringBuilder(String s)</td>
+<td>创建一个包含s的StringBuilder对象，末尾附加16个空元素</td>
+</tr>
+</tbody>
+</table>
+<p>在大部分情况下，StringBuilder &gt; StringBuffer。这主要是由于前者不需要考虑线程安全。</p>
+<h3 id="三者区别"><a href="#三者区别" class="headerlink" title="三者区别"></a>三者区别</h3><p><strong>String 类型和StringBuffer的主要性能区别：String是不可变的对象, 因此在每次对String 类型进行改变的时候，都会生成一个新的 String 对象，然后将指针指向新的 String 对象，所以经常改变内容的字符串最好不要用 String ，因为每次生成对象都会对系统性能产生影响，特别当内存中无引用对象多了以后， JVM 的 GC 就会开始工作，性能就会降低。</strong><br>使用 StringBuffer 类时，每次都会对 StringBuffer 对象本身进行操作，而不是生成新的对象并改变对象引用。所以多数情况下推荐使用 StringBuffer ，特别是字符串对象经常改变的情况下。</p>
+<h3 id="使用策略"><a href="#使用策略" class="headerlink" title="使用策略"></a>使用策略</h3><ul>
+<li>基本原则：如果要操作少量的数据，用String ；单线程操作大量数据，用StringBuilder ；多线程操作大量数据，用StringBuffer。</li>
+<li>不要使用String类的”+”来进行频繁的拼接，因为那样的性能极差的，应该使用StringBuffer或StringBuilder类，这在Java的优化上是一条比较重要的原则。</li>
+<li>为了获得更好的性能，在构造 StringBuffer 或 StringBuilder 时应尽可能指定它们的容量。当然，如果你操作的字符串长度（length）不超过 16 个字符就不用了，当不指定容量（capacity）时默认构造一个容量为16的对象。不指定容量会显著降低性能。</li>
+<li>StringBuilder一般使用在方法内部来完成类似”+”功能，因为是线程不安全的，所以用完以后可以丢弃。StringBuffer主要用在全局变量中。</li>
+<li>相同情况下使用 StringBuilder 相比使用 StringBuffer 仅能获得 10%~15% 左右的性能提升，但却要冒多线程不安全的风险。而在现实的模块化编程中，负责某一模块的程序员不一定能清晰地判断该模块是否会放入多线程的环境中运行，因此：除非确定系统的瓶颈是在 StringBuffer 上，并且确定你的模块不会运行在多线程模式下，才可以采用StringBuilder；否则还是用StringBuffer。</li>
+</ul>
+<p>Ref: <a href="http://blog.csdn.net/kingzone_2008/article/details/9220691" target="_blank" rel="external">Java：String、StringBuffer和StringBuilder的区别</a></p>
 <hr>
 <h2 id="JVM线程安全"><a href="#JVM线程安全" class="headerlink" title="JVM线程安全"></a>JVM线程安全</h2><h3 id="synchronized详解"><a href="#synchronized详解" class="headerlink" title="synchronized详解"></a>synchronized详解</h3><p>Ref: <a href="http://www.cnblogs.com/GnagWang/archive/2011/02/27/1966606.html" target="_blank" rel="external">java synchronized详解</a></p>
 <h3 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h3><p>jvm运行时刻内存的分配。其中有一个内存区域是jvm虚拟机栈，每一个线程运行时都有一个线程栈，线程栈保存了线程运行时候变量值信息。当线程访问某一个对象时候值的时候，首先通过对象的引用找到对应在堆内存的变量的值，然后把堆内存变量的具体值load到线程本地内存中，建立一个变量副本，之后线程就不再和对象在堆内存变量值有任何关系，而是直接修改副本变量的值，在修改完之后的某一个时刻（线程退出之前），自动把线程变量副本的值回写到对象在堆中变量。这样在堆中的对象的值就产生变化了。下面一幅图描述这写交互<br><img src="/2017/03/29/Interview-Prepare/currency.jpg" alt="内存示意" title="内存示意"><br>read and load 从主存复制变量到当前工作内存<br>use and assign  执行代码，改变共享变量值<br>store and write 用工作内存数据刷新主存相关内容</p>
 <p>其中use and assign 可以多次出现。<br>Ref: <a href="http://blog.csdn.net/libing13820393394/article/details/48582999" target="_blank" rel="external">volatile解析</a></p>
 <hr>
-<h2 id="JVM内存"><a href="#JVM内存" class="headerlink" title="JVM内存"></a>JVM内存</h2><img src="/2017/03/29/Interview-Prepare/JVM.jpg" alt="JVM" title="JVM">
-<p><strong>1.程序计数器</strong><br>每一个Java线程都有一个程序计数器来用于保存程序执行到当前方法的哪一个指令。<br><strong>2.线程栈</strong><br>线程的每个方法被执行的时候，都会同时创建一个帧（Frame）用于存储本地变量表、操作栈、动态链接、方法出入口等信息。每一个方法的调用至完成，就意味着一个帧在VM栈中的入栈至出栈的过程。如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；如果VM栈可以动态扩展（VM Spec中允许固定长度的VM栈），当扩展时无法申请到足够内存则抛出OutOfMemoryError异常。<br><strong>3.本地方法栈</strong><br>a. 经过反复测试的库<br>b. 追求效率<br>c. 与本地硬件交互(如system.io)<br><strong>4.堆</strong><br>每个线程的栈都是该线程私有的，堆则是所有线程共享的。当我们new一个对象时，该对象就被分配到了堆中。但是堆，并不是一个简单的概念，堆区又划分了很多区域，为什么堆划分成这么多区域，这是为了JVM的内存垃圾收集，似乎越扯越远了，扯到垃圾收集了，现在的jvm的gc都是按代收集，堆区大致被分为三大块：新生代，旧生代，持久代（虚拟的）；新生代又分为eden区，s0区，s1区。新建一个对象时，基本小的对象，生命周期短的对象都会放在新生代的eden区中，eden区满时，有一个小范围的gc（minor gc），整个新生代满时，会有一个大范围的gc（major gc），将新生代里的部分对象转到旧生代里。<br><strong>5.方法区</strong><br>其实就是永久代（Permanent Generation），方法区中存放了每个Class的结构信息，包括常量池、字段描述、方法描述等等。VM Space描述中对这个区域的限制非常宽松，除了和Java堆一样不需要连续的内存，也可以选择固定大小或者可扩展外，甚至可以选择不实现垃圾收集。相对来说，垃圾收集行为在这个区域是相对比较少发生的，但并不是某些描述那样永久代不会发生GC（至 少对当前主流的商业JVM实现来说是如此），这里的GC主要是对常量池的回收和对类的卸载，虽然回收的“成绩”一般也比较差强人意，尤其是类卸载，条件相当苛刻。<br><strong>6.常量池</strong><br> Class文件中除了有类的版本、字段、方法、接口等描述等信息外，还有一项信息是常量表(constant_pool table)，用于存放编译期已可知的常量，这部分内容将在类加载后进入方法区（永久代）存放。但是Java语言并不要求常量一定只有编译期预置入Class的常量表的内容才能进入方法区常量池，运行期间也可将新内容放入常量池（最典型的String.intern()方法）。</p>
-<p>关于垃圾收集，在此不多说，流到垃圾收集那一章再详细说吧。关于java的同步，其实还有基于CPU原语的比较并交换的非阻塞算法（CAS），不过这个在java的并发包里已经实现了很多，因此关于这点，就留到java并发包那一章介绍吧。后面我会专门写一篇文章，JVM内存与垃圾收集。<br>Ref: <a href="http://www.cnblogs.com/dingyingsi/p/3760447.html" target="_blank" rel="external">深入理解JVM—JVM内存模型</a></p>
+<h2 id="JVM内存"><a href="#JVM内存" class="headerlink" title="JVM内存"></a>JVM内存</h2><p>java代码具体执行过程如下图<br><img src="/2017/03/29/Interview-Prepare/JVM_1.jpg" alt="JVM" title="JVM"></p>
+<p>运行时数据区，即jvm内存结构图如下图<br><img src="/2017/03/29/Interview-Prepare/JVM_2.jpg" alt="JVM" title="JVM"></p>
+<p>Java运行时数据区结构<br><strong>a) 程序计数器(PC寄存器)</strong></p>
+<p>由于在JVM中，多线程是通过线程轮流切换来获得CPU执行时间的，因此，在任一具体时刻，一个CPU的内核只会执行一条线程中的指令，因此，为了能够使得每个线程都在线程切换后能够恢复在切 换 之前的程序执行位置，每个线程都需要有自己独立的程序计数器，并且不能互相被干扰，否则就会影响到程序的正常执行次序。因此，可以这么说，程序计数器是每个线程所私有的。由于程序计数器中存储的数据所占空间的大小不会随程序的执行而发生改变，</p>
+<p>因此，对于程序计数器是不会发生内存溢出现象(OutOfMemory)的。</p>
+<p><strong>b) java栈</strong></p>
+<p>Java栈中存放的是一个个的栈帧，每个栈帧对应一个被调用的方法，在栈帧中包括<strong>局部变量表(Local Variables) 、 操作数栈(Operand Stack) 、指向当前方法所属的类的运行时常量池（运行时常量池的概念在方法区部分会谈到） 的引用 (Reference to runtime constant pool)、方法返回地址(Return Address)和一些额外的附加信息</strong>。</p>
+<p>当线程执行一个方法时，就会随之创建一个对应的栈帧，并将建立的栈帧压栈。当方法执行完毕之后，便会将栈帧出栈。<br><img src="/2017/03/29/Interview-Prepare/JVM_3.jpg" alt="JVM" title="JVM"></p>
+<p><strong>c）本地方法栈</strong></p>
+<p>本地方法栈与Java栈的作用和原理非常相似。区别只不过是Java栈是为执行Java方法服务的，而本地方法栈则是为执行本地方法（Native Method）服务的.<br>本地方法调用的三种需求</p>
+<ol>
+<li>代码在其他语言上进行了大量的测试</li>
+<li>对效率要求比较高,如Math.exp(),Math.log()</li>
+<li>与系统或硬件交互,如System.out()</li>
+</ol>
+<p><strong>d）堆</strong></p>
+<p>Java中的堆是用来存储对象本身的以及数组（数组引用是存放在Java栈中的）。堆是被所有线程共享的，在JVM中只有一个堆。</p>
+<p>Java 6中的堆结构是这样的：<br><img src="/2017/03/29/Interview-Prepare/JVM_HEAP_1.jpg" alt="JVM" title="JVM"></p>
+<h3 id="持久代"><a href="#持久代" class="headerlink" title="持久代"></a>持久代</h3><p>持久代中包含了虚拟机中所有可通过反射获取到的数据，比如Class和Method对象。不同的Java虚拟机之间可能会进行类共享，因此持久代又分为只读区和读写区。</p>
+<p>JVM用于描述应用程序中用到的类和方法的元数据也存储在持久代中。JVM运行时会用到多少持久代的空间取决于应用程序用到了多少类。除此之外，Java SE库中的类和方法也都存储在这里。</p>
+<p>如果JVM发现有的类已经不再需要了，它会去回收（卸载）这些类，将它们的空间释放出来给其它类使用。Full GC会进行持久代的回收。</p>
+<ul>
+<li>JVM中类的元数据在Java堆中的存储区域。</li>
+<li>Java类对应的HotSpot虚拟机中的内部表示也存储在这里。</li>
+<li>类的层级信息，字段，名字。</li>
+<li>方法的编译信息及字节码。</li>
+<li>变量</li>
+<li>常量池和符号解析</li>
+</ul>
+<p><strong>为什么移除持久代</strong></p>
+<ul>
+<li>它的大小是在启动时固定好的——很难进行调优。-XX:MaxPermSize，设置成多少好呢？</li>
+<li>HotSpot的内部类型也是Java对象：它可能会在Full GC中被移动，同时它对应用不透明，且是非强类型的，难以跟踪调试，还需要存储元数据的元数据信息（meta-metadata）。</li>
+<li>简化Full GC：每一个回收器有专门的元数据迭代器。</li>
+<li>可以在GC不进行暂停的情况下并发地释放类数据。</li>
+<li>使得原来受限于持久代的一些改进未来有可能实现</li>
+</ul>
+<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><p>持久代的空间被彻底地删除了，它被一个叫元空间的区域所替代了。持久代删除了之后，很明显，JVM会忽略PermSize和MaxPermSize这两个参数，还有就是你再也看不到java.lang.OutOfMemoryError: PermGen error的异常了。</p>
+<p>JDK 8的HotSpot JVM现在使用的是本地内存来表示类的元数据，这个区域就叫做元空间。</p>
+<p><strong>元空间的特点：</strong></p>
+<ul>
+<li>充分利用了Java语言规范中的好处：类及相关的元数据的生命周期与类加载器的一致。</li>
+<li>每个加载器有专门的存储空间</li>
+<li>只进行线性分配</li>
+<li>不会单独回收某个类</li>
+<li>省掉了GC扫描及压缩的时间</li>
+<li>元空间里的对象的位置是固定的</li>
+<li>如果GC发现某个类加载器不再存活了，会把相关的空间整个回收掉</li>
+</ul>
+<p><strong>元空间的内存分配模型</strong></p>
+<ul>
+<li>绝大多数的类元数据的空间都从本地内存中分配</li>
+<li>用来描述类元数据的类也被删除了</li>
+<li>分元数据分配了多个虚拟内存空间</li>
+<li>给每个类加载器分配一个内存块的列表。块的大小取决于类加载器的类型; sun/反射/代理对应的类加载器的块会小一些</li>
+<li>归还内存块，释放内存块列表</li>
+<li>一旦元空间的数据被清空了，虚拟内存的空间会被回收掉</li>
+<li>减少碎片的策略</li>
+</ul>
+<p><strong>e）方法区</strong></p>
+<p>与堆一样，是被线程共享的区域。在方法区中，存储了每个类的信息（包括类的名称、方法信息、字段信息）、静态变量、常量以及编译器编译后的代码等。<br>在Class文件中除了类的字段、方法、接口等描述信息外，还有一项信息是常量池，用来存储编译期间生成的字面量和符号引用。<br>在方法区中有一个非常重要的部分就是运行时常量池，它是每一个类或接口的常量池的运行时表示形式，在类和接口被加载到JVM后，<br>对应的运行时常量池就被创建出来。当然并非Class文件常量池中的内容才能进入运行时常量池，在运行期间也可将新的常量放入运行时常量池中，比如String的intern方法。</p>
+<h3 id="JVM内存溢出的情况"><a href="#JVM内存溢出的情况" class="headerlink" title="JVM内存溢出的情况"></a>JVM内存溢出的情况</h3><img src="/2017/03/29/Interview-Prepare/JVM_4.jpg" alt="JVM" title="JVM">
+<p>Ref: <a href="http://www.cnblogs.com/dingyingsi/p/3760447.html" target="_blank" rel="external">深入理解JVM—JVM内存模型</a><br>Ref: <a href="http://www.tuicool.com/articles/bmQjyiR" target="_blank" rel="external">jvm内存模型和内存分配</a></p>
 <hr>
 <h2 id="Java内存回收"><a href="#Java内存回收" class="headerlink" title="Java内存回收"></a>Java内存回收</h2><p>虚拟机中的共划分为三个代：年轻代（Young Generation）、老年代（Old Generation）和持久代（Permanent Generation）。其中持久代主要存放的是Java类的类信息，与垃圾收集要收集的Java对象关系不大。年轻代和年老代的划分是对垃圾收集影响比较大的。    </p>
 <p><strong>年轻代</strong><br>所有新生成的对象首先都是放在年轻代的。年轻代的目标就是尽可能快速的收集掉那些生命周期短的对象。年轻代分三个区。一个Eden区，两个Survivor区(一般而言)。大部分对象在Eden区中生成。当Eden区满时，还存活的对象将被复制到Survivor区（两个中的一个），当这个Survivor区满时，此区的存活对象将被复制到另外一个Survivor区，当这个Survivor去也满了的时候，从第一个Survivor区复制过来的并且此时还存活的对象，将被复制“年老区(Tenured)”。需要注意，Survivor的两个区是对称的，没先后关系，所以同一个区中可能同时存在从Eden复制过来 对象，和从前一个Survivor复制过来的对象，而复制到年老区的只有从第一个Survivor去过来的对象。而且，Survivor区总有一个是空的。同时，根据程序需要，Survivor区是可以配置为多个的（多于两个），这样可以增加对象在年轻代中的存在时间，减少被放到年老代的可能。</p>
 <p><strong>年老代</strong><br>在年轻代中经历了N次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象。</p>
-<p><strong>持久代</strong><br>用于存放静态文件，如今Java类、方法等。持久代对垃圾回收没有显著影响，但是有些应用可能动态生成或者调用一些class，例如Hibernate等，在这种时候需要设置一个比较大的持久代空间来存放这些运行过程中新增的类。持久代大小通过-XX:MaxPermSize=<n>进行设置。</n></p>
+<p><strong>持久代</strong>(Not supported in Java 8)<br>用于存放静态文件，如今Java类、方法等。持久代对垃圾回收没有显著影响，但是有些应用可能动态生成或者调用一些class，例如Hibernate等，在这种时候需要设置一个比较大的持久代空间来存放这些运行过程中新增的类。持久代大小通过-XX:MaxPermSize=<n>进行设置。</n></p>
 <p><strong>Scavenge GC</strong><br>一般情况下，当新对象生成，并且在Eden申请空间失败时，就会触发Scavenge GC，对Eden区域进行GC，清除非存活对象，并且把尚且存活的对象移动到Survivor区。然后整理Survivor的两个区。这种方式的GC是对年轻代的Eden区进行，不会影响到年老代。因为大部分对象都是从Eden区开始的，同时Eden区不会分配的很大，所以Eden区的GC会频繁进行。因而，一般在这里需要使用速度快、效率高的算法，使Eden去能尽快空闲出来。</p>
 <p><strong>Full GC</strong><br>对整个堆进行整理，包括Young、Tenured和Perm。Full GC因为需要对整个对进行回收，所以比Scavenge GC要慢，因此应该尽可能减少Full GC的次数。在对JVM调优的过程中，很大一部分工作就是对于FullGC的调节。有如下原因可能导致Full GC：</p>
 <ul>
@@ -156,6 +348,16 @@
 <li>持久代（Perm）被写满</li>
 <li>System.gc()被显示调用</li>
 <li>上一次GC之后Heap的各域分配策略动态变化</li>
+</ul>
+<hr>
+<h2 id="Java反射机制详解"><a href="#Java反射机制详解" class="headerlink" title="Java反射机制详解"></a>Java反射机制详解</h2><h3 id="反射机制是什么"><a href="#反射机制是什么" class="headerlink" title="反射机制是什么"></a>反射机制是什么</h3><p>反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。</p>
+<h3 id="反射机制能做什么"><a href="#反射机制能做什么" class="headerlink" title="反射机制能做什么"></a>反射机制能做什么</h3><p>反射机制主要提供了以下功能： </p>
+<ul>
+<li>在运行时判断任意一个对象所属的类；</li>
+<li>在运行时构造任意一个类的对象；</li>
+<li>在运行时判断任意一个类所具有的成员变量和方法；</li>
+<li>在运行时调用任意一个对象的方法；</li>
+<li>生成动态代理。</li>
 </ul>
 <hr>
 <h2 id="ThreadPool"><a href="#ThreadPool" class="headerlink" title="ThreadPool"></a>ThreadPool</h2><p><strong>为什么要用线程池:</strong></p>
@@ -186,8 +388,26 @@
 <li>keepAliveTime（线程活动保持时间）：线程池的工作线程空闲后，保持存活的时间。所以如果任务很多，并且每个任务执行的时间比较短，可以调大这个时间，提高线程的利用率。</li>
 <li>TimeUnit（线程活动保持时间的单位）：可选的单位有天（DAYS），小时（HOURS），分钟（MINUTES），毫秒(MILLISECONDS)，微秒(MICROSECONDS, 千分之一毫秒)和毫微秒(NANOSECONDS, 千分之一微秒)。</li>
 </ul>
-<p>Ref:<a href="https://www.oschina.net/question/565065_86540" target="_blank" rel="external">Java线程池使用说明</a></p>
-<h2 id="Ref-【Java高级】ThreadPool用法与优势"><a href="#Ref-【Java高级】ThreadPool用法与优势" class="headerlink" title="Ref:【Java高级】ThreadPool用法与优势"></a>Ref:<a href="http://blog.csdn.net/scboyhj__/article/details/48805881" target="_blank" rel="external">【Java高级】ThreadPool用法与优势</a></h2>]]></content>
+<h4 id="newCachedThreadPool"><a href="#newCachedThreadPool" class="headerlink" title="newCachedThreadPool()"></a><strong>newCachedThreadPool()</strong></h4><p>创建一个可缓存的线程池，即这个线程池是无界线程池，无界指工作线程的创建数量几乎没有限制(其实也有限制的,数目为Interger.MAX_VALUE),这样可以灵活的往线程池中添加数据；可以进行自动线程回收指的是如果长时间没有往线程池中提交任务，即如果工作线程空闲了指定的时间，则该工作线程将自动终止。终止后，如果你又提交了新的任务，则线程池重新创建一个工作线程。</p>
+<h4 id="newFixedThreadPool-int"><a href="#newFixedThreadPool-int" class="headerlink" title="newFixedThreadPool(int)"></a>newFixedThreadPool(int)</h4><p>固定大小线程池这个很好理解，就是创建一个指定工作线程数量的线程池，如果线程达到设置的最大数，就将提交的任务放到线程池的队列中。一个典型且优秀的线程池，它具有线程池提高程序效率和节省创建线程时所耗的开销的优点。但在线程池空闲时，即线程池中没有可运行任务时，它不会释放工作线程，还会占用一定的系统资源。</p>
+<h4 id="newSingleThreadExecutor"><a href="#newSingleThreadExecutor" class="headerlink" title="newSingleThreadExecutor()"></a>newSingleThreadExecutor()</h4><p>  单线程线程池，只创建唯一的线程来执行任务，如果这个线程异常结束，会有另一个取代它，保证顺序执行。</p>
+<h4 id="newScheduledThreadPool-int-corePoolSize"><a href="#newScheduledThreadPool-int-corePoolSize" class="headerlink" title="newScheduledThreadPool(int corePoolSize)"></a>newScheduledThreadPool(int corePoolSize)</h4><p>线程池能按时间计划来执行任务，允许用户设定计划执行任务的时间。参数corePoolSize设定线程池中线程的最小数目。当任务较多时，线程池可能会创建更多的工作线程来执行任务</p>
+<p>newCachedThreadPool的参数为SynchronousQueue，newFixedThreadPool和newSingleThreadExecutor的参数都为LinkedBlockingQueue.</p>
+<h4 id="合理的配置线程池"><a href="#合理的配置线程池" class="headerlink" title="合理的配置线程池"></a>合理的配置线程池</h4><p>要想合理的配置线程池，就必须首先分析任务特性，可以从以下几个角度来进行分析：</p>
+<ol>
+<li>任务的性质：CPU密集型任务，IO密集型任务和混合型任务。</li>
+<li>任务的优先级：高，中和低。</li>
+<li>任务的执行时间：长，中和短。</li>
+<li>任务的依赖性：是否依赖其他系统资源，如数据库连接。</li>
+</ol>
+<p>任务性质不同的任务可以用不同规模的线程池分开处理。CPU密集型任务配置尽可能小的线程，如配置Ncpu+1个线程的线程池。IO密集型任务则由于线程并不是一直在执行任务，则配置尽可能多的线程，如2*Ncpu。混合型的任务，如果可以拆分，则将其拆分成一个CPU密集型任务和一个IO密集型任务，只要这两个任务执行的时间相差不是太大，那么分解后执行的吞吐率要高于串行执行的吞吐率，如果这两个任务执行时间相差太大，则没必要进行分解。我们可以通过Runtime.getRuntime().availableProcessors()方法获得当前设备的CPU个数。</p>
+<p>优先级不同的任务可以使用优先级队列PriorityBlockingQueue来处理。它可以让优先级高的任务先得到执行，需要注意的是如果一直有优先级高的任务提交到队列里，那么优先级低的任务可能永远不能执行。</p>
+<p>执行时间不同的任务可以交给不同规模的线程池来处理，或者也可以使用优先级队列，让执行时间短的任务先执行。</p>
+<p>依赖数据库连接池的任务，因为线程提交SQL后需要等待数据库返回结果，如果等待的时间越长CPU空闲时间就越长，那么线程数应该设置越大，这样才能更好的利用CPU。</p>
+<p>建议使用有界队列，有界队列能增加系统的稳定性和预警能力，可以根据需要设大一点，比如几千。有一次我们组使用的后台任务线程池的队列和线程池全满了，不断的抛出抛弃任务的异常，通过排查发现是数据库出现了问题，导致执行SQL变得非常缓慢，因为后台任务线程池里的任务全是需要向数据库查询和插入数据的，所以导致线程池里的工作线程全部阻塞住，任务积压在线程池里。如果当时我们设置成无界队列，线程池的队列就会越来越多，有可能会撑满内存，导致整个系统不可用，而不只是后台任务出现问题。当然我们的系统所有的任务是用的单独的服务器部署的，而我们使用不同规模的线程池跑不同类型的任务，但是出现这样问题时也会影响到其他任务。</p>
+<p>Ref:<a href="https://www.oschina.net/question/565065_86540" target="_blank" rel="external">Java线程池使用说明</a><br>Ref:<a href="http://blog.csdn.net/scboyhj__/article/details/48805881" target="_blank" rel="external">【Java高级】ThreadPool用法与优势</a></p>
+<hr>
+]]></content>
     </entry>
     
     <entry>
@@ -1508,10 +1728,10 @@
 <li><p>多说评论框 : 多说评论框默认的样式确实比较丑，请看这里美哭的效果：<a href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="external">多说自定义CSS 让你的多说评论动感起来</a>；另外，在设置<strong>评论显示样式</strong>时，可以设置为<strong>嵌套显示</strong>，美观了不少。</p>
 </li>
 <li><p>生成favicon : 所谓<a href="http://baike.baidu.com/link?url=shMog2srG2OphNuZNmQ8LseNMOWIrNwyppJ1YP0TwDp3VUYnzBjiPqb41Cqjr-84wwhZnG55cN_-Cp40ybKjNa" target="_blank" rel="external">favicon</a>,即Favorites Icon,顾名思义，就是收藏夹图标，也是地址栏左边的图标。如果没有设置favicon,地址栏左边就是一片空白，把favicon成你喜欢的图片，打造个性化标志，博客瞬间生动了不少。这里推荐一个网站，可以在线生成favicon,简单实用：<a href="http://www.atool.org/ico.php" target="_blank" rel="external">在线透明favicon ico图标文件制作 - aTool在线工具</a>。生成favcion后，再按照NexT官方文档的方法，就能设置favicon了。</p>
-<h2 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h2><p>NexT 支持 <a href="http://duoshuo.com/" target="_blank" rel="external">多说</a> 和 <a href="https://disqus.com/" target="_blank" rel="external">DISQUS</a> 评论系统。 当同时设置了多说和DISQUS时，优先选择多说。 NexT内置了一套多说的样式。<br><strong>如需取消某个 页面/文章 的评论，在 md 文件的 <a href="https://hexo.io/docs/front-matter.html" target="_blank" rel="external">front-matter</a> 中增加<code>comments: false</code> </strong></p>
-<h3 id="多说"><a href="#多说" class="headerlink" title="多说"></a>多说</h3><p>使用多说前需要先在<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a> 创建一个站点。具体步骤如下：</p>
 </li>
 </ul>
+<h2 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h2><p>NexT 支持 <a href="http://duoshuo.com/" target="_blank" rel="external">多说</a> 和 <a href="https://disqus.com/" target="_blank" rel="external">DISQUS</a> 评论系统。 当同时设置了多说和DISQUS时，优先选择多说(已宣布2017/06关闭)。 NexT内置了一套多说的样式。<br><strong>如需取消某个 页面/文章 的评论，在 md 文件的 <a href="https://hexo.io/docs/front-matter.html" target="_blank" rel="external">front-matter</a> 中增加<code>comments: false</code> </strong></p>
+<h3 id="多说-已宣布2017-06关闭"><a href="#多说-已宣布2017-06关闭" class="headerlink" title="多说(已宣布2017/06关闭)"></a>多说(已宣布2017/06关闭)</h3><p>使用多说前需要先在<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a> 创建一个站点。具体步骤如下：</p>
 <ol>
 <li>登录后在首页选择 “我要安装”。</li>
 <li><p>创建站点，填写表单。<strong>多说域名</strong>这一栏填写的即是你的 <code>duoshuo_shortname</code>，如图：</p>
@@ -1524,6 +1744,7 @@
 <h4 id="多说分享"><a href="#多说分享" class="headerlink" title="多说分享"></a>多说分享</h4><p>多说分享必须与多说评论同时使用</p>
 <p>编辑 <strong>站点配置文件</strong>， 添加字段<code>duoshuo_share</code>， 值为<code>true</code>。<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 多说分享服务</span></div><div class="line"><span class="attr">duoshuo_share:</span> <span class="literal">true</span></div></pre></td></tr></table></figure></p>
 <h3 id="DISUQS"><a href="#DISUQS" class="headerlink" title="DISUQS"></a>DISUQS</h3><p>编辑<strong>站点配置文件</strong>， 添加 <code>disqus_shortname</code>字段，设置如下：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">disqus_shortname:</span> your-disqus-shortname</div></pre></td></tr></table></figure></p>
+<p>进入disqus官网， 点击下图示意的位置，给自己的网站添加disqus，<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/disqus_1.png" alt="disqus_1.png" title=""><br>点击后，出现下图，输入网站名字。然后在第二个输入框填写自己的唯一disqus识别名称，这个名称会在后面用到，比如我这里填写的是我最常用的absea。然后点击Next按钮<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/disqus_2.png" alt="disqus_2.png" title=""><br>上面点击Next后就会出现下面页面，这里面会有disqus在不同博客系统上或者其他系统上对应的代码。因为hexo自带支持disqus，所以不需要这里面的代码，这个页面的内容会在其他除hexo之外的博客系统中用到，如果是hexo搭建博客disqus，可以跳过。<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/disqus_3.png" alt="disqus_3.png" title=""><br>然后在主题的配置文件_config.yml的disqus后面添加step 2中使用的唯一的disqus识别名字。<br><img src="/2016/08/23/利用GitHub-Pages和Hexo快速搭建个人博客/disqus_4.png" alt="disqus_4.png" title=""><br>然后就配置好啦！</p>
 <h2 id="搜索服务-Local-Search"><a href="#搜索服务-Local-Search" class="headerlink" title="搜索服务(Local Search)"></a>搜索服务(Local Search)</h2><p>添加百度/谷歌/本地 自定义站点内容搜索</p>
 <ol>
 <li><p>安装 hexo-generator-search，在站点的根目录下执行以下命令：</p>

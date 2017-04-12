@@ -1,0 +1,929 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="baidu-site-verification" content="SjzK8OEtoc" />
+<meta name="google-site-verification" content="bA1EerR_bNYAYfaP2nkHs-XeqIviTDWTI96YeW_6IkU" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LeetCode," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="LeetCode Weekly Contest 26[2017-04-02]
+
+Longest Uncommon Subsequence I
+Longest Uncommon Subsequence II
+Friend Circles
+Split Array with Equal Sum">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Weekly Contest 26">
+<meta property="og:url" content="http://wlyPKU.github.io/2017/04/02/Leetcode-week26/index.html">
+<meta property="og:site_name" content="小小小宇">
+<meta property="og:description" content="LeetCode Weekly Contest 26[2017-04-02]
+
+Longest Uncommon Subsequence I
+Longest Uncommon Subsequence II
+Friend Circles
+Split Array with Equal Sum">
+<meta property="og:updated_time" content="2017-04-02T08:00:20.707Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode Weekly Contest 26">
+<meta name="twitter:description" content="LeetCode Weekly Contest 26[2017-04-02]
+
+Longest Uncommon Subsequence I
+Longest Uncommon Subsequence II
+Friend Circles
+Split Array with Equal Sum">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wlyPKU.github.io/2017/04/02/Leetcode-week26/"/>
+
+  <title> LeetCode Weekly Contest 26 | 小小小宇 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小小小宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/categories/LeetCode" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Leetcode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LeetCode Weekly Contest 26
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-02T14:20:56+08:00" content="2017-04-02">
+              2017-04-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/02/Leetcode-week26/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/02/Leetcode-week26/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>LeetCode Weekly Contest 26<br>[2017-04-02]</p>
+<ol>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-26/problems/longest-uncommon-subsequence-i/" target="_blank" rel="external">Longest Uncommon Subsequence I</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-26/problems/longest-uncommon-subsequence-ii/" target="_blank" rel="external">Longest Uncommon Subsequence II</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-26/problems/friend-circles/" target="_blank" rel="external">Friend Circles</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-26/problems/split-array-with-equal-sum/" target="_blank" rel="external">Split Array with Equal Sum</a><a id="more"></a>
+</li>
+</ol>
+<hr>
+<h1 id="Longest-Uncommon-Subsequence-I"><a href="#Longest-Uncommon-Subsequence-I" class="headerlink" title="Longest Uncommon Subsequence I"></a>Longest Uncommon Subsequence I</h1><p>Given a group of two strings, you need to find the longest uncommon subsequence of this group of two strings. The longest uncommon subsequence is defined as the longest subsequence of one of these strings and this subsequence should not be any subsequence of the other strings.</p>
+<p>A <strong>subsequence</strong> is a sequence that can be derived from one sequence by deleting some characters without changing the order of the remaining elements. Trivially, any string is a subsequence of itself and an empty string is a subsequence of any string.</p>
+<p>The input will be two strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn’t exist, return -1.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: <span class="string">"aba"</span>, <span class="string">"cdc"</span></div><div class="line">Output: <span class="number">3</span></div><div class="line">Explanation: The longest uncommon subsequence is <span class="string">"aba"</span> (<span class="keyword">or</span> <span class="string">"cdc"</span>), </div><div class="line">because <span class="string">"aba"</span> is <span class="keyword">a</span> subsequence <span class="keyword">of</span> <span class="string">"aba"</span>, </div><div class="line">but <span class="keyword">not</span> <span class="keyword">a</span> subsequence <span class="keyword">of</span> <span class="keyword">any</span> other strings <span class="keyword">in</span> <span class="keyword">the</span> group <span class="keyword">of</span> <span class="literal">two</span> strings.</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Both strings’ lengths will not exceed 100.</li>
+<li>Only letters from a ~ z will appear in input strings.</li>
+</ul>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><p>两个字符串相同就无解;<br>否则输出两个字符串的长度中较大者;<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">int</span> findLUSlength(<span class="keyword">string</span> a, <span class="keyword">string</span> b) &#123;</div><div class="line">        <span class="built_in">if</span> (a == b)</div><div class="line">            <span class="built_in">return</span> <span class="number">-1</span>;</div><div class="line">        <span class="built_in">return</span> <span class="built_in">max</span>(<span class="keyword">int</span>(a.<span class="built_in">size</span>()), <span class="keyword">int</span>(b.<span class="built_in">size</span>()));</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="Longest-Uncommon-Subsequence-II"><a href="#Longest-Uncommon-Subsequence-II" class="headerlink" title="Longest Uncommon Subsequence II"></a>Longest Uncommon Subsequence II</h1><p>Given a list of strings, you need to find the longest uncommon subsequence among them. The longest uncommon subsequence is defined as the longest subsequence of one of these strings and this subsequence should not be <strong>any</strong> subsequence of the other strings.</p>
+<p>A <strong>subsequence</strong> is a sequence that can be derived from one sequence by deleting some characters without changing the order of the remaining elements. Trivially, any string is a subsequence of itself and an empty string is a subsequence of any string.</p>
+<p>The input will be a list of strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn’t exist, return -1.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Input:</span> <span class="string">"aba"</span>, <span class="string">"cdc"</span>, <span class="string">"eae"</span></div><div class="line"><span class="symbol">Output:</span> <span class="number">3</span></div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All the given strings’ lengths will not exceed 10.</li>
+<li>The length of the given list will be in the range of [2, 50].</li>
+</ul>
+<h2 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h2><p>因为最大长度为10;<br>所以把每个长度有哪些字符串记录下来;<br>然后从字符串长度由大到小枚举len;<br>假设这个答案序列为len长度的某个字符串;<br>然后看看len长度的字符串有没有和它一样的字符串(即出现两次及以上)<br>有的话不行,找另外一个长度为len的字符串;<br>否则<br>再看看这个字符串是不是长度比len长的字符串的子串；<br>如果不是的话;<br>就表示找到了;<br>直接输出len;<br>否则继续找长度为len的另外的字符串;<br>判断一个字符串是不是另外一个字符串的子串其实很简单的；<br>O(l1+l2)就能判断出来;<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">bool</span> judge(<span class="keyword">string</span> s, vector&lt;<span class="keyword">string</span>&gt;&amp; strs)&#123;</div><div class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.<span class="built_in">size</span>(); i++)&#123;</div><div class="line">            <span class="keyword">int</span> idx = <span class="number">0</span>;</div><div class="line">            <span class="built_in">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; strs[i].<span class="built_in">size</span>(); j++)&#123;</div><div class="line">                <span class="built_in">if</span>(idx == s.<span class="built_in">size</span>())&#123;</div><div class="line">                    <span class="built_in">break</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="built_in">if</span>(s[idx] == strs[i][j])&#123;</div><div class="line">                    idx++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">if</span>(idx == s.<span class="built_in">size</span>())&#123;</div><div class="line">                cnt++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">if</span>(cnt == <span class="number">1</span>)&#123;</div><div class="line">            <span class="built_in">return</span> true;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">return</span> false;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> findLUSlength(vector&lt;<span class="keyword">string</span>&gt;&amp; strs) &#123;</div><div class="line">        <span class="built_in">map</span>&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; m;</div><div class="line">        <span class="keyword">int</span> maxLength = <span class="number">-1</span>;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> s = <span class="number">0</span>; s &lt; strs.<span class="built_in">size</span>(); s++)&#123;</div><div class="line">            <span class="keyword">string</span> a = strs[s];</div><div class="line">            <span class="comment">/*Method 1</span></div><div class="line">			 When we add a letter Y to our candidate longest uncommon subsequence answer of X, </div><div class="line">			 it only makes it strictly harder to find a common subsequence. Thus our candidate</div><div class="line">			 longest uncommon subsequences will be chosen from the group of words itself.</div><div class="line">			   m[a]++;</div><div class="line">			*/</div><div class="line">			<span class="comment">/*Method 2*/</span></div><div class="line">			<span class="built_in">for</span>(<span class="keyword">int</span> i = a.<span class="built_in">size</span>(); i &gt;= <span class="number">1</span>; i--)&#123;</div><div class="line">                <span class="built_in">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= a.<span class="built_in">size</span>() - i; j++)&#123;</div><div class="line">                    <span class="built_in">if</span>(m.<span class="built_in">find</span>(a.substr(j, i)) == m.<span class="built_in">end</span>())&#123;</div><div class="line">                        m.insert(<span class="built_in">map</span>&lt;<span class="keyword">string</span>,<span class="keyword">int</span>&gt;::value_type(a.substr(j, i), <span class="number">1</span>));</div><div class="line">                    &#125;<span class="built_in">else</span>&#123;</div><div class="line">                        m[a.substr(j, i)] ++;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">auto</span> ite = m.<span class="built_in">begin</span>(); ite!= m.<span class="built_in">end</span>(); ite++)&#123;</div><div class="line">            <span class="keyword">string</span> sd = ite-&gt;first;</div><div class="line">            <span class="keyword">int</span> i = ite-&gt;second;</div><div class="line">            <span class="built_in">if</span>(i == <span class="number">1</span>)&#123;</div><div class="line">                <span class="built_in">if</span>(judge(sd, strs))</div><div class="line">                maxLength = <span class="built_in">max</span>(maxLength, (<span class="keyword">int</span>)sd.<span class="built_in">size</span>());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">return</span> maxLength;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="Friend-Circles"><a href="#Friend-Circles" class="headerlink" title="Friend Circles"></a>Friend Circles</h1><p>There are <strong>N</strong> students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a <strong>direct</strong> friend of B, and B is a <strong>direct</strong> friend of C, then A is an <strong>indirect</strong> friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.</p>
+<p>Given a <strong>N*N</strong> matrix <strong>M</strong> representing the friend relationship between students in the class. If M[i][j] = 1, then the ith and jth students are <strong>direct</strong> friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line"><span class="string">[[1,1,0],</span></div><div class="line"> [1,1,0],</div><div class="line"> [0,0,1]]</div><div class="line">Output: <span class="number">2</span></div><div class="line">Explanation:The <span class="number">0</span>th <span class="keyword">and</span> <span class="number">1</span>st students are direct friends, so they are <span class="keyword">in</span> a friend circle. </div><div class="line">The <span class="number">2</span>nd student himself is <span class="keyword">in</span> a friend circle. So <span class="keyword">return</span> <span class="number">2.</span></div></pre></td></tr></table></figure></p>
+<p><strong>Example 2:</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Inpu<span class="variable">t:</span> </div><div class="line">[[<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</div><div class="line"> [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],</div><div class="line"> [<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>]]</div><div class="line">Outpu<span class="variable">t:</span> <span class="number">1</span></div><div class="line">Explanation:The <span class="number">0</span><span class="keyword">th</span> <span class="built_in">and</span> <span class="number">1</span><span class="keyword">st</span> students are direct friends, the <span class="number">1</span><span class="keyword">st</span> <span class="built_in">and</span> <span class="number">2</span>nd students are direct friends, </div><div class="line"><span class="keyword">so</span> the <span class="number">0</span><span class="keyword">th</span> <span class="built_in">and</span> <span class="number">2</span>nd students are indirect friends. All of them are in the same friend circle, <span class="keyword">so</span> <span class="keyword">return</span> <span class="number">1</span>.</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>N is in range [1,200].</li>
+<li>M[i][i] = 1 for all students.</li>
+<li>If M[i][j] = 1, then M[j][i] = 1.</li>
+</ul>
+<h2 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">int</span>* unionFind;</div><div class="line">    <span class="keyword">void</span> unionFunction(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> unionFind[], <span class="keyword">int</span> <span class="built_in">size</span>)&#123;</div><div class="line">        <span class="built_in">if</span>(i == j)&#123;</div><div class="line">            <span class="built_in">return</span> ;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> tmpI = i;</div><div class="line">        <span class="built_in">while</span>(tmpI != unionFind[tmpI])&#123;</div><div class="line">            tmpI = unionFind[tmpI];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> tmpJ = j;</div><div class="line">        <span class="built_in">while</span>(tmpJ != unionFind[tmpJ])&#123;</div><div class="line">            tmpJ = unionFind[tmpJ];</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">if</span>(tmpJ &gt; tmpI)&#123;</div><div class="line">            unionFind[tmpJ] = tmpI;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">if</span>(tmpJ &lt; tmpI)&#123;</div><div class="line">            unionFind[tmpI] = tmpJ;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> findCircleNum(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; M) &#123;</div><div class="line">        <span class="keyword">int</span>* unionFind = <span class="keyword">new</span> <span class="keyword">int</span>[M.<span class="built_in">size</span>()];</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M.<span class="built_in">size</span>(); i++)&#123;</div><div class="line">            unionFind[i] = i;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M.<span class="built_in">size</span>(); i++)&#123;</div><div class="line">            <span class="built_in">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M.<span class="built_in">size</span>(); j++)&#123;</div><div class="line">                <span class="built_in">if</span>(M[i][j])</div><div class="line">                unionFunction(i, j, unionFind,M.<span class="built_in">size</span>());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        set&lt;<span class="keyword">int</span>&gt; s;</div><div class="line">        <span class="built_in">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; M.<span class="built_in">size</span>(); i++)&#123;</div><div class="line">            <span class="built_in">if</span>(i == unionFind[i])</div><div class="line">            s.insert(i);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">return</span> s.<span class="built_in">size</span>();</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Split-Array-with-Equal-Sum"><a href="#Split-Array-with-Equal-Sum" class="headerlink" title="Split Array with Equal Sum"></a>Split Array with Equal Sum</h1><p>Given an array with n integers, you need to find if there are triplets (i, j, k) which satisfies following conditions:</p>
+<ol>
+<li>0 &lt; i, i + 1 &lt; j, j + 1 &lt; k &lt; n - 1</li>
+<li>Sum of subarrays (0, i - 1), (i + 1, j - 1), (j + 1, k - 1) and (k + 1, n - 1) should be equal.</li>
+</ol>
+<p>where we define that subarray (L, R) represents a slice of the original array starting from the element indexed L to the element indexed R.</p>
+<p><strong>Example:</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]</div><div class="line">Output: True</div><div class="line">Explanation:</div><div class="line"><span class="selector-tag">i</span> = <span class="number">1</span>, j = <span class="number">3</span>, k = <span class="number">5</span>. </div><div class="line"><span class="function"><span class="title">sum</span><span class="params">(<span class="number">0</span>, i - <span class="number">1</span>)</span></span> = sum(<span class="number">0</span>, <span class="number">0</span>) = <span class="number">1</span></div><div class="line"><span class="function"><span class="title">sum</span><span class="params">(i + <span class="number">1</span>, j - <span class="number">1</span>)</span></span> = sum(<span class="number">2</span>, <span class="number">2</span>) = <span class="number">1</span></div><div class="line"><span class="function"><span class="title">sum</span><span class="params">(j + <span class="number">1</span>, k - <span class="number">1</span>)</span></span> = sum(<span class="number">4</span>, <span class="number">4</span>) = <span class="number">1</span></div><div class="line"><span class="function"><span class="title">sum</span><span class="params">(k + <span class="number">1</span>, n - <span class="number">1</span>)</span></span> = sum(<span class="number">6</span>, <span class="number">6</span>) = <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>1 &lt;= n &lt;= 2000.</li>
+<li>Elements in the given array will be in range [-1,000,000, 1,000,000].</li>
+</ul>
+<h2 id="code-3"><a href="#code-3" class="headerlink" title="code"></a>code</h2><p>先枚举要删除的3个元素中的中间那个元素j;<br>然后把整个序列分成左边和右边两个部分;<br>然后再左边的序列中枚举i;<br>然后把0..j-1分成0..i-1和i+1..j-1两个部分;<br>然后看这两个部分各自的和是不是相同;<br>相同的话把和用map记录一下;<br>然后再枚举<br>右半部分即第3个元素k;<br>分成<br>j+1..k-1和k+1..n-1两个部分;<br>看看各自的和是不是相同;<br>相同的话,看看刚才左半部分记录的map里面有没有这个和;<br>有的话输出true<br>复杂度接近O(n^2)吧-&gt;用了map哦。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">map</span> &lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; dic;</div><div class="line">	<span class="keyword">int</span> pre[N],n;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">splitArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line">        n = nums.size();</div><div class="line">        pre[<span class="number">0</span>] = nums[<span class="number">0</span>];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;  i &lt; n; i++)</div><div class="line">        &#123;</div><div class="line">            pre[i] = pre[i - <span class="number">1</span>] + nums[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;  j &lt; n - <span class="number">1</span>; j++)</div><div class="line">        &#123;</div><div class="line">            dic.clear();</div><div class="line">            <span class="keyword">int</span> l = <span class="number">0</span>, r = j - <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = l + <span class="number">1</span>;  i &lt; r; i++)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span> (pre[i] - nums[i] == pre[r] - pre[i])</div><div class="line">                &#123;</div><div class="line">                    dic[pre[r] - pre[i]] = <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            l = j + <span class="number">1</span>, r = n - <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = l + <span class="number">1</span>;  i &lt; r; i++)</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">if</span> (dic[pre[r] - pre[i]] &amp;&amp; (pre[i] - nums[i] - pre[j]) == (pre[r] - pre[i]))</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/29/Class-imbalance-in-classification/" rel="next" title="Class imbalance in classification">
+                <i class="fa fa-chevron-left"></i> Class imbalance in classification
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww3.sinaimg.cn/mw690/770b0925jw8f39az302pwj20w00w0dnd.jpg"
+               alt="wlyPKU" />
+          <p class="site-author-name" itemprop="name">wlyPKU</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlyPKU" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wangly2011/profile" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/wangly.cs" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Longest-Uncommon-Subsequence-I"><span class="nav-number">1.</span> <span class="nav-text">Longest Uncommon Subsequence I</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">1.1.</span> <span class="nav-text">code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Longest-Uncommon-Subsequence-II"><span class="nav-number">2.</span> <span class="nav-text">Longest Uncommon Subsequence II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code-1"><span class="nav-number">2.1.</span> <span class="nav-text">code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Friend-Circles"><span class="nav-number">3.</span> <span class="nav-text">Friend Circles</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code-2"><span class="nav-number">3.1.</span> <span class="nav-text">code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Split-Array-with-Equal-Sum"><span class="nav-number">4.</span> <span class="nav-text">Split Array with Equal Sum</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code-3"><span class="nav-number">4.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlyPKU</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'wlypku';
+      var disqus_identifier = '2017/04/02/Leetcode-week26/';
+      var disqus_title = "LeetCode Weekly Contest 26";
+      var disqus_url = 'http://wlyPKU.github.io/2017/04/02/Leetcode-week26/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
