@@ -1,0 +1,940 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="baidu-site-verification" content="SjzK8OEtoc" />
+<meta name="google-site-verification" content="bA1EerR_bNYAYfaP2nkHs-XeqIviTDWTI96YeW_6IkU" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LeetCode," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="LeetCode Weekly Contest 28[2017-04-16]
+
+Student Attendance Record I
+Optimal Division
+Split Assembled Strings
+Student Attendance Record II">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Weekly Contest 28">
+<meta property="og:url" content="http://wlyPKU.github.io/2017/04/16/Leetcode-week28/index.html">
+<meta property="og:site_name" content="小小小宇">
+<meta property="og:description" content="LeetCode Weekly Contest 28[2017-04-16]
+
+Student Attendance Record I
+Optimal Division
+Split Assembled Strings
+Student Attendance Record II">
+<meta property="og:updated_time" content="2017-04-16T05:39:54.265Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode Weekly Contest 28">
+<meta name="twitter:description" content="LeetCode Weekly Contest 28[2017-04-16]
+
+Student Attendance Record I
+Optimal Division
+Split Assembled Strings
+Student Attendance Record II">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wlyPKU.github.io/2017/04/16/Leetcode-week28/"/>
+
+  <title> LeetCode Weekly Contest 28 | 小小小宇 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小小小宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/categories/LeetCode" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Leetcode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LeetCode Weekly Contest 28
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-16T13:20:02+08:00" content="2017-04-16">
+              2017-04-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/16/Leetcode-week28/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/16/Leetcode-week28/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>LeetCode Weekly Contest 28<br>[2017-04-16]</p>
+<ol>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-28/problems/student-attendance-record-i/" target="_blank" rel="external">Student Attendance Record I</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-28/problems/optimal-division/" target="_blank" rel="external">Optimal Division</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-28/problems/split-assembled-strings/" target="_blank" rel="external">Split Assembled Strings</a></li>
+<li><a href="https://leetcode.com/contest/leetcode-weekly-contest-28/problems/student-attendance-record-ii/" target="_blank" rel="external">Student Attendance Record II</a><a id="more"></a>
+</li>
+</ol>
+<hr>
+<h1 id="Student-Attendance-Record-I"><a href="#Student-Attendance-Record-I" class="headerlink" title="Student Attendance Record I"></a>Student Attendance Record I</h1><p>You are given a string representing an attendance record for a student. The record only contains the following three characters:</p>
+<ol>
+<li><strong>‘A’</strong> : Absent.</li>
+<li><strong>‘L’</strong> : Late.</li>
+<li><strong>‘P’</strong> : Present.</li>
+</ol>
+<p>A student could be rewarded if his attendance record doesn’t contain <strong>more than one ‘A’ (absent)</strong> or <strong>more than two continuous ‘L’ (late)</strong>.</p>
+<p>You need to return whether the student could be rewarded according to his attendance record.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Input:</span> <span class="string">"PPALLP"</span></div><div class="line"><span class="symbol">Output:</span> True</div></pre></td></tr></table></figure></p>
+<p><strong>Example 2:</strong><br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">Input:</span> <span class="string">"PPALLL"</span></div><div class="line"><span class="symbol">Output:</span> False</div></pre></td></tr></table></figure></p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Solution &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</div><div class="line">        <span class="built_in">multiset</span>&lt;<span class="keyword">char</span>&gt; ss;</div><div class="line">        <span class="keyword">int</span> continuousL  = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</div><div class="line">            <span class="keyword">if</span>(continuousL == <span class="number">2</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(s[i] == <span class="string">'L'</span>)&#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(s[i] == <span class="string">'L'</span>)&#123;</div><div class="line">                continuousL++;</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                continuousL = <span class="number">0</span>;</div><div class="line">            &#125;</div><div class="line">            ss.insert(s[i]);        </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ss.count(<span class="string">'A'</span>) &lt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Optimal-Division"><a href="#Optimal-Division" class="headerlink" title="Optimal Division"></a>Optimal Division</h1><p>Given a list of <strong>positive integers</strong>, the adjacent integers will perform the float division. For example, [2,3,4] -&gt; 2 / 3 / 4.</p>
+<p>However, you can add any number of parenthesis at any position to change the priority of operations. You should find out how to add parenthesis to get the maximum result, and return the corresponding expression in string format. <strong>Your expression should NOT contain redundant parenthesis.</strong></p>
+<p><strong>Example:</strong><br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">1000</span>,<span class="number">100</span>,<span class="number">10</span>,<span class="number">2</span>]</div><div class="line">Output: <span class="string">"1000/(100/10/2)"</span></div><div class="line">Explanation:</div><div class="line"><span class="number">1000</span>/(<span class="number">100</span>/<span class="number">10</span>/<span class="number">2</span>) = <span class="number">1000</span>/((<span class="number">100</span>/<span class="number">10</span>)/<span class="number">2</span>) = <span class="number">200</span></div><div class="line">However, the bold parenthesis <span class="keyword">in</span> <span class="string">"1000/((100/10)/2)"</span> are redundant, </div><div class="line">since they don<span class="comment">'t influence the operation priority. So you should return "1000/(100/10/2)". </span></div><div class="line"></div><div class="line">Other cases:</div><div class="line"><span class="number">1000</span>/(<span class="number">100</span>/<span class="number">10</span>)/<span class="number">2</span> = <span class="number">50</span></div><div class="line"><span class="number">1000</span>/(<span class="number">100</span>/(<span class="number">10</span>/<span class="number">2</span>)) = <span class="number">50</span></div><div class="line"><span class="number">1000</span>/<span class="number">100</span>/<span class="number">10</span>/<span class="number">2</span> = <span class="number">0.5</span></div><div class="line"><span class="number">1000</span>/<span class="number">100</span>/(<span class="number">10</span>/<span class="number">2</span>) = <span class="number">2</span></div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The length of the input array is [1, 10].</li>
+<li>Elements in the given array will be in range [2, 1000].</li>
+<li>There is only one optimal division for each test case.</li>
+</ol>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> Solution &#123;</div><div class="line">    <span class="keyword">public</span> String optimalDivision(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">        StringBuilder builder = <span class="keyword">new</span> StringBuilder();</div><div class="line">        builder.<span class="keyword">append</span>(nums[<span class="number">0</span>]);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i == <span class="number">1</span> &amp;&amp; nums.length &gt; <span class="number">2</span>) &#123;</div><div class="line">                builder.<span class="keyword">append</span>(<span class="string">"/("</span>).<span class="keyword">append</span>(nums[i]);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                builder.<span class="keyword">append</span>(<span class="string">"/"</span>).<span class="keyword">append</span>(nums[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> nums.length &gt; <span class="number">2</span> ? builder.<span class="keyword">append</span>(<span class="string">")"</span>).toString() : builder.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Split-Assembled-Strings"><a href="#Split-Assembled-Strings" class="headerlink" title="Split Assembled Strings"></a>Split Assembled Strings</h1><p>Given a list of strings, you could assemble these strings together into a loop. Among all the possible loops, you need to find the lexicographically biggest string after cutting and making one breakpoint of the loop, which will make a looped string into a regular one.</p>
+<p>So, to find the lexicographically biggest string, you need to experience two phases:</p>
+<ol>
+<li>Assemble all the strings into a loop, where you can reverse some strings or not and connect them in the same order as given.</li>
+<li>Cut and make one breakpoint in any place of the loop, which will make a looped string into a regular string starting from the character at the cutting point.</li>
+</ol>
+<p>And your job is to find the lexicographically biggest one among all the regular strings.</p>
+<p><strong>Example:</strong><br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: <span class="string">"abc"</span>, <span class="string">"xyz"</span></div><div class="line">Output: <span class="string">"zyxcba"</span></div><div class="line">Explanation: You can <span class="built_in">get</span> <span class="keyword">the</span> looped <span class="keyword">string</span> <span class="string">"-abcxyz-"</span>, <span class="string">"-abczyx-"</span>, <span class="string">"-cbaxyz-"</span>, <span class="string">"-cbazyx-"</span>, </div><div class="line">where <span class="string">'-'</span> represents <span class="keyword">the</span> looped status. </div><div class="line">The answer <span class="keyword">string</span> came <span class="built_in">from</span> <span class="keyword">the</span> <span class="keyword">fourth</span> looped <span class="literal">one</span>, </div><div class="line">where you could cut <span class="built_in">from</span> <span class="keyword">the</span> <span class="keyword">middle</span> <span class="keyword">and</span> <span class="built_in">get</span> <span class="string">"zyxcba"</span>.</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The input strings will only contain lowercase letters.</li>
+<li>The total length of all the strings will not over 1000.</li>
+</ol>
+<h2 id="Code-1"><a href="#Code-1" class="headerlink" title="Code:"></a>Code:</h2><figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> class Solution &#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">String</span> splitLoopedString(<span class="keyword">String</span>[] strs) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;</div><div class="line">            <span class="keyword">String</span> rev = <span class="keyword">new</span> StringBuilder(strs[i]).<span class="built_in">reverse</span>().toString();</div><div class="line">            <span class="keyword">if</span> (strs[i].compareTo(rev) &lt; <span class="number">0</span>)</div><div class="line">                strs[i] = rev;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">String</span> res = <span class="string">""</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;</div><div class="line">            <span class="keyword">String</span> rev = <span class="keyword">new</span> StringBuilder(strs[i]).<span class="built_in">reverse</span>().toString();</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">String</span> st: <span class="keyword">new</span> <span class="keyword">String</span>[] &#123;strs[i], rev&#125;) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="built_in">int</span> k = <span class="number">0</span>; k &lt; st.length(); k++) &#123;</div><div class="line">                    StringBuilder t = <span class="keyword">new</span> StringBuilder(st.substring(k));</div><div class="line">                    <span class="keyword">for</span> (<span class="built_in">int</span> j = i + <span class="number">1</span>; j &lt; strs.length; j++)</div><div class="line">                        t.<span class="built_in">append</span>(strs[j]);</div><div class="line">                    <span class="keyword">for</span> (<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; i; j++)</div><div class="line">                        t.<span class="built_in">append</span>(strs[j]);</div><div class="line">                    t.<span class="built_in">append</span>(st.substring(<span class="number">0</span>, k));</div><div class="line">                    <span class="keyword">if</span> (t.toString().compareTo(res) &gt; <span class="number">0</span>)</div><div class="line">                        res = t.toString();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Student-Attendance-Record-II"><a href="#Student-Attendance-Record-II" class="headerlink" title="Student Attendance Record II"></a>Student Attendance Record II</h1><p>Given a positive integer <strong>n</strong>, return the number of all possible attendance records with length n, which will be regarded as rewardable. The answer may be very large, return it after mod 109 + 7.</p>
+<p>A student attendance record is a string that only contains the following three characters:</p>
+<ol>
+<li><strong>‘A’</strong> : Absent.</li>
+<li><strong>‘L’</strong> : Late.</li>
+<li><strong>‘P’</strong> : Present.<br>A record is regarded as rewardable if it doesn’t contain <strong>more than one ‘A’ </strong>(absent) or<strong> more than two continuous ‘L’</strong> (late).</li>
+</ol>
+<p><strong>Example 1:</strong><br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: n = <span class="number">2</span></div><div class="line">Output: <span class="number">8</span> </div><div class="line">Explanation:</div><div class="line">There are <span class="number">8</span> records <span class="keyword">with</span> <span class="built_in">length</span> <span class="number">2</span> will be regarded <span class="keyword">as</span> rewardable:</div><div class="line"><span class="string">"PP"</span> , <span class="string">"AP"</span>, <span class="string">"PA"</span>, <span class="string">"LP"</span>, <span class="string">"PL"</span>, <span class="string">"AL"</span>, <span class="string">"LA"</span>, <span class="string">"LL"</span></div><div class="line">Only <span class="string">"AA"</span> won't be regarded <span class="keyword">as</span> rewardable owing <span class="keyword">to</span> more than one absent <span class="keyword">times</span>.</div></pre></td></tr></table></figure></p>
+<p><strong>Note:</strong> The value of <strong>n</strong> won’t exceed 100,000.</p>
+<h2 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h2><p>dp[i]the number of all possible attendance (without ‘A’) records with length i :</p>
+<ul>
+<li>end with “P”: dp[i-1]</li>
+<li>end with “PL”: dp[i-2]</li>
+<li>end with “PLL”: dp[i-3]</li>
+<li>end with “LLL”: is not allowed</li>
+</ul>
+<p>so dp[i] = dp[i-1] + dp[i-2] + dp[i-3]</p>
+<p>the number of all possible attendance (with ‘A’) records with length n:<br>∑dp[i] *dp[n-1-i] i = 0,1,…,n-1</p>
+<p>Time Complexity O(n)<br>Space Complexity O(n)</p>
+<p>(In code nums[i+1] means dp[i])<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">checkRecord</span><span class="params">(self, n)</span>:</span></div><div class="line">        <span class="keyword">if</span> n == <span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">3</span></div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        nums = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>]</div><div class="line">        i = <span class="number">2</span></div><div class="line">        <span class="keyword">while</span> i &lt; n:</div><div class="line">            nums.append((nums[i] + nums[i<span class="number">-1</span>] + nums[i<span class="number">-2</span>])% <span class="number">1000000007</span>)</div><div class="line">            i += <span class="number">1</span></div><div class="line">        result = (nums[n] + nums[n<span class="number">-1</span>] + nums[n<span class="number">-2</span>]) % <span class="number">1000000007</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">            result += nums[i+<span class="number">1</span>] * nums[n-i] % <span class="number">1000000007</span></div><div class="line">            result %= <span class="number">1000000007</span></div><div class="line">        <span class="keyword">return</span> result</div></pre></td></tr></table></figure></p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> M = <span class="number">1000000007</span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">int</span> <span class="title">checkRecord</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    <span class="keyword">long</span>[] PorL = <span class="keyword">new</span> <span class="keyword">long</span>[n + <span class="number">1</span>]; <span class="comment">// ending with P or L, no A</span></div><div class="line">    <span class="keyword">long</span>[] P = <span class="keyword">new</span> <span class="keyword">long</span>[n + <span class="number">1</span>]; <span class="comment">// ending with P, no A</span></div><div class="line">    PorL[<span class="number">0</span>] = P[<span class="number">0</span>] = <span class="number">1</span>; PorL[<span class="number">1</span>] = <span class="number">2</span>; P[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</div><div class="line">        P[i] = PorL[i - <span class="number">1</span>];</div><div class="line">        PorL[i] = (P[i] + P[i - <span class="number">1</span>] + P[i - <span class="number">2</span>]) % M;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">long</span> res = PorL[n];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123; <span class="comment">// inserting A into (n-1)-length strings</span></div><div class="line">    	<span class="keyword">long</span> s = (PorL[i] * PorL[n - i - <span class="number">1</span>]) % M;</div><div class="line">        res = (res + s) % M;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>) res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/02/Leetcode-week26/" rel="next" title="LeetCode Weekly Contest 26">
+                <i class="fa fa-chevron-left"></i> LeetCode Weekly Contest 26
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww3.sinaimg.cn/mw690/770b0925jw8f39az302pwj20w00w0dnd.jpg"
+               alt="wlyPKU" />
+          <p class="site-author-name" itemprop="name">wlyPKU</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlyPKU" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wangly2011/profile" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/wangly.cs" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Student-Attendance-Record-I"><span class="nav-number">1.</span> <span class="nav-text">Student Attendance Record I</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">1.1.</span> <span class="nav-text">Code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optimal-Division"><span class="nav-number">2.</span> <span class="nav-text">Optimal Division</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">2.1.</span> <span class="nav-text">code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Split-Assembled-Strings"><span class="nav-number">3.</span> <span class="nav-text">Split Assembled Strings</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-1"><span class="nav-number">3.1.</span> <span class="nav-text">Code:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Student-Attendance-Record-II"><span class="nav-number">4.</span> <span class="nav-text">Student Attendance Record II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code-1"><span class="nav-number">4.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlyPKU</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'wlypku';
+      var disqus_identifier = '2017/04/16/Leetcode-week28/';
+      var disqus_title = "LeetCode Weekly Contest 28";
+      var disqus_url = 'http://wlyPKU.github.io/2017/04/16/Leetcode-week28/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
