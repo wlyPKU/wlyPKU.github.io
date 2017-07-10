@@ -1,0 +1,1019 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="baidu-site-verification" content="SjzK8OEtoc" />
+<meta name="google-site-verification" content="bA1EerR_bNYAYfaP2nkHs-XeqIviTDWTI96YeW_6IkU" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="推荐算法学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="计算广告中，CTR预估(click-through rate)是非常重要的一个环节，因为DSP后面的出价要依赖于CTR预估的结果。在前面的相关博文中，我们已经提到了CTR中相关特征工程的做法。对于特征组合来说，业界现在通用的做法主要有两大类：FM系列与Tree系列。今天，我们就来讲讲FM算法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Factorization Machines">
+<meta property="og:url" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/index.html">
+<meta property="og:site_name" content="小小小宇">
+<meta property="og:description" content="计算广告中，CTR预估(click-through rate)是非常重要的一个环节，因为DSP后面的出价要依赖于CTR预估的结果。在前面的相关博文中，我们已经提到了CTR中相关特征工程的做法。对于特征组合来说，业界现在通用的做法主要有两大类：FM系列与Tree系列。今天，我们就来讲讲FM算法。">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/1.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/2.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/3.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/4.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/5.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/6.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/7.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/8.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/9.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/10.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/11.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/12.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/13.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/14.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/15.png">
+<meta property="og:updated_time" content="2017-07-10T16:47:20.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Factorization Machines">
+<meta name="twitter:description" content="计算广告中，CTR预估(click-through rate)是非常重要的一个环节，因为DSP后面的出价要依赖于CTR预估的结果。在前面的相关博文中，我们已经提到了CTR中相关特征工程的做法。对于特征组合来说，业界现在通用的做法主要有两大类：FM系列与Tree系列。今天，我们就来讲讲FM算法。">
+<meta name="twitter:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/"/>
+
+  <title> Factorization Machines | 小小小宇 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小小小宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/categories/LeetCode" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Leetcode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Factorization Machines
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-10T23:36:46+08:00" content="2017-07-10">
+              2017-07-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/推荐算法学习/" itemprop="url" rel="index">
+                    <span itemprop="name">推荐算法学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/07/10/Factorization-Machines/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/10/Factorization-Machines/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>计算广告中，CTR预估(click-through rate)是非常重要的一个环节，因为DSP后面的出价要依赖于CTR预估的结果。在前面的相关博文中，我们已经提到了CTR中相关特征工程的做法。对于特征组合来说，业界现在通用的做法主要有两大类：FM系列与Tree系列。今天，我们就来讲讲FM算法。<br><a id="more"></a></p>
+<h1 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h1><img src="/2017/07/10/Factorization-Machines/1.png" alt="1.png" title="">
+<img src="/2017/07/10/Factorization-Machines/2.png" alt="2.png" title="">
+<img src="/2017/07/10/Factorization-Machines/3.png" alt="3.png" title="">
+<img src="/2017/07/10/Factorization-Machines/4.png" alt="4.png" title="">
+<img src="/2017/07/10/Factorization-Machines/5.png" alt="5.png" title="">
+<img src="/2017/07/10/Factorization-Machines/6.png" alt="6.png" title="">
+<img src="/2017/07/10/Factorization-Machines/7.png" alt="7.png" title="">
+<img src="/2017/07/10/Factorization-Machines/8.png" alt="8.png" title="">
+<img src="/2017/07/10/Factorization-Machines/9.png" alt="9.png" title="">
+<img src="/2017/07/10/Factorization-Machines/10.png" alt="10.png" title="">
+<img src="/2017/07/10/Factorization-Machines/11.png" alt="11.png" title="">
+<img src="/2017/07/10/Factorization-Machines/12.png" alt="12.png" title="">
+<img src="/2017/07/10/Factorization-Machines/13.png" alt="13.png" title="">
+<img src="/2017/07/10/Factorization-Machines/14.png" alt="14.png" title="">
+<img src="/2017/07/10/Factorization-Machines/15.png" alt="15.png" title="">
+<h1 id="基于物品相似的协同过滤算法"><a href="#基于物品相似的协同过滤算法" class="headerlink" title="基于物品相似的协同过滤算法"></a>基于物品相似的协同过滤算法</h1><p>基本思想是找出一个用户有过正反馈的物品的相似的物品来给其作为推荐：<br>其公式为<br>$$<br>r_{ui} = \frac{1}{\sqrt{|N(u)|}}\sum_{j\in N(u)}w_{ij}<br>$$<br>其中$r_{ui}$表示预测用户$u$对物品$i$的喜欢程度。$w_{ij}$是物品$i$,$j$之间的相似度,$N(u)$代表用户曾经有过正反馈的物品的集合。</p>
+<p>比如我们有三个用户A,B,C,还有四本书《红楼梦》,《史记》,微积分导论》和《时间简史》。用户和书籍之间的阅读关系为：</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红楼梦</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>史  记</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>微积分导论</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>线性代数</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>　<br> 其中没有标注1的即表示用户没有阅读过此书籍。</p>
+<p>　　那么我们首先需要一种相似度度量方法可以测得任意两本书之间的相似度，暂时我们认为方法已经有了，并且已经把书籍两两之间的相似度计算出来了，其可以用一个对称方阵W表示（在我们这个例子中是4X4的矩阵）。其具体值假设如下：</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>红楼梦</th>
+<th>史  记</th>
+<th>微积分导论</th>
+<th>线性代数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红楼梦</td>
+<td>1</td>
+<td>0.7</td>
+<td>0.2</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>史  记</td>
+<td>0.7</td>
+<td>1</td>
+<td>0.2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>微积分导论</td>
+<td>0.2</td>
+<td>0.2</td>
+<td>1</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td>线性代数</td>
+<td>0.1</td>
+<td>0.2</td>
+<td>0.8</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>那么根据公式，我们计算用户C对史记的喜欢程度是$\frac{0.7+0.2}{\sqrt{2}}$</p>
+<h1 id="SVD-原理"><a href="#SVD-原理" class="headerlink" title="SVD 原理"></a>SVD 原理</h1><p>SVD的作用大致是将一个矩阵分解为三个矩阵相乘的形式。如果运用在推荐系统中，首先我们将我们的训练集表示成矩阵的形式，这里我们以movielen数据集为例。这个数据集包含了用户对电影的评分。那么矩阵形式大致为：</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红楼梦</td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>史  记</td>
+<td></td>
+<td></td>
+<td>2</td>
+</tr>
+<tr>
+<td>微积分导论</td>
+<td></td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>线性代数</td>
+<td></td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>其中1~5就是对应用户对电影的评分。空余处表示数据集中没有对应用户和电影的信息。如果我们想使用SVD，一般讲空余处都填为0.假设此矩阵为$V$.那么运用SVD可以得到<br>$$<br>V = UΣV^T<br>$$<br>但是上面的等号并不能取到，只能是约等于。那么我们将得到的三个矩阵相乘得到$V’$（注意与$V$不同）。那么原来的空白处（也就是0处）可能就不再为0，那么这就是对该user-moive对的预测。这就是SVD的主要原理。因为SVD有很多现成的算法，也不用迭代就可直接得到，所以使用比较方便。</p>
+<p>　　但是我们会看到，上面方法有一个致命的缺陷，那就是将未知的评分全都设为0.这其实是极其不合理的，因为用户不给某个电影打分并不是很不喜欢（0分），而是有可能还没有看过这个电影。这样就加入了我们主观臆断的信息，最后造成错误。</p>
+<h1 id="使用隐因子的矩阵分解法"><a href="#使用隐因子的矩阵分解法" class="headerlink" title="使用隐因子的矩阵分解法"></a>使用隐因子的矩阵分解法</h1><p>在矩阵分解法中，有一个假设，就是每一个用户都有一个长度为k的特征向量，每一部电影也有一个相同长度的特征向量（k一般需要用户指定）。那么所有用户的特征向量排列成一个矩阵 U 的维度为UserNum $\times$ k。其中用户i对应的向量为$U_i$。 所有电影的特征向量排列成一个矩阵M 的维度为MoiveNum $\times$ k。其中电影j对应的向量为$U_j$。其中电影j对应的向量为$U_j$。那么用户i对电影j的评分 $V_ij = &lt; U_i , M_j &gt; $（$&lt;&gt;$代表点乘）。那么所有用户和所有电影之间的评分就可以用两个矩阵相乘来得到<br>$$<br>V’ = UM^T<br>$$<br>注意这里是$V’$而不是$V$。那么问题来了，我们如何确定这个U和M？一个自然的想法就是让$V’$和$V$尽可能地相等。那么这又有一个问题，那就是$V$（即数据集）有很多地方是没有评分的，如何判断$V$和$V’$是否相等？那么我们在这里只计算有评分处的MSE。这样既没有使用额外的信息，又能判断两者是否接近。那么自然而然得就引入了我们的lost function：<br>$$<br>E=\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^mI_{ij}(V_{ij}-p(U_i,M_j))^2 + \frac{k_u}{2}\sum_{i=1}^n||U_i||^2+\frac{k_m}{2}\sum_{i=1}^m||M_j||^2<br>$$<br>这里$I_{ij}$表示用户i对电影j有评分记录。后面两项是惩罚因子，目的是防止过拟合。</p>
+<p>到这里我们就已经完成了基础的矩阵分解法。那么进一步，为了实现更好的效果，我们要考虑每个个体打分的影响，因为有些用户打分偏高，有些用户打分偏低。同样对于电影和所有的评分。所以我们评分的计算公式应该改为：<br>$$<br>V_{ij} =<br>&lt; U_i,M_j&gt; + mean + a_i +b_j<br>$$<br>　　其中mean是所有评分的平均值，$a_i$是用户i打分的平均值，$b_j$是电影j得分的平均值。其中mean认为是一个常数，而$a_i$和$b_j$都是需要优化的参数。</p>
+<h1 id="SVD-原理-1"><a href="#SVD-原理-1" class="headerlink" title="SVD++原理"></a>SVD++原理</h1><p>上面的方法有一个问题，就是相似度度量方法我们不太容易得到，也就是我们没法得到W这个矩阵。有一个想法就是我通过迭代优化的方法直接去计算整个W，其优化的lost function如下：<br>$$<br>C(w) = \sum_{(u,i)\in Train}(r_{ui}-\sum_{j\in N(u)}w_{ij}r_{uj})^2+\lambda w_{ij}^2<br>$$<br>这样的话就再不需要我们认为去定义一个相似度度量方法。但是一个新的问题又出现了。由于一般推荐系统中物品的个数往往都很多，所以W会是一个非常大的矩阵，那么这样会给存储和计算带来很大的麻烦。这里我们把条件放宽一点，假设W是由两个矩阵X和Y点乘得到的（其实就是矩阵分解）。那么预测的公式就变成了：<br>$$<br>\frac{1}{\sqrt{|N(u)|}}x_{i}^T\sum_{j\in N(u)}y_{j}<br>$$</p>
+<p>其中$X_i$ 和$Y_j$ 是矩阵X和Y中第i行和第j行。</p>
+<p>　　那么到此为止，我们用了迭代和矩阵分解的方法来处理相似度的信息，那么我们将这个相似度影响因素加入我们之前讲的隐因子的矩阵分解方法中去，就得到：<br>$$<br>r_{ui} = \mu + b_u + b_i + q_i^T p_u + \frac{1}{\sqrt{|N(u)|}}x_{i}^T\sum_{j\in N(u)}y_{j}<br>$$<br>　　可以看到，这个公式其实就是在隐因子的基础上多加了一项。</p>
+<p>　　但是，牛逼的dalao们又发现，如果让矩阵P（这个是用户的隐参数矩阵）和上面提到的W分解得到的X矩阵相等，可以防止模型过拟合，那么公式又变为：</p>
+<p>$$<br>r_{ui} = \mu + b_u + b_i + q_i^T (p_u + \frac{1}{\sqrt{|N(u)|}}\sum_{j\in N(u)}y_{j})<br>$$</p>
+<p><a href="http://www.cnblogs.com/ccienfall/p/5979003.html" target="_blank" rel="external">http://www.cnblogs.com/ccienfall/p/5979003.html</a><br><a href="http://www.cnblogs.com/ccienfall/p/5994992.html" target="_blank" rel="external">http://www.cnblogs.com/ccienfall/p/5994992.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/推荐算法学习/" rel="tag">#推荐算法学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/16/Leetcode-week28/" rel="next" title="LeetCode Weekly Contest 28">
+                <i class="fa fa-chevron-left"></i> LeetCode Weekly Contest 28
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww3.sinaimg.cn/mw690/770b0925jw8f39az302pwj20w00w0dnd.jpg"
+               alt="wlyPKU" />
+          <p class="site-author-name" itemprop="name">wlyPKU</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlyPKU" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wangly2011/profile" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/wangly.cs" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FM"><span class="nav-number">1.</span> <span class="nav-text">FM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于物品相似的协同过滤算法"><span class="nav-number">2.</span> <span class="nav-text">基于物品相似的协同过滤算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SVD-原理"><span class="nav-number">3.</span> <span class="nav-text">SVD 原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用隐因子的矩阵分解法"><span class="nav-number">4.</span> <span class="nav-text">使用隐因子的矩阵分解法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SVD-原理-1"><span class="nav-number">5.</span> <span class="nav-text">SVD++原理</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlyPKU</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'wlypku';
+      var disqus_identifier = '2017/07/10/Factorization-Machines/';
+      var disqus_title = "Factorization Machines";
+      var disqus_url = 'http://wlyPKU.github.io/2017/07/10/Factorization-Machines/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>

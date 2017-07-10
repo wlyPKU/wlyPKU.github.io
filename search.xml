@@ -4,6 +4,157 @@
   
     
     <entry>
+      <title><![CDATA[Factorization Machines]]></title>
+      <url>http://wlyPKU.github.io/2017/07/10/Factorization-Machines/</url>
+      <content type="html"><![CDATA[<p>计算广告中，CTR预估(click-through rate)是非常重要的一个环节，因为DSP后面的出价要依赖于CTR预估的结果。在前面的相关博文中，我们已经提到了CTR中相关特征工程的做法。对于特征组合来说，业界现在通用的做法主要有两大类：FM系列与Tree系列。今天，我们就来讲讲FM算法。<br><a id="more"></a></p>
+<h1 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h1><img src="/2017/07/10/Factorization-Machines/1.png" alt="1.png" title="">
+<img src="/2017/07/10/Factorization-Machines/2.png" alt="2.png" title="">
+<img src="/2017/07/10/Factorization-Machines/3.png" alt="3.png" title="">
+<img src="/2017/07/10/Factorization-Machines/4.png" alt="4.png" title="">
+<img src="/2017/07/10/Factorization-Machines/5.png" alt="5.png" title="">
+<img src="/2017/07/10/Factorization-Machines/6.png" alt="6.png" title="">
+<img src="/2017/07/10/Factorization-Machines/7.png" alt="7.png" title="">
+<img src="/2017/07/10/Factorization-Machines/8.png" alt="8.png" title="">
+<img src="/2017/07/10/Factorization-Machines/9.png" alt="9.png" title="">
+<img src="/2017/07/10/Factorization-Machines/10.png" alt="10.png" title="">
+<img src="/2017/07/10/Factorization-Machines/11.png" alt="11.png" title="">
+<img src="/2017/07/10/Factorization-Machines/12.png" alt="12.png" title="">
+<img src="/2017/07/10/Factorization-Machines/13.png" alt="13.png" title="">
+<img src="/2017/07/10/Factorization-Machines/14.png" alt="14.png" title="">
+<img src="/2017/07/10/Factorization-Machines/15.png" alt="15.png" title="">
+<h1 id="基于物品相似的协同过滤算法"><a href="#基于物品相似的协同过滤算法" class="headerlink" title="基于物品相似的协同过滤算法"></a>基于物品相似的协同过滤算法</h1><p>基本思想是找出一个用户有过正反馈的物品的相似的物品来给其作为推荐：<br>其公式为<br>$$<br>r_{ui} = \frac{1}{\sqrt{|N(u)|}}\sum_{j\in N(u)}w_{ij}<br>$$<br>其中$r_{ui}$表示预测用户$u$对物品$i$的喜欢程度。$w_{ij}$是物品$i$,$j$之间的相似度,$N(u)$代表用户曾经有过正反馈的物品的集合。</p>
+<p>比如我们有三个用户A,B,C,还有四本书《红楼梦》,《史记》,微积分导论》和《时间简史》。用户和书籍之间的阅读关系为：</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红楼梦</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>史  记</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>微积分导论</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>线性代数</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>　<br> 其中没有标注1的即表示用户没有阅读过此书籍。</p>
+<p>　　那么我们首先需要一种相似度度量方法可以测得任意两本书之间的相似度，暂时我们认为方法已经有了，并且已经把书籍两两之间的相似度计算出来了，其可以用一个对称方阵W表示（在我们这个例子中是4X4的矩阵）。其具体值假设如下：</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>红楼梦</th>
+<th>史  记</th>
+<th>微积分导论</th>
+<th>线性代数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红楼梦</td>
+<td>1</td>
+<td>0.7</td>
+<td>0.2</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>史  记</td>
+<td>0.7</td>
+<td>1</td>
+<td>0.2</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>微积分导论</td>
+<td>0.2</td>
+<td>0.2</td>
+<td>1</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td>线性代数</td>
+<td>0.1</td>
+<td>0.2</td>
+<td>0.8</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>那么根据公式，我们计算用户C对史记的喜欢程度是$\frac{0.7+0.2}{\sqrt{2}}$</p>
+<h1 id="SVD-原理"><a href="#SVD-原理" class="headerlink" title="SVD 原理"></a>SVD 原理</h1><p>SVD的作用大致是将一个矩阵分解为三个矩阵相乘的形式。如果运用在推荐系统中，首先我们将我们的训练集表示成矩阵的形式，这里我们以movielen数据集为例。这个数据集包含了用户对电影的评分。那么矩阵形式大致为：</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红楼梦</td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>史  记</td>
+<td></td>
+<td></td>
+<td>2</td>
+</tr>
+<tr>
+<td>微积分导论</td>
+<td></td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>线性代数</td>
+<td></td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>其中1~5就是对应用户对电影的评分。空余处表示数据集中没有对应用户和电影的信息。如果我们想使用SVD，一般讲空余处都填为0.假设此矩阵为$V$.那么运用SVD可以得到<br>$$<br>V = UΣV^T<br>$$<br>但是上面的等号并不能取到，只能是约等于。那么我们将得到的三个矩阵相乘得到$V’$（注意与$V$不同）。那么原来的空白处（也就是0处）可能就不再为0，那么这就是对该user-moive对的预测。这就是SVD的主要原理。因为SVD有很多现成的算法，也不用迭代就可直接得到，所以使用比较方便。</p>
+<p>　　但是我们会看到，上面方法有一个致命的缺陷，那就是将未知的评分全都设为0.这其实是极其不合理的，因为用户不给某个电影打分并不是很不喜欢（0分），而是有可能还没有看过这个电影。这样就加入了我们主观臆断的信息，最后造成错误。</p>
+<h1 id="使用隐因子的矩阵分解法"><a href="#使用隐因子的矩阵分解法" class="headerlink" title="使用隐因子的矩阵分解法"></a>使用隐因子的矩阵分解法</h1><p>在矩阵分解法中，有一个假设，就是每一个用户都有一个长度为k的特征向量，每一部电影也有一个相同长度的特征向量（k一般需要用户指定）。那么所有用户的特征向量排列成一个矩阵 U 的维度为UserNum $\times$ k。其中用户i对应的向量为$U_i$。 所有电影的特征向量排列成一个矩阵M 的维度为MoiveNum $\times$ k。其中电影j对应的向量为$U_j$。其中电影j对应的向量为$U_j$。那么用户i对电影j的评分 $V_ij = &lt; U_i , M_j &gt; $（$&lt;&gt;$代表点乘）。那么所有用户和所有电影之间的评分就可以用两个矩阵相乘来得到<br>$$<br>V’ = UM^T<br>$$<br>注意这里是$V’$而不是$V$。那么问题来了，我们如何确定这个U和M？一个自然的想法就是让$V’$和$V$尽可能地相等。那么这又有一个问题，那就是$V$（即数据集）有很多地方是没有评分的，如何判断$V$和$V’$是否相等？那么我们在这里只计算有评分处的MSE。这样既没有使用额外的信息，又能判断两者是否接近。那么自然而然得就引入了我们的lost function：<br>$$<br>E=\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^mI_{ij}(V_{ij}-p(U_i,M_j))^2 + \frac{k_u}{2}\sum_{i=1}^n||U_i||^2+\frac{k_m}{2}\sum_{i=1}^m||M_j||^2<br>$$<br>这里$I_{ij}$表示用户i对电影j有评分记录。后面两项是惩罚因子，目的是防止过拟合。</p>
+<p>到这里我们就已经完成了基础的矩阵分解法。那么进一步，为了实现更好的效果，我们要考虑每个个体打分的影响，因为有些用户打分偏高，有些用户打分偏低。同样对于电影和所有的评分。所以我们评分的计算公式应该改为：<br>$$<br>V_{ij} =<br>&lt; U_i,M_j&gt; + mean + a_i +b_j<br>$$<br>　　其中mean是所有评分的平均值，$a_i$是用户i打分的平均值，$b_j$是电影j得分的平均值。其中mean认为是一个常数，而$a_i$和$b_j$都是需要优化的参数。</p>
+<h1 id="SVD-原理-1"><a href="#SVD-原理-1" class="headerlink" title="SVD++原理"></a>SVD++原理</h1><p>上面的方法有一个问题，就是相似度度量方法我们不太容易得到，也就是我们没法得到W这个矩阵。有一个想法就是我通过迭代优化的方法直接去计算整个W，其优化的lost function如下：<br>$$<br>C(w) = \sum_{(u,i)\in Train}(r_{ui}-\sum_{j\in N(u)}w_{ij}r_{uj})^2+\lambda w_{ij}^2<br>$$<br>这样的话就再不需要我们认为去定义一个相似度度量方法。但是一个新的问题又出现了。由于一般推荐系统中物品的个数往往都很多，所以W会是一个非常大的矩阵，那么这样会给存储和计算带来很大的麻烦。这里我们把条件放宽一点，假设W是由两个矩阵X和Y点乘得到的（其实就是矩阵分解）。那么预测的公式就变成了：<br>$$<br>\frac{1}{\sqrt{|N(u)|}}x_{i}^T\sum_{j\in N(u)}y_{j}<br>$$</p>
+<p>其中$X_i$ 和$Y_j$ 是矩阵X和Y中第i行和第j行。</p>
+<p>　　那么到此为止，我们用了迭代和矩阵分解的方法来处理相似度的信息，那么我们将这个相似度影响因素加入我们之前讲的隐因子的矩阵分解方法中去，就得到：<br>$$<br>r_{ui} = \mu + b_u + b_i + q_i^T p_u + \frac{1}{\sqrt{|N(u)|}}x_{i}^T\sum_{j\in N(u)}y_{j}<br>$$<br>　　可以看到，这个公式其实就是在隐因子的基础上多加了一项。</p>
+<p>　　但是，牛逼的dalao们又发现，如果让矩阵P（这个是用户的隐参数矩阵）和上面提到的W分解得到的X矩阵相等，可以防止模型过拟合，那么公式又变为：</p>
+<p>$$<br>r_{ui} = \mu + b_u + b_i + q_i^T (p_u + \frac{1}{\sqrt{|N(u)|}}\sum_{j\in N(u)}y_{j})<br>$$</p>
+<p><a href="http://www.cnblogs.com/ccienfall/p/5979003.html" target="_blank" rel="external">http://www.cnblogs.com/ccienfall/p/5979003.html</a><br><a href="http://www.cnblogs.com/ccienfall/p/5994992.html" target="_blank" rel="external">http://www.cnblogs.com/ccienfall/p/5994992.html</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[LeetCode Weekly Contest 28]]></title>
       <url>http://wlyPKU.github.io/2017/04/16/Leetcode-week28/</url>
       <content type="html"><![CDATA[<p>LeetCode Weekly Contest 28<br>[2017-04-16]</p>
