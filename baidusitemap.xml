@@ -4,19 +4,39 @@
 
     
   <url>
+    <loc>http://wlyPKU.github.io/2017/07/16/Deep-Learning-in-Machine-Translate/</loc>
+    <lastmod>2017-07-16T12:00:00.730Z</lastmod>
+    <data>
+        <display>
+        <title>Natural Language Processing with Deep Learning</title>
+        <pubTime>2017-07-16T11:04:58.000Z</pubTime>
+        
+        <tag>算法学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法学习" url="http://wlyPKU.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://wlyPKU.github.io/2017/07/10/Factorization-Machines/</loc>
-    <lastmod>2017-07-10T16:47:20.452Z</lastmod>
+    <lastmod>2017-07-16T11:14:51.556Z</lastmod>
     <data>
         <display>
         <title>Factorization Machines</title>
         <pubTime>2017-07-10T15:36:46.000Z</pubTime>
         
-        <tag>推荐算法学习</tag>
+        <tag>算法学习</tag>
          
          
            
              
-              <breadCrumb title="推荐算法学习" url="http://wlyPKU.github.io/categories/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
+              <breadCrumb title="算法学习" url="http://wlyPKU.github.io/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>

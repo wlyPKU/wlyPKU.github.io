@@ -4,6 +4,30 @@
   
     
     <entry>
+      <title><![CDATA[Natural Language Processing with Deep Learning]]></title>
+      <url>http://wlyPKU.github.io/2017/07/16/Deep-Learning-in-Machine-Translate/</url>
+      <content type="html"><![CDATA[<p>Link summary of Topic: Natural Language Processing with Deep Learning<br><a id="more"></a></p>
+<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><p> <strong><a href="https://cs224n.stanford.edu/" target="_blank" rel="external">Natural Language Processing with Deep Learning, stanford</a></strong><br>Slides and notes</p>
+<ol>
+<li><a href="/2017/07/16/Deep-Learning-in-Machine-Translate/word2vec.pdf">word2vec note</a></li>
+<li><a href="/2017/07/16/Deep-Learning-in-Machine-Translate/word2vec_note.pdf">word2vec slides</a></li>
+<li><a href="/2017/07/16/Deep-Learning-in-Machine-Translate/rnn.pdf">RNN</a></li>
+<li><a href="/2017/07/16/Deep-Learning-in-Machine-Translate/lstm.pdf">RNN, LSTMs and GRUs</a></li>
+<li><a href="/2017/07/16/Deep-Learning-in-Machine-Translate/rnn_note.pdf">RNN, LSTMs and GRUs note</a></li>
+<li><a href="/2017/07/16/Deep-Learning-in-Machine-Translate/attention.pdf">Neural Machine Translation and Models with <strong>Attention</strong>, decoder</a></li>
+</ol>
+<p>Video:<br>Standford视频: <a href="https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6" target="_blank" rel="external">Lecture Collection | Natural Language Processing with Deep Learning (Winter 2017)</a><br>Word Embedding: <a href="https://www.youtube.com/watch?v=D-ekE-Wlcds" target="_blank" rel="external">Word Embedding Explained and Visualized</a></p>
+<p>Book:<br><a href="http://www.deeplearningbook.org/contents/rnn.html" target="_blank" rel="external">Sequence Modeling: Recurrent and Recursive Nets</a></p>
+<p> <strong><a href="http://cs231n.stanford.edu/index.html" target="_blank" rel="external">Convolutional Neural Networks for Visual Recognition</a></strong></p>
+<ol>
+<li><a href="/2017/07/16/Deep-Learning-in-Machine-Translate/rnn_cs231.pdf">Recurrent Neural Networks</a></li>
+</ol>
+<h1 id="Paper-and-git"><a href="#Paper-and-git" class="headerlink" title="Paper and git"></a>Paper and git</h1><p><a href="http://aclweb.org/anthology/D15-1166" target="_blank" rel="external">Effective Approaches to Attention-based Neural Machine Translation</a><br><a href="https://arxiv.org/abs/1409.0473" target="_blank" rel="external">Neural Machine Translation by Jointly Learning to Align and Translate</a><br><a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="external">attention is all you need</a><br><a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">Git:Tensorflow</a><br><a href="https://github.com/zhedongzheng/finch/blob/master/README-CH.md" target="_blank" rel="external">Git:finch</a></p>
+<h1 id="BLOGs"><a href="#BLOGs" class="headerlink" title="BLOGs"></a>BLOGs</h1><p><a href="http://www.csdn.net/article/2015-08-28/2825569" target="_blank" rel="external">递归神经网络不可思议的有效性</a><br><a href="http://blog.csdn.net/jerr__y/article/details/53749693" target="_blank" rel="external">seq2seq学习笔记</a><br><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external">Understanding LSTM Networks</a><br><a href="http://www.jianshu.com/p/9dc9f41f0b29" target="_blank" rel="external">理解 LSTM 网络</a><br><a href="http://blog.csdn.net/malefactor/article/details/50550211" target="_blank" rel="external">自然语言处理中的Attention Model：是什么及为什么</a><br><a href="http://blog.csdn.net/mijiaoxiaosan/article/details/73251443" target="_blank" rel="external">对Attention is all you need 的理解</a><br><a href="http://www.cnfeelings.com/Home/Detail/49B96405C82AE7AA" target="_blank" rel="external">谷歌推出基于注意机制的全新翻译框架，Attention is All You Need!</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Factorization Machines]]></title>
       <url>http://wlyPKU.github.io/2017/07/10/Factorization-Machines/</url>
       <content type="html"><![CDATA[<p>计算广告中，CTR预估(click-through rate)是非常重要的一个环节，因为DSP后面的出价要依赖于CTR预估的结果。在前面的相关博文中，我们已经提到了CTR中相关特征工程的做法。对于特征组合来说，业界现在通用的做法主要有两大类：FM系列与Tree系列。今天，我们就来讲讲FM算法。<br><a id="more"></a></p>
@@ -150,7 +174,10 @@
 <p>　　那么到此为止，我们用了迭代和矩阵分解的方法来处理相似度的信息，那么我们将这个相似度影响因素加入我们之前讲的隐因子的矩阵分解方法中去，就得到：<br>$$<br>r_{ui} = \mu + b_u + b_i + q_i^T p_u + \frac{1}{\sqrt{|N(u)|}}x_{i}^T\sum_{j\in N(u)}y_{j}<br>$$<br>　　可以看到，这个公式其实就是在隐因子的基础上多加了一项。</p>
 <p>　　但是，牛逼的dalao们又发现，如果让矩阵P（这个是用户的隐参数矩阵）和上面提到的W分解得到的X矩阵相等，可以防止模型过拟合，那么公式又变为：</p>
 <p>$$<br>r_{ui} = \mu + b_u + b_i + q_i^T (p_u + \frac{1}{\sqrt{|N(u)|}}\sum_{j\in N(u)}y_{j})<br>$$</p>
-<p><a href="http://www.cnblogs.com/ccienfall/p/5979003.html" target="_blank" rel="external">http://www.cnblogs.com/ccienfall/p/5979003.html</a><br><a href="http://www.cnblogs.com/ccienfall/p/5994992.html" target="_blank" rel="external">http://www.cnblogs.com/ccienfall/p/5994992.html</a></p>
+<h1 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h1><p>其中线性SVM为：<br>$$<br>Y_{SVM} = w_0 + \sum_{i=1}^n w_ix_i<br>$$<br>如果使用多项式的核函数，以d=2为例，那么有:<br>$$<br>K(x, z) = ( &lt; x, z &gt;  + 1 )^d<br>$$<br>因此，<br>$$<br>Y_{SVM} = w_0 + \sqrt{2}\sum_{i=1}^n w_ix_i + \sum_{i=1}^nw_{i,i}^{(2)}x_i^2 + \sqrt{2} \sum_{i=1}^n\sum_{j=1}^n w_{i,i}^{(2)}x_ix_j<br>$$<br>可以看到,d=2时的FM跟核函数为多项式的SVM形式相同，不同点在于SVM的$w_{i,j}$是完全没有关系的($w_{i,j}$与$w_{i,k}$),而在FM中$ &lt; v_i, v_j &gt; $ 与$ &lt; v_i, v_k &gt; $ 相关。</p>
+<h1 id="PITF-基于两两交互张量分解模型的个性化标签推荐"><a href="#PITF-基于两两交互张量分解模型的个性化标签推荐" class="headerlink" title="PITF(基于两两交互张量分解模型的个性化标签推荐)"></a>PITF(基于两两交互张量分解模型的个性化标签推荐)</h1><p>为了形式化描述个性化标签推荐问题，我们使用数学符号：U为所有用户集合，I是所有产品集合，T是所有标签集合。历史标签信息由S⊆U×I×T给定。<br>我们的模型将用户、标签和产品之间的关系分解为两两交互的关系：<br>$$<br>y_{u,i,t} = w_0 + w_u + w_i + w_t + &lt; v_u, v_i &gt; + &lt; v_u, v_t &gt; + &lt; v_t, v_i &gt;<br>$$<br>因为给定的文章是同一篇，所以可以简化为：<br>$$<br>y_{u,i,t} = w_t + &lt; v_u, v_t &gt; + &lt; v_t, v_i &gt;<br>$$<br>因此可以看到，PITF与二值的FM是几乎相同的，不同点还是不同参数$ &lt; v_i, v_j &gt; $ 与$ &lt; v_i, v_k &gt; $ 是否相关的问题。</p>
+<h1 id="FPMC"><a href="#FPMC" class="headerlink" title="FPMC"></a>FPMC</h1><p>状态转移+ 张量分解，请见<a href="http://www.docin.com/p-1697787681.html" target="_blank" rel="external">基于个性化马尔科夫链的推荐算法</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.algo.uni-konstanz.de/members/rendle/pdf/Rendle2010FM.pdf" target="_blank" rel="external">Factorization Machines</a><br><a href="http://www.csie.ntu.edu.tw/~b97053/paper/Factorization%20Machines%20with%20libFM.pdf" target="_blank" rel="external">Factorization Machines with libFM</a><br><a href="http://www.cnblogs.com/ccienfall/p/5979003.html" target="_blank" rel="external">SVD++：推荐系统的基于矩阵分解的协同过滤算法的提高</a><br><a href="http://www.cnblogs.com/ccienfall/p/5994992.html" target="_blank" rel="external">推荐系统——基于隐因子矩阵分解的协同过滤算法</a><br><a href="http://blog.csdn.net/qq_20599123/article/details/51344370" target="_blank" rel="external">基于两两交互张量分解模型的个性化标签推荐</a><br><a href="http://www.docin.com/p-1697787681.html" target="_blank" rel="external">基于个性化马尔科夫链的推荐算法</a></p>
 ]]></content>
     </entry>
     
