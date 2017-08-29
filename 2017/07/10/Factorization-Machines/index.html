@@ -121,7 +121,7 @@
 <meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/ffm_1.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/ffm_2.png">
 <meta property="og:image" content="http://wlyPKU.github.io/2017/07/10/Factorization-Machines/ffm_3.png">
-<meta property="og:updated_time" content="2017-07-25T14:29:40.266Z">
+<meta property="og:updated_time" content="2017-07-25T15:37:38.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐算法概要">
 <meta name="twitter:description" content="推荐系统算法">
@@ -462,8 +462,7 @@
 <p>相比SVM的二阶多项式核而言，FM在样本稀疏的情况下是有优势的；而且，FM的训练/预测复杂度是线性的，而二项多项式核SVM需要计算核矩阵，核矩阵复杂度就是N平方。</p>
 <p>相比MF而言，我们把MF中每一项的rating分改写为$r_{ui}~\beta_u+\gamma_i+x^T_uy_i$ ，从公式(2)中可以看出，这相当于只有两类特征u 和i 的FM模型。对于FM而言，我们可以加任意多的特征，比如user的历史购买平均值，item的历史购买平均值等，但是MF只能局限在两类特征。SVD++与MF类似，在特征的扩展性上都不如FM，在此不再赘述。</p>
 <h1 id="FFM"><a href="#FFM" class="headerlink" title="FFM"></a>FFM</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>FFM（Field-aware Factorization Machine）最初的概念来自Yu-Chin Juan（阮毓钦，毕业于中国台湾大学，现在美国Criteo工作）与其比赛队员，是他们借鉴了来自Michael Jahrer的论文[14]中的field概念提出了FM的升级版模型。通过引入field的概念，FFM把相同性质的特征归于同一个field。以上面的广告分类为例，“Day=26/11/15”、“Day=1/7/14”、“Day=19/2/15”这三个特征都是代表日期的，可以放到同一个field中。同理，商品的末级品类编码生成了550个特征，这550个特征都是说明商品所属的品类，因此它们也可以放到同一个field中。简单来说，同一个categorical特征经过One-Hot编码生成的数值特征都可以放到同一个field，包括用户性别、职业、品类偏好等。在FFM中，每一维特征 xixi，针对其它特征的每一种field fjfj，都会学习一个隐向量 $v_i,f_j$。因此，隐向量不仅与特征相关，也与field相关。也就是说，“Day=26/11/15”这个特征与“Country”特征和“Ad_type”特征进行关联的时候使用不同的隐向量，这与“Country”和“Ad_type”的内在差异相符，也是FFM中“field-aware”的由来。</p>
-<p>假设样本的 n 个特征属于 f 个field，那么FFM的二次项有 nf个隐向量。而在FM模型中，每一维特征的隐向量只有一个。FM可以看作FFM的特例，是把所有特征都归属到一个field时的FFM模型。根据FFM的field敏感特性，可以导出其模型方程。</p>
-<p>其中，$f_j$ 是第 j 个特征所属的field。如果隐向量的长度为 k，那么FFM的二次参数有 nfk个，远多于FM模型的 nk 个。此外，由于隐向量与field相关，FFM二次项并不能够化简，其预测复杂度是 $O(kn^2)$。<br>下面以一个例子简单说明FFM的特征组合方式[9]。输入记录如下<br><img src="/2017/07/10/Factorization-Machines/ffm_1.png" alt="ffm_1.png" title=""><br>这条记录可以编码成5个特征，其中“Genre=Comedy”和“Genre=Drama”属于同一个field，“Price”是数值型，不用One-Hot编码转换。为了方便说明FFM的样本格式，我们将所有的特征和对应的field映射成整数编号。<br><img src="/2017/07/10/Factorization-Machines/ffm_2.png" alt="ffm_2.png" title=""></p>
+<p>假设样本的 n 个特征属于 f 个field，那么FFM的二次项有 nf个隐向量。而在FM模型中，每一维特征的隐向量只有一个。FM可以看作FFM的特例，是把所有特征都归属到一个field时的FFM模型。根据FFM的field敏感特性，可以导出其模型方程。<br>$$<br>y(x)=w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^n\sum_{j=i+1}^n &lt; v_{i,f_j}, v_{j,f_i} &gt; x_ix_j<br>$$<br>其中，$f_j$ 是第 j 个特征所属的field。如果隐向量的长度为 k，那么FFM的二次参数有 nfk个，远多于FM模型的 nk 个。此外，由于隐向量与field相关，FFM二次项并不能够化简，其预测复杂度是 $O(kn^2)$。<br>下面以一个例子简单说明FFM的特征组合方式[9]。输入记录如下<br><img src="/2017/07/10/Factorization-Machines/ffm_1.png" alt="ffm_1.png" title=""><br>这条记录可以编码成5个特征，其中“Genre=Comedy”和“Genre=Drama”属于同一个field，“Price”是数值型，不用One-Hot编码转换。为了方便说明FFM的样本格式，我们将所有的特征和对应的field映射成整数编号。<br><img src="/2017/07/10/Factorization-Machines/ffm_2.png" alt="ffm_2.png" title=""></p>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>在DSP的场景中，FFM主要用来预估站内的CTR和CVR，即一个用户对一个商品的潜在点击率和点击后的转化率。</p>
 <p>CTR和CVR预估模型都是在线下训练，然后用于线上预测。两个模型采用的特征大同小异，主要有三类：用户相关的特征、商品相关的特征、以及用户-商品匹配特征。用户相关的特征包括年龄、性别、职业、兴趣、品类偏好、浏览/购买品类等基本信息，以及用户近期点击量、购买量、消费额等统计信息。商品相关的特征包括所属品类、销量、价格、评分、历史CTR/CVR等信息。用户-商品匹配特征主要有浏览/购买品类匹配、浏览/购买商家匹配、兴趣偏好匹配等几个维度。</p>
 <p>为了使用FFM方法，所有的特征必须转换成“field_id:feat_id:value”格式，field_id代表特征所属field的编号，feat_id是特征编号，value是特征的值。数值型的特征比较容易处理，只需分配单独的field编号，如用户评论得分、商品的历史CTR/CVR等。categorical特征需要经过One-Hot编码成数值型，编码产生的所有特征同属于一个field，而特征的值只能是0或1，如用户的性别、年龄段，商品的品类id等。除此之外，还有第三类特征，如用户浏览/购买品类，有多个品类id且用一个数值衡量用户浏览或购买每个品类商品的数量。这类特征按照categorical特征处理，不同的只是特征的值不是0或1，而是代表用户浏览或购买数量的数值。按前述方法得到field_id之后，再对转换后特征顺序编号，得到feat_id，特征的值也可以按照之前的方法获得。</p>
@@ -591,7 +590,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

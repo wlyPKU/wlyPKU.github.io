@@ -1,0 +1,912 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="baidu-site-verification" content="SjzK8OEtoc" />
+<meta name="google-site-verification" content="bA1EerR_bNYAYfaP2nkHs-XeqIviTDWTI96YeW_6IkU" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="特征选择概述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特征选择">
+<meta property="og:url" content="http://wlyPKU.github.io/2017/08/12/feature-selection/index.html">
+<meta property="og:site_name" content="小小小宇">
+<meta property="og:description" content="特征选择概述">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/08/12/feature-selection/1.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/08/12/feature-selection/2.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/08/12/feature-selection/3.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/08/12/feature-selection/4.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/08/12/feature-selection/5.png">
+<meta property="og:image" content="http://wlyPKU.github.io/2017/08/12/feature-selection/6.png">
+<meta property="og:updated_time" content="2017-08-15T09:13:43.220Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="特征选择">
+<meta name="twitter:description" content="特征选择概述">
+<meta name="twitter:image" content="http://wlyPKU.github.io/2017/08/12/feature-selection/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://wlyPKU.github.io/2017/08/12/feature-selection/"/>
+
+  <title> 特征选择 | 小小小宇 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小小小宇</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/categories/LeetCode" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Leetcode
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                特征选择
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-12T23:36:46+08:00" content="2017-08-12">
+              2017-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法学习/" itemprop="url" rel="index">
+                    <span itemprop="name">算法学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/08/12/feature-selection/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/12/feature-selection/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="特征选择概述"><a href="#特征选择概述" class="headerlink" title="特征选择概述"></a>特征选择概述</h1><a id="more"></a>
+<h2 id="特征选择的几个常见问题"><a href="#特征选择的几个常见问题" class="headerlink" title="特征选择的几个常见问题"></a>特征选择的几个常见问题</h2><h3 id="为什么？"><a href="#为什么？" class="headerlink" title="为什么？"></a>为什么？</h3><p>（1）降低维度，选择重要的特征，避免维度灾难，降低计算成本<br>（2）去除不相关的冗余特征（噪声）来降低学习的难度，去除噪声的干扰，留下关键因素，提高预测精度<br>（3）获得更多有物理意义的，有价值的特征</p>
+<h3 id="不同模型有不同的特征适用类型？"><a href="#不同模型有不同的特征适用类型？" class="headerlink" title="不同模型有不同的特征适用类型？"></a>不同模型有不同的特征适用类型？</h3><p>（1）lr模型适用于拟合离散特征(见附录)<br>（2）gbdt模型适用于拟合连续数值特征<br>（3）一般说来，特征具有较大的方差说明蕴含较多信息，也是比较有价值的特征</p>
+<h3 id="特征子集的搜索："><a href="#特征子集的搜索：" class="headerlink" title="特征子集的搜索："></a>特征子集的搜索：</h3><p>（1）子集搜索问题。<br>比如逐渐添加相关特征（前向forward搜索）或逐渐去掉无关特征（后向backward搜索），还有双向搜索。<br>缺点是，该策略为贪心算法，本轮最优并不一定是全局最优，若不能穷举搜索，则无法避免该问题。<br>该子集搜索策略属于最大相关（maximum-relevance）的选择策略。<br>（2）特征子集评价与度量。<br>信息增益，交叉熵，相关性，余弦相似度等评级准则。</p>
+<h3 id="典型的特征选择方法"><a href="#典型的特征选择方法" class="headerlink" title="典型的特征选择方法"></a>典型的特征选择方法</h3><img src="/2017/08/12/feature-selection/1.png" alt="1.png" title="">
+<h2 id="从决策树模型的特征重要性说起"><a href="#从决策树模型的特征重要性说起" class="headerlink" title="从决策树模型的特征重要性说起"></a>从决策树模型的特征重要性说起</h2><p>决策树可以看成是前向搜索与信息熵相结合的算法，树节点的划分属性所组成的集合就是选择出来的特征子集。</p>
+<h3 id="决策树划分属性的依据"><a href="#决策树划分属性的依据" class="headerlink" title="决策树划分属性的依据"></a>决策树划分属性的依据</h3><img src="/2017/08/12/feature-selection/2.png" alt="2.png" title="">
+<h3 id="通过gini不纯度计算特征重要性"><a href="#通过gini不纯度计算特征重要性" class="headerlink" title="通过gini不纯度计算特征重要性"></a>通过gini不纯度计算特征重要性</h3><p>不管是scikit-learn还是mllib，其中的随机森林和gbdt算法都是基于决策树算法，一般的，都是使用了cart树算法，通过gini指数来计算特征的重要性的。<br>比如scikit-learn的sklearn.feature_selection.SelectFromModel可以实现根据特征重要性分支进行特征的转换。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; from sklearn.ensemble import ExtraTreesClassifier</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; from sklearn.datasets import load_iris</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; from sklearn.feature_selection import SelectFromModel</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; iris = load_iris()</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; X, y = iris.data, iris.target</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; X.shape</div><div class="line">(<span class="number">150</span>, <span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; clf = ExtraTreesClassifier()</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; clf = clf.fit(X, y)</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; clf.feature_importances<span class="number">_</span> </div><div class="line">array([ <span class="number">0</span>.<span class="number">04</span>...,  <span class="number">0</span>.<span class="number">05</span>...,  <span class="number">0</span>.<span class="number">4</span>...,  <span class="number">0</span>.<span class="number">4</span>...])</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; model = SelectFromModel(clf, prefit=True)</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; X_new = model.transform(X)</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; X_new.shape              </div><div class="line">(<span class="number">150</span>, <span class="number">2</span>)</div></pre></td></tr></table></figure></p>
+<h3 id="mllib中集成学习算法计算特征重要性的源码"><a href="#mllib中集成学习算法计算特征重要性的源码" class="headerlink" title="mllib中集成学习算法计算特征重要性的源码"></a>mllib中集成学习算法计算特征重要性的源码</h3><p>在spark 2.0之后，mllib的决策树算法都引入了计算特征重要性的方法featureImportances，而随机森林算法（RandomForestRegressionModel和RandomForestClassificationModel类）和gbdt算法（GBTClassificationModel和GBTRegressionModel类）均利用决策树算法中计算特征不纯度和特征重要性的方法来得到所使用模型的特征重要性。<br>而这些集成方法的实现类都集成了TreeEnsembleModel[M &lt;: DecisionTreeModel]这个特质（trait），即featureImportances是在该特质中实现的。<br>featureImportances方法的基本计算思路是：<br><code>针对每一棵决策树而言，特征j的重要性指标为所有通过特征j进行划分的树结点的增益的和
+将一棵树的特征重要性归一化到1
+将集成模型的特征重要性向量归一化到1</code></p>
+<h2 id="皮尔森相关系数-Pearson-Correlation-Coefficient"><a href="#皮尔森相关系数-Pearson-Correlation-Coefficient" class="headerlink" title="皮尔森相关系数(Pearson Correlation Coefficient)"></a>皮尔森相关系数(Pearson Correlation Coefficient)</h2><p>$$<br>\rho_{X,Y} = \frac{cov(X,Y)}{\sigma_X\sigma_Y} = \frac{E(XY)-E(X)E(Y)}{\sqrt{E(X^2)-E(X)^2}\sqrt{E(Y^2)-E(Y)^2}}<br>$$</p>
+<h2 id="最大相关最小冗余（mRMR）算法"><a href="#最大相关最小冗余（mRMR）算法" class="headerlink" title="最大相关最小冗余（mRMR）算法"></a>最大相关最小冗余（mRMR）算法</h2><h3 id="互信息"><a href="#互信息" class="headerlink" title="互信息"></a>互信息</h3><p>互信息可以看成是一个随机变量中包含的关于另一个随机变量的信息量，或者说是一个随机变量由于已知另一个随机变量而减少的不确定性。互信息本来是信息论中的一个概念,用于表示信息之间的关系, 是<strong>两个随机变量统计相关性的测度</strong>。<br><img src="/2017/08/12/feature-selection/3.png" alt="3.png" title=""><br><img src="/2017/08/12/feature-selection/4.png" alt="4.png" title=""></p>
+<h3 id="mRMR"><a href="#mRMR" class="headerlink" title="mRMR"></a>mRMR</h3><p>之所以出现mRMR算法来进行特征选择，主要是为了解决通过最大化特征与目标变量的相关关系度量得到的最好的m个特征，并不一定会得到最好的预测精度的问题。<br>前面介绍的评价特征的方法基本都是基于是否与目标变量具有强相关性的特征，但是这些特征里还可能包含一些冗余特征（比如目标变量是立方体体积，特征为底面的长度、底面的宽度、底面的面积，其实底面的面积可以由长与宽得到，所以可被认为是一种冗余信息），<strong>mRMR算法就是用来在保证最大相关性的同时，又去除了冗余特征的方法</strong>，相当于得到了一组“最纯净”的特征子集（特征之间差异很大，而同目标变量的相关性也很大）。<br>作为一个特例，变量之间的相关性（correlation）可以用统计学的依赖关系（dependency）来替代，而互信息（mutual information）是一种评价该依赖关系的度量方法。<br><strong>mRMR可认为是最大化特征子集的联合分布与目标变量之间依赖关系的一种近似。</strong><br>mRMR本身还是属于filter型特征选择方法。<br><img src="/2017/08/12/feature-selection/5.png" alt="5.png" title=""></p>
+<p>可以通过max(V-W)或max(V/W)来统筹考虑相关性和冗余性，作为特征评价的标准。<br><img src="/2017/08/12/feature-selection/6.png" alt="6.png" title=""></p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>逻辑回归模型与离散特征<br>将连续特征离散化（像是独热编码之类的技巧）交给逻辑回归模型，这样做的优势有以下几点：</p>
+<ol>
+<li>稀疏向量内积乘法运算速度快，计算结果方便存储，容易扩展。</li>
+<li>离散化后的特征对异常数据有很强的鲁棒性：比如一个特征是年龄&gt;30是1，否则0。如果特征没有离散化，一个异常数据“年龄300岁”会给模型造成很大的干扰。</li>
+<li>逻辑回归属于广义线性模型，表达能力受限；单变量离散化为N个后，每个变量有单独的权重，相当于为模型引入了非线性，能够提升模型表达能力，加大拟合。</li>
+<li>离散化后可以进行特征交叉，由M+N个变量变为M*N个变量，进一步引入非线性，提升表达能力。</li>
+<li>特征离散化后，模型会更稳定，比如如果对用户年龄离散化，20-30作为一个区间，不会因为一个用户年龄长了一岁就变成一个完全不同的人。当然处于区间相邻处的样本会刚好相反，所以怎么划分区间是门学问。<br>李沐少帅指出，模型是使用离散特征还是连续特征，其实是一个“海量离散特征+简单模型” 同 “少量连续特征+复杂模型”的权衡。既可以离散化用线性模型，也可以用连续特征加深度学习。</li>
+</ol>
+<hr>
+<h1 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h1><p>当数据预处理完成后，我们需要选择有意义的特征输入机器学习的算法和模型进行训练。通常来说，从两个方面考虑来选择特征：</p>
+<ol>
+<li>特征是否发散：如果一个特征不发散，例如方差接近于0，也就是说样本在这个特征上基本上没有差异，这个特征对于样本的区分并没有什么用。</li>
+<li>特征与目标的相关性：这点比较显见，与目标相关性高的特征，应当优选选择。除方差法外，本文介绍的其他方法均从相关性考虑。　　</li>
+</ol>
+<p>根据特征选择的形式又可以将特征选择方法分为3种：</p>
+<ol>
+<li>Filter：过滤法，按照发散性或者相关性对各个特征进行评分，设定阈值或者待选择阈值的个数，选择特征。</li>
+<li>Wrapper：包装法，根据目标函数（通常是预测效果评分），每次选择若干特征，或者排除若干特征。</li>
+<li>Embedded：嵌入法，先使用某些机器学习的算法和模型进行训练，得到各个特征的权值系数，根据系数从大到小选择特征。类似于Filter方法，但是是通过训练来确定特征的优劣。　　</li>
+</ol>
+<p>我们使用sklearn中的feature_selection库来进行特征选择。</p>
+<h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><h3 id="方差选择法"><a href="#方差选择法" class="headerlink" title="方差选择法"></a>方差选择法</h3><p>使用方差选择法，先要计算各个特征的方差，然后根据阈值，选择方差大于阈值的特征。使用feature_selection库的VarianceThreshold类来选择特征的代码如下：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="title">from</span> sklearn.feature_selection <span class="keyword">import</span> VarianceThreshold</div><div class="line"></div><div class="line"><span class="meta">#方差选择法，返回值为特征选择后的数据</span></div><div class="line"><span class="meta">#参数threshold为方差的阈值</span></div><div class="line"><span class="type">VarianceThreshold</span>(threshold=<span class="number">3</span>).fit_transform(iris.<span class="class"><span class="keyword">data</span>)</span></div></pre></td></tr></table></figure></p>
+<h3 id="相关系数法"><a href="#相关系数法" class="headerlink" title="相关系数法"></a>相关系数法</h3><p>　　使用相关系数法，先要计算各个特征对目标值的相关系数以及相关系数的P值。用feature_selection库的SelectKBest类结合相关系数来选择特征的代码如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from sklearn<span class="selector-class">.feature_selection</span> import SelectKBest</div><div class="line">from scipy<span class="selector-class">.stats</span> import pearsonr</div><div class="line"></div><div class="line">#选择K个最好的特征，返回选择特征后的数据</div><div class="line">#第一个参数为计算评估特征是否好的函数，该函数输入特征矩阵和目标向量，输出二元组（评分，P值）的数组，数组第i项为第i个特征的评分和P值。在此定义为计算相关系数</div><div class="line">#参数k为选择的特征个数</div><div class="line"><span class="function"><span class="title">SelectKBest</span><span class="params">(lambda X, Y: array(map(lambda x:pearsonr(x, Y)</span></span>, X.T))<span class="selector-class">.T</span>, k=<span class="number">2</span>).fit_transform(iris<span class="selector-class">.data</span>, iris.target)</div></pre></td></tr></table></figure></p>
+<h3 id="卡方检验"><a href="#卡方检验" class="headerlink" title="卡方检验"></a>卡方检验</h3><p>经典的卡方检验是检验定性自变量对定性因变量的相关性。假设自变量有N种取值，因变量有M种取值，考虑自变量等于i且因变量等于j的样本频数的观察值与期望的差距，构建统计量：<br>$$<br>\chi^2 = \sum{\frac{(A - E)^2}{E}}<br>$$<br>不难发现，<a href="https://link.zhihu.com/?target=http%3A//wiki.mbalib.com/wiki/%25E5%258D%25A1%25E6%2596%25B9%25E6%25A3%2580%25E9%25AA%258C" target="_blank" rel="external">这个统计量的含义简而言之就是自变量对因变量的相关性</a>。用feature_selection库的SelectKBest类结合卡方检验来选择特征的代码如下：</p>
+<h3 id="互信息法"><a href="#互信息法" class="headerlink" title="互信息法"></a>互信息法</h3><p>经典的互信息也是评价定性自变量对定性因变量的相关性的，互信息计算公式如下：<br>$$<br>I(X;Y)=\sum_{x\in X}\sum_{y\in Y} p(x,y)\log {\frac{p(x,y)}{p(x)p(y)}}<br>$$</p>
+<p>为了处理定量数据，最大信息系数法被提出，使用feature_selection库的SelectKBest类结合最大信息系数法来选择特征的代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> SelectKBest</div><div class="line"> <span class="keyword">from</span> minepy <span class="keyword">import</span> MINE</div><div class="line"> </div><div class="line"> <span class="comment">#由于MINE的设计不是函数式的，定义mic方法将其为函数式的，返回一个二元组，二元组的第2项设置成固定的P值0.5</span></div><div class="line"> <span class="function"><span class="keyword">def</span> <span class="title">mic</span><span class="params">(x, y)</span>:</span></div><div class="line">     m = MINE()</div><div class="line">     m.compute_score(x, y)</div><div class="line">     <span class="keyword">return</span> (m.mic(), <span class="number">0.5</span>)</div><div class="line"></div><div class="line"><span class="comment">#选择K个最好的特征，返回特征选择后的数据</span></div><div class="line">SelectKBest(<span class="keyword">lambda</span> X, Y: array(map(<span class="keyword">lambda</span> x:mic(x, Y), X.T)).T, k=<span class="number">2</span>).fit_transform(iris.data, iris.target)</div></pre></td></tr></table></figure></p>
+<h2 id="Wrapper"><a href="#Wrapper" class="headerlink" title="Wrapper"></a>Wrapper</h2><h3 id="递归特征消除法"><a href="#递归特征消除法" class="headerlink" title="递归特征消除法"></a>递归特征消除法</h3><p>　　递归消除特征法使用一个基模型来进行多轮训练，每轮训练后，消除若干权值系数的特征，再基于新的特征集进行下一轮训练。使用feature_selection库的RFE类来选择特征的代码如下：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="title">from</span> sklearn.feature_selection <span class="keyword">import</span> RFE</div><div class="line"><span class="title">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</div><div class="line"></div><div class="line"><span class="meta">#递归特征消除法，返回特征选择后的数据</span></div><div class="line"><span class="meta">#参数estimator为基模型</span></div><div class="line"><span class="meta">#参数n_features_to_select为选择的特征个数</span></div><div class="line"><span class="type">RFE</span>(estimator=<span class="type">LogisticRegression</span>(), n_features_to_select=<span class="number">2</span>).fit_transform(iris.<span class="class"><span class="keyword">data</span>, iris.target)</span></div></pre></td></tr></table></figure></p>
+<h2 id="Embedded"><a href="#Embedded" class="headerlink" title="Embedded"></a>Embedded</h2><h3 id="基于惩罚项的特征选择法"><a href="#基于惩罚项的特征选择法" class="headerlink" title="基于惩罚项的特征选择法"></a>基于惩罚项的特征选择法</h3><p>　　使用带惩罚项的基模型，除了筛选出特征外，同时也进行了降维。使用feature_selection库的SelectFromModel类结合带L1惩罚项的逻辑回归模型，来选择特征的代码如下：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="title">from</span> sklearn.feature_selection <span class="keyword">import</span> SelectFromModel</div><div class="line"><span class="title">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</div><div class="line"></div><div class="line"><span class="meta">### 带L1惩罚项的逻辑回归作为基模型的特征选择</span></div><div class="line"><span class="type">SelectFromModel</span>(<span class="type">LogisticRegression</span>(penalty=<span class="string">"l1"</span>, <span class="type">C</span>=<span class="number">0.1</span>)).fit_transform(iris.<span class="class"><span class="keyword">data</span>, iris.target)</span></div></pre></td></tr></table></figure></p>
+<p>实际上，<a href="http://www.zhihu.com/question/28641663/answer/41653367" target="_blank" rel="external">L1惩罚项降维的原理在于保留多个对目标值具有同等相关性的特征中的一个</a>，所以没选到的特征不代表不重要。故，可结合L2惩罚项来优化。具体操作为：若一个特征在L1中的权值为1，选择在L2中权值差别不大且在L1中权值为0的特征构成同类集合，将这一集合中的特征平分L1中的权值，故需要构建一个新的逻辑回归模型：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">from sklearn.linear_model <span class="built_in">import</span> LogisticRegression</div><div class="line"></div><div class="line">class LR(LogisticRegression):</div><div class="line">    def __init__(self, <span class="attr">threshold=0.01,</span> <span class="attr">dual=False,</span> <span class="attr">tol=1e-4,</span> <span class="attr">C=1.0,</span></div><div class="line">                 <span class="attr">fit_intercept=True,</span> <span class="attr">intercept_scaling=1,</span> <span class="attr">class_weight=None,</span></div><div class="line">                 <span class="attr">random_state=None,</span> <span class="attr">solver='liblinear',</span> <span class="attr">max_iter=100,</span></div><div class="line">                 <span class="attr">multi_class='ovr',</span> <span class="attr">verbose=0,</span> <span class="attr">warm_start=False,</span> <span class="attr">n_jobs=1):</span></div><div class="line"></div><div class="line">        <span class="comment">#权值相近的阈值</span></div><div class="line">        self.<span class="attr">threshold</span> = threshold</div><div class="line">        LogisticRegression.__init__(self, <span class="attr">penalty='l1',</span> <span class="attr">dual=dual,</span> <span class="attr">tol=tol,</span> <span class="attr">C=C,</span></div><div class="line">                 <span class="attr">fit_intercept=fit_intercept,</span> <span class="attr">intercept_scaling=intercept_scaling,</span> <span class="attr">class_weight=class_weight,</span></div><div class="line">                 <span class="attr">random_state=random_state,</span> <span class="attr">solver=solver,</span> <span class="attr">max_iter=max_iter,</span></div><div class="line">                 <span class="attr">multi_class=multi_class,</span> <span class="attr">verbose=verbose,</span> <span class="attr">warm_start=warm_start,</span> <span class="attr">n_jobs=n_jobs)</span></div><div class="line">        <span class="comment">#使用同样的参数创建L2逻辑回归</span></div><div class="line">        self.<span class="attr">l2</span> = LogisticRegression(<span class="attr">penalty='l2',</span> <span class="attr">dual=dual,</span> <span class="attr">tol=tol,</span> <span class="attr">C=C,</span> <span class="attr">fit_intercept=fit_intercept,</span> <span class="attr">intercept_scaling=intercept_scaling,</span> <span class="attr">class_weight</span> = class_weight, <span class="attr">random_state=random_state,</span> <span class="attr">solver=solver,</span> <span class="attr">max_iter=max_iter,</span> <span class="attr">multi_class=multi_class,</span> <span class="attr">verbose=verbose,</span> <span class="attr">warm_start=warm_start,</span> <span class="attr">n_jobs=n_jobs)</span></div><div class="line"></div><div class="line">    def fit(self, X, y, <span class="attr">sample_weight=None):</span></div><div class="line">        <span class="comment">#训练L1逻辑回归</span></div><div class="line">        super(LR, self).fit(X, y, <span class="attr">sample_weight=sample_weight)</span></div><div class="line">        self.<span class="attr">coef_old_</span> = self.coef_.copy()</div><div class="line">        <span class="comment">#训练L2逻辑回归</span></div><div class="line">        self.l2.fit(X, y, <span class="attr">sample_weight=sample_weight)</span></div><div class="line"></div><div class="line">        cntOfRow, <span class="attr">cntOfCol</span> = self.coef_.shape</div><div class="line">        <span class="comment">#权值系数矩阵的行数对应目标值的种类数目</span></div><div class="line">        for i <span class="keyword">in</span> range(cntOfRow):</div><div class="line">            for j <span class="keyword">in</span> range(cntOfCol):</div><div class="line">                <span class="attr">coef</span> = self.coef_[i][j]</div><div class="line">                <span class="comment">#L1逻辑回归的权值系数不为0</span></div><div class="line">                <span class="keyword">if</span> coef != <span class="number">0</span>:</div><div class="line">                    <span class="attr">idx</span> = [j]</div><div class="line">                    <span class="comment">#对应在L2逻辑回归中的权值系数</span></div><div class="line">                    <span class="attr">coef1</span> = self.l2.coef_[i][j]</div><div class="line">                    for k <span class="keyword">in</span> range(cntOfCol):</div><div class="line">                        <span class="attr">coef2</span> = self.l2.coef_[i][k]</div><div class="line">                        <span class="comment">#在L2逻辑回归中，权值系数之差小于设定的阈值，且在L1中对应的权值为0</span></div><div class="line">                        <span class="keyword">if</span> abs(coef1-coef2) &lt; self.threshold <span class="literal">and</span> j != k <span class="literal">and</span> self.coef_[i][k] == <span class="number">0</span>:</div><div class="line">                            idx.append(k)</div><div class="line">                    <span class="comment">#计算这一类特征的权值系数均值</span></div><div class="line">                    <span class="attr">mean</span> = coef / len(idx)</div><div class="line">                    self.coef_[i][idx] = mean</div><div class="line">        return self</div></pre></td></tr></table></figure></p>
+<p>使用feature_selection库的SelectFromModel类结合带L1以及L2惩罚项的逻辑回归模型，来选择特征的代码如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from sklearn<span class="selector-class">.feature_selection</span> import SelectFromModel</div><div class="line"> </div><div class="line">#带L1和L2惩罚项的逻辑回归作为基模型的特征选择</div><div class="line">#参数threshold为权值系数之差的阈值</div><div class="line"><span class="function"><span class="title">SelectFromModel</span><span class="params">(LR(threshold=<span class="number">0.5</span>, C=<span class="number">0.1</span>)</span></span>).fit_transform(iris<span class="selector-class">.data</span>, iris.target)</div></pre></td></tr></table></figure></p>
+<h3 id="基于树模型的特征选择法"><a href="#基于树模型的特征选择法" class="headerlink" title="基于树模型的特征选择法"></a>基于树模型的特征选择法</h3><p>　　树模型中GBDT也可用来作为基模型进行特征选择，使用feature_selection库的SelectFromModel类结合GBDT模型，来选择特征的代码如下：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from sklearn<span class="selector-class">.feature_selection</span> import SelectFromModel</div><div class="line">from sklearn<span class="selector-class">.ensemble</span> import GradientBoostingClassifier</div><div class="line"></div><div class="line">#GBDT作为基模型的特征选择</div><div class="line"><span class="function"><span class="title">SelectFromModel</span><span class="params">(GradientBoostingClassifier()</span></span>).fit_transform(iris<span class="selector-class">.data</span>, iris.target)</div></pre></td></tr></table></figure></p>
+<p><a href="http://www.jianshu.com/p/04d965e35b6d" target="_blank" rel="external">【特征工程】特征选择及mRMR算法解析</a><br><a href="https://www.zhihu.com/question/28641663/answer/41653367" target="_blank" rel="external">机器学习中，有哪些特征选择的工程方法？</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法学习/" rel="tag">#算法学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/16/Deep-Learning-in-Machine-Translate/" rel="next" title="Natural Language Processing with Deep Learning">
+                <i class="fa fa-chevron-left"></i> Natural Language Processing with Deep Learning
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww3.sinaimg.cn/mw690/770b0925jw8f39az302pwj20w00w0dnd.jpg"
+               alt="wlyPKU" />
+          <p class="site-author-name" itemprop="name">wlyPKU</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlyPKU" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wangly2011/profile" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/wangly.cs" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#特征选择概述"><span class="nav-number">1.</span> <span class="nav-text">特征选择概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征选择的几个常见问题"><span class="nav-number">1.1.</span> <span class="nav-text">特征选择的几个常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么？"><span class="nav-number">1.1.1.</span> <span class="nav-text">为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同模型有不同的特征适用类型？"><span class="nav-number">1.1.2.</span> <span class="nav-text">不同模型有不同的特征适用类型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征子集的搜索："><span class="nav-number">1.1.3.</span> <span class="nav-text">特征子集的搜索：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#典型的特征选择方法"><span class="nav-number">1.1.4.</span> <span class="nav-text">典型的特征选择方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从决策树模型的特征重要性说起"><span class="nav-number">1.2.</span> <span class="nav-text">从决策树模型的特征重要性说起</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树划分属性的依据"><span class="nav-number">1.2.1.</span> <span class="nav-text">决策树划分属性的依据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过gini不纯度计算特征重要性"><span class="nav-number">1.2.2.</span> <span class="nav-text">通过gini不纯度计算特征重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mllib中集成学习算法计算特征重要性的源码"><span class="nav-number">1.2.3.</span> <span class="nav-text">mllib中集成学习算法计算特征重要性的源码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#皮尔森相关系数-Pearson-Correlation-Coefficient"><span class="nav-number">1.3.</span> <span class="nav-text">皮尔森相关系数(Pearson Correlation Coefficient)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大相关最小冗余（mRMR）算法"><span class="nav-number">1.4.</span> <span class="nav-text">最大相关最小冗余（mRMR）算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#互信息"><span class="nav-number">1.4.1.</span> <span class="nav-text">互信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mRMR"><span class="nav-number">1.4.2.</span> <span class="nav-text">mRMR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">1.5.</span> <span class="nav-text">附录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特征选择"><span class="nav-number">2.</span> <span class="nav-text">特征选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Filter"><span class="nav-number">2.1.</span> <span class="nav-text">Filter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方差选择法"><span class="nav-number">2.1.1.</span> <span class="nav-text">方差选择法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关系数法"><span class="nav-number">2.1.2.</span> <span class="nav-text">相关系数法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卡方检验"><span class="nav-number">2.1.3.</span> <span class="nav-text">卡方检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#互信息法"><span class="nav-number">2.1.4.</span> <span class="nav-text">互信息法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wrapper"><span class="nav-number">2.2.</span> <span class="nav-text">Wrapper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#递归特征消除法"><span class="nav-number">2.2.1.</span> <span class="nav-text">递归特征消除法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedded"><span class="nav-number">2.3.</span> <span class="nav-text">Embedded</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于惩罚项的特征选择法"><span class="nav-number">2.3.1.</span> <span class="nav-text">基于惩罚项的特征选择法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于树模型的特征选择法"><span class="nav-number">2.3.2.</span> <span class="nav-text">基于树模型的特征选择法</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlyPKU</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'wlypku';
+      var disqus_identifier = '2017/08/12/feature-selection/';
+      var disqus_title = "特征选择";
+      var disqus_url = 'http://wlyPKU.github.io/2017/08/12/feature-selection/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
