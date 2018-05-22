@@ -188,7 +188,7 @@
 <h1 id="Student-Attendance-Record-I"><a href="#Student-Attendance-Record-I" class="headerlink" title="Student Attendance Record I"></a>Student Attendance Record I</h1><p>You are given a string representing an attendance record for a student. The record only contains the following three characters:</p>
 <ol>
 <li><strong>‘A’</strong> : Absent.</li>
-<li><strong>‘L’</strong> : Late.</li>
+<li><strong>‘L’</strong> : Late. </li>
 <li><strong>‘P’</strong> : Present.</li>
 </ol>
 <p>A student could be rewarded if his attendance record doesn’t contain <strong>more than one ‘A’ (absent)</strong> or <strong>more than two continuous ‘L’ (late)</strong>.</p>
